@@ -1,0 +1,141 @@
+:root {
+  /* цвета */
+  --colorText: #000;
+  --colorTextPrimary: #2c2d2e;
+  --colorTextSecondary: #99a2ad;
+  --colorTextSecondaryContrast: #524a3e;
+
+  --colorIconBackground: #efefef;
+  --colorIconBackgroundPositive: #0dc268;
+  --colorIconBackgroundNeutral: #ff9e00;
+
+  --colorInputBorder: #d3d9de;
+  --colorInputBackground: #f7f8fa;
+  --colorInputLabelText: #6f7985;
+  --colorInputError: #e64646;
+  --colorInputErrorBackground: #faebeb;
+  --colorInputPlaceholder: #aeb7c2;
+  --colorInputSeparator: #d9dadc;
+
+  /* stroke */
+  --colorSeparatorPrimary: #dadce0;
+  --colorSeparatorPrimaryAlpha: #e0e2e7;
+  --colorSeparatorSecondary: #e6e7eb;
+  --colorImageBorderAlpha: #ebecf0;
+  --colorFieldBorderAlpha: #e0e2e7;
+  --colorStrokeAccent: #005ff9;
+  --colorStrokeContrast: #fff;
+  --colorStrokeNegative: #ed0a34;
+  --colorStrokePositive: #0dc268;
+
+  /* states */
+  --colorBackgroundAccentHover: #005cf1;
+  --colorBackgroundAccentActive: #0059ea;
+  --colorBackgroundAccentHoverThemed: #005cf1;
+  --colorBackgroundAccentActiveThemed: #0059ea;
+  --colorIconAccentHover: #005cf1;
+  --colorIconAccentActive: #0059ea;
+  --colorIconTertiaryHover: #c7c9d0;
+  --colorIconTertiaryActive: #bec2ca;
+  --colorBackgroundSecondaryHover: #e6e8ec;
+  --colorBackgroundSecondaryActive: #dddfe4;
+  --colorBackgroundSecondaryAlphaHover: #e6e8ec;
+  --colorBackgroundSecondaryAlphaActive: #dbdde4;
+  --colorBackgroundPositiveHover: #0cbb66;
+  --colorBackgroundPositiveActive: #0cb465;
+  --colorBackgroundNegativeHover: #e40a34;
+  --colorBackgroundNegativeActive: #da0a35;
+  --colorTransparentHover: #f5f6f7;
+  --colorTransparentActive: #ebecf0;
+  --colorBackgroundContrastHover: #f5f5f7;
+  --colorBackgroundContrastActive: #ebecef;
+  --colorBackgroundContrastAlphaHover: #fff;
+  --colorBackgroundContrastAlphaActive: #fff;
+  --colorBackgroundAccentTintThemedAlphaHover: #dce5ff;
+  --colorBackgroundAccentTintThemedAlphaActive: #dce5ff;
+
+  /* --brand-15: rgba(0, 0, 0, 0.15);
+  --vkui-color-background-background: #fff;
+  --vkui-color-text-secondary: #87898f;
+  --vkui-color-text-negative: #ed0a34;
+  --vkui-color-background-contrastsecondaryalpha: rgba(255, 255, 255, 0.2);
+  --vkui-color-palette-accentpurple: #4f6ddc;
+  --vkui-color-icon-tertiary: #cfd1d6;
+  --vkui-color-icon-mediumalpha: rgba(39, 43, 55, 0.5);
+  --vkui-color-background-modalinverse: #303030;
+  --vkui-color-icon-secondaryalpha: rgba(39, 43, 55, 0.3);
+  --vkui-color-text-positive: #0dc268;
+  --vkui-color-icon-iconcontrastsecondary: #f2f3f5;
+  --vkui-color-other-sceletonto: #e0e1e6;
+  --vkui-color-icon-primaryinvariably: #2c2d2e;
+  --vkui-color-palette-accentorange: #ff9e00;
+  --vkui-color-icon-secondary: #a5a7ad;
+  --vkui-color-icon-tertiaryalpha: rgba(39, 43, 55, 0.2);
+  --vkui-color-stroke-fieldborderalpha: rgba(0, 16, 61, 0.12);
+  --vkui-color-text-link: #005bd1;
+  --vkui-color-other-imageplaceholderalpha: rgba(0, 16, 61, 0.8);
+  --vkui-color-background-negativetint: #faebeb;
+  --vkui-color-states-backgroundaccenttintthemedalpha-–-active: rgba(5, 72, 255, 0.14);
+  --vkui-color-background-warningtintalpha: rgba(255, 241, 173, 0.48);
+  --vkui-color-other-trackbackground: #dadce0;
+  --vkui-color-other-searchfieldbackground: #e6e7eb;
+  --vkui-color-background-accenttintthemedalpha: rgba(5, 72, 255, 0.06);
+  --vkui-color-other-trackbuffer: #83aaea;
+  --vkui-color-background-negativetintalpha: rgba(237, 10, 52, 0.08);
+  --vkui-color-background-accenttint: #5a9eff;
+  --vkui-color-palette-accentviolent: #c15df3;
+  --vkui-color-background-positivetintthemedalpha: rgba(13, 194, 104, 0.08);
+  --vkui-color-text-tertiary: #aaadb3;
+  --vkui-color-background-warningtintthemed: #fffce0;
+  --vkui-color-icon-medium: #919399;
+  --vkui-color-background-tertiary: #f6f7f8;
+  --vkui-color-other-overlayprimaryalpha: rgba(0, 0, 0, 0.48);
+  --vkui-color-text-linkvisited: #528fdf;
+  --vkui-color-stroke-imageborderalpha: rgba(0, 16, 61, 0.08);
+  --vkui-color-background-secondary: #f0f1f3;
+  --vkui-color-other-avataroverlay: rgba(145, 147, 153, 0.48);
+  --vkui-color-other-avataroverlayinverse: rgba(255, 255, 255, 0.85);
+  --vkui-color-background-secondaryalpha: rgba(0, 16, 61, 0.06);
+  --vkui-color-text-subhead: #797a80;
+  --vkui-color-background-warning: #fff1ad;
+  --vkui-color-background-positivetintthemed: #ecfaf3;
+  --vkui-color-background-accenttintthemed: #f0f4ff;
+  --knopka-pachka: #23272e;
+  --fokus-na-knopki: #404651;
+  --vkui-color-avatars-orange: #f68e42;
+  --vkui-color-avatars-sky: #9edbff;
+  --vkui-color-states-backgroundaccentthemed-–-active: #0059ea;
+  --vkui-color-states-backgroundaccentthemed-–-hover: #005cf1;
+  --vkui-color-states-backgroundnegative-–-active: #da0a35;
+  --vkui-color-states-transparent-–-hover: rgba(0, 16, 61, 0.04);
+  --vkui-color-avatars-blue: #4c91ff;
+  --vkui-color-avatars-red: #f55252;
+  --vkui-color-avatars-green: #43cc4c;
+  --vkui-color-states-coloricontertiary-–-hover: #c7c9d0;
+  --vkui-color-states-backgroundsecondary-–-active: #dddfe4;
+  --vkui-color-states-backgroundpositive-–-hover: #0cbb66;
+  --vkui-color-states-backgroundsecondaryalpha-–-hover: rgba(0, 16, 61, 0.1);
+  --vkui-color-states-backgroundcontrast-–-active: #ebecef;
+  --vkui-color-states-backgroundpositive-–-active: #0cb465;
+  --vkui-color-avatars-yellow: #ffd65c;
+  --vkui-color-avatars-violet: #b884ff;
+  --vkui-color-states-backgroundnegative-–-hover: #e40a34;
+  --vkui-color-background-positivetint: #eefaeb;
+  --vkui-color-avatars-lavender: #d3b2ff;
+  --vkui-color-avatars-mint: #7beadb;
+  --vkui-color-states-backgroundcontrast-–-hover: #f5f5f7;
+  --vkui-color-states-backgroundsecondary-–-hover: #e6e8ec;
+  --vkui-color-states-backgroundsecondaryalpha-–-active: rgba(0, 16, 61, 0.14);
+  --black-80: rgba(28, 28, 28, 0.8);
+  --accent: #5100ff;
+  --background: #1e1e1e;
+  --main-streets: #5a5a5a;
+  --buildings: #4a4a4a;
+  --streets: #444;
+  --water: #303b41;
+  --primary-brand: #1c1c1c;
+  --primary-pri-navedenii: #2d3945; */
+
+  /* размеры */
+  --content-width: 1280px;
+}

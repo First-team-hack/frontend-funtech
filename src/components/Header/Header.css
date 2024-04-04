@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 178px;
+  justify-content: space-between;
+  width: var(--content-width);
+  margin: 0 auto;
+  padding: 15px 0;
+}

@@ -1,0 +1,31 @@
+.navlink-with-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  gap: 8px;
+}
+
+.navlink-with-button:hover .navlink-with-button__link {
+  opacity: 0.7;
+}
+
+.navlink-with-button:hover .notifications-popup__button_type_main {
+  opacity: 0.7;
+}
+
+.navlink-with-button__link {
+  color: var(--colorTextSecondary);
+  font-family: 'YS Text';
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px; /* 123.077% */
+  letter-spacing: -0.08px;
+  text-decoration: none;
+  transition: all ease-in 0.1s;
+}
+
+.navlink-with-button__link_active {
+  color: var(--colorStrokeAccent);
+}

@@ -1,0 +1,63 @@
+.event-status {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--colorStrokeContrast);
+}
+
+.event-status_text-color_white {
+  color: var(--colorStrokeContrast);
+}
+
+.event-status_text-color_black {
+  color: var(--colorTextPrimary);
+}
+.event-status__text {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.event-status__text_type_city::before {
+  content: '';
+  display: block;
+  width: 13px;
+  height: 16px;
+  background-image: url('../../assets/icons/pin.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.event-status__text_type_online::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background-color: var(--colorIconBackgroundPositive);
+  border-radius: 50%;
+}
+
+.event-status__text_type_seats-left::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.event-status__text_dot-color_green.event-status__text_type_seats-left::before {
+  background-color: var(--colorIconBackgroundPositive);
+}
+
+.event-status__text_dot-color_yellow.event-status__text_type_seats-left::before {
+  background-color: var(--colorIconBackgroundNeutral);
+}
+
+.event-status__text_dot-color_red.event-status__text_type_seats-left::before {
+  background-color: var(--colorStrokeNegative);
+}

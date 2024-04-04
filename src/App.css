@@ -1,0 +1,8 @@
+.App {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'YS Text', Arial, sans-serif;
+  font-style: normal;
+  min-width: 320px;
+  min-height: 100dvh;
+}
