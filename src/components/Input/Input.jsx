@@ -1,15 +1,15 @@
 import './Input.css';
 
 /**
- * Компонент Input, с лейблом и ошибками
-
- * @param {string} label string - текст лейбла
- * @param {string} error string - текст ошибки
- * @param {boolean} textarea boolean - если true превращается в многострокое поле ввода
- * @param {string} type string - при типе 'tel' в левой части инпута добавляется телефоный код страны
- * @param {string} countryCode string - телефоный код страны
- * @param {object} props остальные пропсы как и у обычного инпута
- * @returns
+ *  This wrapper component for native input with custom design.
+ * @param {string} label text above input element
+ * @param {string} error error text under input element
+ * @param {boolean} textarea boolean, if true input became textarea
+ * @param {string} type type = 'tel' add telephon country code on input left side, type='search' add search icon on input left side
+ * @param {string} countryCode string, telephon country code
+ * @param {object} props the rest of the props are the same as in the native input
+ *
+ * You can ovveride input styles with css by using id selector
  */
 
 function Input({ label, error, textarea, countryCode = '+7', ...props }) {
@@ -31,11 +31,13 @@ function Input({ label, error, textarea, countryCode = '+7', ...props }) {
             className={
               'input__input' +
               (error ? ' input__input_style_error' : '') +
-              (props.type === 'tel' ? ' input__input_type_tel' : '')
+              (props.type === 'tel' ? ' input__input_type_tel' : '') +
+              (props.type === 'search' ? ' input__input_type_search' : '')
             }
             {...props}
           />
           {props.type === 'tel' && <span className="input__country-code">{countryCode}</span>}
+          {props.type === 'search' && <span className="input__search-icon" />}
         </div>
       )}
       {error && <span className="input__error">{error}</span>}
