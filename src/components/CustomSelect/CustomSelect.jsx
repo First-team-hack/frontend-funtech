@@ -20,13 +20,37 @@ function CustomSelect(props) {
     fontWeight: '400',
     lineHeight: '20px',
   };
-  const selectStyles = { borderRadius: '50px', width: '250px', height: '40px', ...sx };
+  const selectStyles = [
+    {
+      borderRadius: '50px',
+      width: '250px',
+      height: '40px',
+      ...sx,
+    },
+    {
+      '& .MuiSelect-select': {
+        paddingRight: 4,
+        paddingLeft: 2,
+        paddingTop: 0,
+        paddingBottom: 0,
+      },
+    },
+  ];
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: 'fit-content' }}>
-      <label style={{ color: colors.colorInputLabelText, ...labelStyles }}>
-        {required && <span style={{ color: colors.colorStrokeNegative, ...labelStyles }}>*</span>}
-        {label}
-      </label>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '8px',
+        width: 'fit-content',
+      }}
+    >
+      {label && (
+        <label style={{ color: colors.colorInputLabelText, ...labelStyles }}>
+          {required && <span style={{ color: colors.colorStrokeNegative, ...labelStyles }}>*</span>}
+          {label}
+        </label>
+      )}
       <Select
         {...props}
         sx={selectStyles}
