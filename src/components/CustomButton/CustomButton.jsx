@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import colors from '../../utils/colors';
+import globalTheme from '../../themes/globalTheme';
 /**
  * This wrapper component for MUI Button with custom design.
  * @param {object} sx object with external styles. For example {width: '80px', height '40px', borderRadius: '8px'}.
@@ -12,52 +12,52 @@ function CustomButton(props) {
     variant === 'outlined'
       ? [
           {
-            borderColor: colors.colorCustomButtonPrimary,
+            borderColor: globalTheme.palette.colorCustomButtonPrimary,
             fontStyle: 'normal',
             fontWeight: '500',
             lineHeight: '20px',
             boxShadow: 'none',
             textTransform: 'none',
-            color: colors.colorCustomButtonPrimary,
+            color: globalTheme.palette.colorCustomButtonPrimary,
             ...sx,
           },
           () => ({
             '&:hover': {
-              backgroundColor: colors.colorCustomButtonPrimary,
+              backgroundColor: globalTheme.palette.colorCustomButtonPrimary,
               boxShadow: 'none',
-              color: colors.colorCustomButtonText,
+              color: globalTheme.palette.colorCustomButtonText,
             },
             '&:focus    ': {
-              backgroundColor: colors.colorCustomButtonPrimary,
+              backgroundColor: globalTheme.palette.colorCustomButtonPrimary,
               boxShadow: 'none',
-              color: colors.colorCustomButtonText,
+              color: globalTheme.palette.colorCustomButtonText,
             },
             '&:disabled': {
               backgroundColor: 'inherit',
-              color: colors.colorCustomButtonDisabled,
-              borderColor: colors.colorCustomButtonDisabled,
+              color: globalTheme.palette.colorCustomButtonDisabled,
+              borderColor: globalTheme.palette.colorCustomButtonDisabled,
             },
           }),
         ]
       : [
           {
-            backgroundColor: colors.colorCustomButtonPrimary,
+            backgroundColor: globalTheme.palette.colorCustomButtonPrimary,
             fontStyle: 'normal',
             fontWeight: '500',
             lineHeight: '20px',
             boxShadow: 'none',
             textTransform: 'none',
-            color: colors.colorCustomButtonText,
+            color: globalTheme.palette.colorCustomButtonText,
             ...sx,
           },
           () => ({
             '&:hover': {
-              backgroundColor: colors.colorCustomButtonSecondary,
+              backgroundColor: globalTheme.palette.colorCustomButtonSecondary,
               boxShadow: 'none',
             },
             '&:disabled': {
-              backgroundColor: colors.colorCustomButtonDisabled,
-              color: colors.colorCustomButtonText,
+              backgroundColor: globalTheme.palette.colorCustomButtonDisabled,
+              color: globalTheme.palette.colorCustomButtonText,
             },
           }),
         ];
