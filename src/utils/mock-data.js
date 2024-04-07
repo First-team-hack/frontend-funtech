@@ -42,3 +42,14 @@ export const notifications = [
     age: '3 м',
   },
 ];
+
+export const cardData = {
+  title: 'Восхитительное объяснение возможностей JS',
+  speaker: 'Эксперт Роберт Миронов Лид бэкенд - факультета',
+  date: new Date(2024, 1, 7),
+  city: 'Кемерово',
+  seatsLeft: 14,
+  isOnline: true,
+  isLiked: false,
+  buttonDisabled: false,
+};

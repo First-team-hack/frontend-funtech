@@ -7,14 +7,14 @@ import './EventStatus.css';
  * @param {number} seatsLeft - number - количество оставшихся мест для оффлайн мероприятия
  * @param {boolean} isOver -  boolean - true - мероприятие завершилось, false - мероприятие еще не завершилось
  * @param {string} textColor - string - для белого цвета текста 'white', для черного 'black', по дефолту установлен 'white'
+ * @param {string} onlySeast - boolean true - показывать только количество оставшихся мест
  */
-function EventStatus({ isOnline, city = null, seatsLeft = 0, isOver, textColor = 'white' }) {
+function EventStatus({ isOnline, city, seatsLeft, isOver, textColor, onlySeats }) {
   function getDotColor(seatsLeft) {
     if (typeof seatsLeft !== 'number' || seatsLeft <= 5) {
       return 'red';
     }
     if (seatsLeft > 5 && seatsLeft < 30) {
-      console.log(seatsLeft);
       return 'yellow';
     }
     // если предыщуие условия не сработали это означает что у количества мест тип number и значение >=30, поэтому возвращаем зеленый цвет
@@ -32,9 +32,13 @@ function EventStatus({ isOnline, city = null, seatsLeft = 0, isOver, textColor =
   }
 
   return (
-    <div className={`event-status event-status_text-color_${textColor}`}>
-      {city && <p className="event-status__text event-status__text_type_city">{city}</p>}
-      {isOnline && <p className="event-status__text event-status__text_type_online">Онлайн</p>}
+    <div className={`event-status `} style={{ color: `${textColor}` }}>
+      {!onlySeats && city && (
+        <p className="event-status__text event-status__text_type_city">{city}</p>
+      )}
+      {!onlySeats && isOnline && (
+        <p className="event-status__text event-status__text_type_online">онлайн</p>
+      )}
       {city && !isOver && (
         <p
           className={`event-status__text event-status__text_type_seats-left event-status__text_dot-color_${getDotColor(
