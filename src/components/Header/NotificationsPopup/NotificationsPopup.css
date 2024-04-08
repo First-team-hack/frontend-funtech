@@ -43,6 +43,7 @@
   left: calc(var(--button-width) / 2.7);
 }
 .notifications-popup__container {
+  z-index: 10;
   border-radius: 4px;
   position: absolute;
   top: calc((var(--button-height) / 3) * 2);
