@@ -11,6 +11,7 @@ import Profile from './pages/Profile/Profile';
 import Auth from './pages/Auth/Auth';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import { useState } from 'react';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -42,6 +43,7 @@ function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

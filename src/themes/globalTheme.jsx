@@ -59,6 +59,8 @@ export const globalTheme = createTheme({
     colorCardBackgroundHover: '#2D3945',
     colorCardHoverButtonHover: '#87898f',
 
+    colorFooterBackground: '#f6f6f6',
+
     //card themes
     themeBlueCardBackground: '#1d6bf3',
     themeBlueCardBackgroundHover: '#2D3945',

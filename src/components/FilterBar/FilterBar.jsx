@@ -40,6 +40,7 @@ function FilterBar() {
             Найти
           </CustomButton>
           <CustomButton
+            disabled
             variant="outlined"
             sx={{ width: '105px', height: '40px', borderRadius: '20px', textTransform: 'none' }}
           >
