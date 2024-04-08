@@ -3,6 +3,9 @@
   -moz-osx-font-smoothing: grayscale;
   font-family: 'YS Text', Arial, sans-serif;
   font-style: normal;
+  display: flex;
+  flex-direction: column;
+
   min-width: 320px;
   min-height: 100dvh;
 }

@@ -8,16 +8,20 @@ import globalTheme from '../../themes/globalTheme';
 
 function CustomButton(props) {
   const { sx, children, variant } = props;
+  const commonStyles = {
+    fontStyle: 'normal',
+    fontWeight: '500',
+    lineHeight: '20px',
+    boxShadow: 'none',
+    textTransform: 'none',
+    fontFamily: `'YS Text', 'Arial', sans-serif`,
+  };
   const styles =
     variant === 'outlined'
       ? [
           {
+            ...commonStyles,
             borderColor: globalTheme.palette.colorCustomButtonPrimary,
-            fontStyle: 'normal',
-            fontWeight: '500',
-            lineHeight: '20px',
-            boxShadow: 'none',
-            textTransform: 'none',
             color: globalTheme.palette.colorCustomButtonPrimary,
             ...sx,
           },
@@ -27,7 +31,7 @@ function CustomButton(props) {
               boxShadow: 'none',
               color: globalTheme.palette.colorCustomButtonText,
             },
-            '&:focus    ': {
+            '&:focus-visible': {
               backgroundColor: globalTheme.palette.colorCustomButtonPrimary,
               boxShadow: 'none',
               color: globalTheme.palette.colorCustomButtonText,
@@ -41,17 +45,17 @@ function CustomButton(props) {
         ]
       : [
           {
+            ...commonStyles,
             backgroundColor: globalTheme.palette.colorCustomButtonPrimary,
-            fontStyle: 'normal',
-            fontWeight: '500',
-            lineHeight: '20px',
-            boxShadow: 'none',
-            textTransform: 'none',
             color: globalTheme.palette.colorCustomButtonText,
             ...sx,
           },
           () => ({
             '&:hover': {
+              backgroundColor: globalTheme.palette.colorCustomButtonSecondary,
+              boxShadow: 'none',
+            },
+            '&:focus-visible': {
               backgroundColor: globalTheme.palette.colorCustomButtonSecondary,
               boxShadow: 'none',
             },
@@ -63,7 +67,7 @@ function CustomButton(props) {
         ];
 
   return (
-    <Button {...props} sx={styles} variant={variant}>
+    <Button {...props} sx={styles} variant={variant} disableFocusRipple>
       {children}
     </Button>
   );
