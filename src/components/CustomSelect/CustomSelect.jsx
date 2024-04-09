@@ -25,6 +25,7 @@ function CustomSelect(props) {
       borderRadius: '50px',
       width: '250px',
       height: '40px',
+      backgroundColor: globalTheme.palette.colorInputBackground,
       ...sx,
     },
     {
@@ -59,6 +60,9 @@ function CustomSelect(props) {
         {...props}
         sx={selectStyles}
         displayEmpty
+        MenuProps={{
+          disableScrollLock: true,
+        }}
         defaultValue={defaultValue || ''}
         input={<OutlinedInput />}
         renderValue={(selected) => {

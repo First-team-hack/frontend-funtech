@@ -72,18 +72,18 @@ function EventCard(props) {
     default: {
       chosenSizes = {
         borderRadius: '20px',
-        width: '315px',
-        minWidth: '315px',
+        width: '305px',
+        minWidth: '305px',
         height: '267px',
       };
       break;
     }
   }
   return (
-    <Card sx={chosenSizes}>
+    <Card sx={{ ...chosenSizes, display: 'flex' }}>
       <EventCardContainer colorTheme={chosenTheme} cardSize={cardSize}>
         <EventCardHeader {...props} colorTheme={chosenTheme} cardSize={cardSize} />
-        <Stack direction="column" sx={{ height: '100%' }}>
+        <Stack direction="column" sx={{ flexGrow: '1' }}>
           <EventCardTitle colorTheme={chosenTheme} cardSize={cardSize}>
             {title}
           </EventCardTitle>

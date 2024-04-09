@@ -1,6 +1,7 @@
 .breadcrumbs {
   display: flex;
   align-items: center;
+  margin-bottom: 16px;
 }
 
 .breadcrumbs__item {

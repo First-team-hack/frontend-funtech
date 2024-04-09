@@ -36,6 +36,7 @@ function EventStatus({ isOnline, city, seatsLeft, isOver, textColor, onlySeats }
       {!onlySeats && city && (
         <p className="event-status__text event-status__text_type_city">{city}</p>
       )}
+
       {!onlySeats && isOnline && (
         <p className="event-status__text event-status__text_type_online">онлайн</p>
       )}
