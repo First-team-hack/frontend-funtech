@@ -103,7 +103,7 @@ function EventCardContainer(props) {
       direction="column"
       sx={[
         {
-          height: '100%',
+          flexGrow: '1',
           backgroundImage: colorTheme?.card.backgroundImageSrc,
           backgroundColor: colorTheme?.card.backgroundColorBasic,
           backgroundRepeat: 'no-repeat',

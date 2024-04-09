@@ -10,7 +10,7 @@ function EventCardTitle(props) {
         fontSize: '32px',
         lineHeight: '35px',
         minHeight: '140px',
-        maxWidth: '250px',
+        maxWidth: '450px',
       };
       break;
     }
@@ -19,14 +19,13 @@ function EventCardTitle(props) {
         fontSize: '32px',
         lineHeight: '35px',
         minHeight: '140px',
-        maxWidth: '310px',
+        maxWidth: '400px',
       };
       break;
     }
     case 'small':
     default: {
       chosenSizes = {
-        minHeight: '100px',
         maxWidth: '250px',
       };
       break;
@@ -38,6 +37,7 @@ function EventCardTitle(props) {
       variant="h3"
       color={colorTheme?.card.textColor}
       sx={{
+        flexGrow: '1',
         transition: 'all ease-in-out 0.15s',
         ...chosenSizes,
       }}

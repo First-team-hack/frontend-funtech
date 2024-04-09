@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router';
 import './App.css';
 import Header from './components/Header/Header';
-import Main from './pages/Main/Main';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Billboard from './pages/Billboard/Billboard';
 import RandomCoffee from './pages/RandomCoffee/RandomCoffee';
@@ -19,11 +18,7 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<ProtectedRoute isLoggedIn={isLoggedIn} component={Main} />} />
-        <Route
-          path="/afisha"
-          element={<ProtectedRoute isLoggedIn={isLoggedIn} component={Billboard} />}
-        />
+        <Route path="/" element={<Billboard />} />
         <Route
           path="/randomcoffee"
           element={<ProtectedRoute isLoggedIn={isLoggedIn} component={RandomCoffee} />}

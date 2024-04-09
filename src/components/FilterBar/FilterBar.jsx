@@ -14,7 +14,7 @@ function FilterBar() {
   ];
   // mock data end
   return (
-    <Box component="form">
+    <Box component="form" sx={{ marginBottom: '28px' }}>
       <Stack direction="row" sx={{ justifyContent: 'space-between' }} useFlexGap>
         <Input type="search" placeholder="Поиск" />
         <CustomSelect placeholder="Темы" sx={{ width: '180px' }} items={eventThemes} />
