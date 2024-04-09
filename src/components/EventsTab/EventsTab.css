@@ -1,0 +1,42 @@
+.events-tab {
+  width: var(--content-width);
+}
+
+.events-tab__list {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.events-tab__button-icon {
+  width: 65px;
+  height: 65px;
+  background-size: 65px 65px;
+  margin-right: 15px;
+}
+
+.events-tab__button-icon_type_expected {
+  background-image: url('../../assets/icons/Play.png');
+}
+
+.events-tab__button-icon_type_completed {
+  background-image: url('../../assets/icons/Star.png');
+}
+
+.events-tab__cards-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 24px;
+}
+
+.events-tab__cards-section-title {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  color: var(--colorText);
+  align-self: flex-start;
+  margin: 0;
+}
