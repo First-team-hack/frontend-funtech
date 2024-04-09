@@ -11,7 +11,8 @@
 }
 
 .billboard__banner {
-  max-width: 1280px;
+  width: 1280px;
+  height: 267px;
   margin-bottom: 28px;
 }
 .billboard__section {
