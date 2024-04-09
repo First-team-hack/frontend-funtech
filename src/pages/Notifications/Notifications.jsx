@@ -1,9 +1,13 @@
+import './Notifications.css';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 
 function Notifications() {
   return (
     <main className="notifications">
-      <Breadcrumbs />
+      <div className="notifications__container">
+        {' '}
+        <Breadcrumbs />
+      </div>
     </main>
   );
 }

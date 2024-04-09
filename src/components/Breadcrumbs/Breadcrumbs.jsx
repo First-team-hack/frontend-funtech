@@ -11,9 +11,7 @@ function Breadcrumbs() {
   return (
     <div className="breadcrumbs">
       {pathname === '/' ? (
-        <Link className="breadcrumbs__item breadcrumbs__item_type_link" to="/">
-          {ROUTE_NAMES['/']}
-        </Link>
+        <p className="breadcrumbs__item">{ROUTE_NAMES['/']}</p>
       ) : (
         pathnames.map((pathname, index) => {
           const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;

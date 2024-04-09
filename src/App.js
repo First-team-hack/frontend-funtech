@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router';
+import { Route, Routes, useLocation } from 'react-router';
 import './App.css';
 import Header from './components/Header/Header';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
@@ -13,6 +13,8 @@ import { useState } from 'react';
 import Footer from './components/Footer/Footer';
 
 function App() {
+  const location = useLocation();
+  const { pathname } = location;
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <div className="App">
@@ -38,7 +40,7 @@ function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Footer />
+      {pathname === '/' && <Footer />}
     </div>
   );
 }

@@ -12,4 +12,5 @@ export const ROUTE_NAMES = {
   '/notifications': 'Уведомления',
   '/favorites': 'Избранное',
   '/profile': 'Профиль',
+  '/settings': 'Настройки',
 };

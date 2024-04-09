@@ -1,0 +1,82 @@
+.userbar {
+  width: 1280px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.userbar__container {
+  height: 120px;
+  background-color: var(--colorText);
+  border-radius: 20px;
+  padding: 24px 24px 24px 80px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.userbar__avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 10%;
+  background-image: url('../../../assets/backgrounds/defalut_avatar.svg');
+  font-size: 0;
+  margin-right: 40px;
+}
+
+.userbar__info {
+  list-style: none;
+  padding: 0;
+  color: var(--colorCustomButtonText);
+  flex-grow: 1;
+}
+
+.userbar__name {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.userbar__email {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 4px;
+  color: var(--colorCardHoverButtonHover);
+}
+
+.userbar__watched-hours {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.userbar__actions {
+  align-self: flex-start;
+  display: flex;
+  gap: 8px;
+  transition: all ease-in-out 1s;
+}
+
+.userbar__settings {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 8px;
+  color: var(--colorCustomButtonText);
+}
+
+.userbar__button {
+  transition: all ease-in-out 0.15s;
+}
+
+.userbar__button:hover {
+  opacity: 0.7;
+}

@@ -1,3 +1,11 @@
+export const userData = {
+  id: 1,
+  firstName: 'Екатерина',
+  lastName: 'Краснова',
+  email: 'почта@yandex.ru',
+  watchedHours: 55,
+};
+
 export const notifications = [
   {
     id: 1,
