@@ -67,7 +67,7 @@ const ProfileProvider = ({ children }) => {
 
   const addFavoriteEvent = (event, userId) => {
     // post register event to server
-    setRegisteredEvents([event, ...favoriteEvents]);
+    setFavoriteEvents([event, ...favoriteEvents]);
   };
 
   const deleteFavoriteEvent = (deletedEvent) => {

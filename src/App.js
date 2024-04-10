@@ -11,11 +11,13 @@ import Auth from './pages/Auth/Auth';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import { useState } from 'react';
 import Footer from './components/Footer/Footer';
+import useProfile from './providers/ProfileProvider/ProfileProvider.hook';
 
 function App() {
   const location = useLocation();
   const { pathname } = location;
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const { login, isLoggedIn } = useProfile();
+
   return (
     <div className="App">
       <Header />

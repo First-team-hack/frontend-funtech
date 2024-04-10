@@ -1,7 +1,7 @@
 import { Button, IconButton } from '@mui/material';
 import { Favorite, FavoriteBorderOutlined } from '@mui/icons-material';
 
-function EventCardButton({ sx, role = '', isLiked, colorTheme, ...props }) {
+function EventCardButton({ sx, role = '', isActive, colorTheme, ...props }) {
   const buttonBasicStyles = {
     ...colorTheme?.basic,
     fontFamily: `'YS Text', 'Arial', sans-serif`,
@@ -39,7 +39,7 @@ function EventCardButton({ sx, role = '', isLiked, colorTheme, ...props }) {
         buttonStateStyles,
       ]}
     >
-      {isLiked ? <Favorite /> : <FavoriteBorderOutlined />}
+      {isActive ? <Favorite /> : <FavoriteBorderOutlined />}
     </IconButton>
   ) : (
     <Button

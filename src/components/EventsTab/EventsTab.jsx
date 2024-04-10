@@ -67,14 +67,14 @@ function EventsTab() {
         </h2>
         <Grid container spacing="20px">
           {currentTab === 'expected'
-            ? expectedEvents.map((card) => (
-                <Grid key={card.id} item xs={3}>
-                  <EventCard {...card} cardSize="small" buttonText="зарегистрироваться" />
+            ? expectedEvents.map((event) => (
+                <Grid key={event.id} item xs={3}>
+                  <EventCard event={event} cardSize="small" buttonText="зарегистрироваться" />
                 </Grid>
               ))
-            : completedEvents.map((card) => (
-                <Grid key={card.id} item xs={3}>
-                  <EventCard {...card} cardSize="small" buttonText="зарегистрироваться" />
+            : completedEvents.map((event) => (
+                <Grid key={event.id} item xs={3}>
+                  <EventCard event={event} cardSize="small" buttonText="зарегистрироваться" />
                 </Grid>
               ))}
         </Grid>
