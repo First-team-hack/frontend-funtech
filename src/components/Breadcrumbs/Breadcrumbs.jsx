@@ -16,7 +16,6 @@ function Breadcrumbs() {
         pathnames.map((pathname, index) => {
           const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;
           const isLast = index === pathnames.length - 1;
-          console.log(pathname);
           return isLast ? (
             <p className="breadcrumbs__item" key={index}>
               {pathname === '/' ? ROUTE_NAMES['/'] : ROUTE_NAMES['/' + pathname]}

@@ -3,15 +3,15 @@ import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import FilterBar from '../../components/FilterBar/FilterBar';
 import bannerImg from '../../assets/banner.png';
 import { Grid } from '@mui/material';
-import { cardsData } from '../../utils/mock-data';
+import { mockCardsData } from '../../utils/mock-data';
 import EventCard from '../../components/EventCard/EventCard';
 import { useState } from 'react';
 import CustomButton from '../../components/CustomButton/CustomButton';
 
 function Billboard() {
-  const allEvents = cardsData;
-  const recommendedEvents = cardsData;
-  const completedEvents = cardsData;
+  const allEvents = mockCardsData;
+  const recommendedEvents = mockCardsData;
+  const completedEvents = mockCardsData;
   const [visibleEvent, setVisibleEvents] = useState(8);
   const showMoreEvents = () => {
     setVisibleEvents((prev) => prev + 8);

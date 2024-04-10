@@ -1,9 +1,9 @@
-export const userData = {
+export const mockUserData = {
   id: 1,
   firstName: 'Екатерина',
   lastName: 'Краснова',
   email: 'почта@yandex.ru',
-  watchedHours: 55,
+  streamWatchHoursCount: 55,
 };
 
 export const notifications = [
@@ -51,7 +51,7 @@ export const notifications = [
   },
 ];
 
-export const cardsData = [
+export const mockCardsData = [
   {
     id: 1,
     title: 'Восхитительное объяснение возможностей JS',
