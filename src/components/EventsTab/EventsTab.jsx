@@ -4,9 +4,13 @@ import CustomButton from '../CustomButton/CustomButton';
 import globalTheme from '../../themes/globalTheme';
 import { Grid } from '@mui/material';
 import EventCard from '../EventCard/EventCard';
+import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
 
-function EventsTab(props) {
-  const { expectedEvents = [], completedEvents = [] } = props;
+function EventsTab() {
+  const { registeredEvents } = useProfile();
+
+  const expectedEvents = registeredEvents.filter((event) => Date.now() - event.date.getTime() < 0);
+  const completedEvents = registeredEvents.filter((event) => Date.now() - event.date.getTime() > 0);
 
   const [currentTab, setCurrentTab] = useState('expected');
   const buttonStyles = {

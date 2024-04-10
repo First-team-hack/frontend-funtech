@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import UserProviderContext from './UserProvider.context';
+import ProfileProviderContext from './ProfileProvider.context';
 import { mockUserData, mockCardsData } from '../../utils/mock-data';
 
-const UserProvider = ({ children }) => {
+const ProfileProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState({
     id: '',
     firstName: '',
@@ -90,7 +90,9 @@ const UserProvider = ({ children }) => {
     deleteFavoriteEvent,
   };
 
-  return <UserProviderContext.Provider value={value}>{children}</UserProviderContext.Provider>;
+  return (
+    <ProfileProviderContext.Provider value={value}>{children}</ProfileProviderContext.Provider>
+  );
 };
 
-export default UserProvider;
+export default ProfileProvider;
