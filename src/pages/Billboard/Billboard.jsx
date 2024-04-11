@@ -31,7 +31,7 @@ function Billboard() {
           <Grid container spacing="20px">
             {allEvents.slice(0, visibleEvent).map((event) => (
               <Grid key={event.id} item xs={3}>
-                <EventCard event={event} cardSize="small" buttonText="зарегистрироваться" />
+                <EventCard event={event} cardSize="small" />
               </Grid>
             ))}
           </Grid>
@@ -50,7 +50,7 @@ function Billboard() {
           <Grid container spacing="20px">
             {recommendedEvents.slice(0, 1).map((event) => (
               <Grid key={event.id} item xs={3}>
-                <EventCard event={event} cardSize="small" buttonText="зарегистрироваться" />
+                <EventCard event={event} cardSize="small" />
               </Grid>
             ))}
           </Grid>
@@ -60,7 +60,7 @@ function Billboard() {
           <Grid container spacing="20px">
             {completedEvents.slice(0, 1).map((event) => (
               <Grid key={event.id} item xs={6}>
-                <EventCard event={event} cardSize="large" buttonText="зарегистрироваться" />
+                <EventCard event={event} cardSize="large" />
               </Grid>
             ))}
           </Grid>

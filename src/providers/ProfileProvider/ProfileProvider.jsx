@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProfileProviderContext from './ProfileProvider.context';
 import { mockUserData, mockCardsData } from '../../utils/mock-data';
+import union from 'lodash/union';
 
 const ProfileProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState({
@@ -14,8 +15,14 @@ const ProfileProvider = ({ children }) => {
     streamWatchHoursCount: 0,
   });
   const [registeredEvents, setRegisteredEvents] = useState([]);
-  const [favoriteEvents, setFavoriteEvents] = useState([]);
+  const [favoriteEvents, setFavoriteEvents] = useState(
+    JSON.parse(localStorage.getItem('favoriteEvents')) || []
+  );
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('favoriteEvents', JSON.stringify(favoriteEvents));
+  }, [favoriteEvents]);
 
   const login = (email, password) => {
     // get userDataFromServer
@@ -62,7 +69,11 @@ const ProfileProvider = ({ children }) => {
     // get getFavoriteEvents from server
     const favoriteEventsFromServer = mockCardsData.slice(0, 2);
     //
-    setFavoriteEvents([...favoriteEventsFromServer]);
+    const unionFavoriteEvents = union(
+      favoriteEventsFromServer,
+      JSON.parse(localStorage.getItem('favoriteEvents'))
+    );
+    setFavoriteEvents([...unionFavoriteEvents]);
   };
 
   const addFavoriteEvent = (event, userId) => {

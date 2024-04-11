@@ -9,14 +9,13 @@ import Favorites from './pages/Favorites/Favorites';
 import Profile from './pages/Profile/Profile';
 import Auth from './pages/Auth/Auth';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-import { useState } from 'react';
 import Footer from './components/Footer/Footer';
 import useProfile from './providers/ProfileProvider/ProfileProvider.hook';
 
 function App() {
   const location = useLocation();
   const { pathname } = location;
-  const { login, isLoggedIn } = useProfile();
+  const { isLoggedIn } = useProfile();
 
   return (
     <div className="App">
@@ -31,10 +30,7 @@ function App() {
           path="/notifications"
           element={<ProtectedRoute isLoggedIn={isLoggedIn} component={Notifications} />}
         />
-        <Route
-          path="/favorites"
-          element={<ProtectedRoute isLoggedIn={isLoggedIn} component={Favorites} />}
-        />
+        <Route path="/favorites" element={<Favorites />} />
         <Route
           path="/profile"
           element={<ProtectedRoute isLoggedIn={isLoggedIn} component={Profile} />}

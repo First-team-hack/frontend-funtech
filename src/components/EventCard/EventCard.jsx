@@ -6,7 +6,7 @@ import EventCardTitle from './EventCardTitle/EventCardTitle';
 import EventCardSpeaker from './EventCardSpeaker/EventCardSpeaker';
 import EventCardDate from './EventCardDate/EventCardDate';
 import EventCardButton from './EventCardButton/EventCardButton';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
 
 /** A event card component that has 3 size preset and 3 color style preset.
@@ -26,7 +26,6 @@ function EventCard(props) {
     userInfo,
     favoriteEvents,
     registeredEvents,
-    isLoggedIn,
     addFavoriteEvent,
     deleteFavoriteEvent,
     registerToEvent,
@@ -130,19 +129,17 @@ function EventCard(props) {
             >
               {buttonState.text}
             </EventCardButton>
-            {isLoggedIn && (
-              <EventCardButton
-                onClick={() =>
-                  isLikeButtonActive ? deleteFavoriteEvent(event) : addFavoriteEvent(event)
-                }
-                sx={{
-                  marginLeft: cardSize === 'small' ? '5px' : cardSize === 'medium' ? '20px' : '6px',
-                }}
-                role="like"
-                isActive={isLikeButtonActive}
-                colorTheme={chosenTheme?.button}
-              />
-            )}
+            <EventCardButton
+              onClick={() =>
+                isLikeButtonActive ? deleteFavoriteEvent(event) : addFavoriteEvent(event)
+              }
+              sx={{
+                marginLeft: cardSize === 'small' ? '5px' : cardSize === 'medium' ? '20px' : '6px',
+              }}
+              role="like"
+              isActive={isLikeButtonActive}
+              colorTheme={chosenTheme?.button}
+            />
           </CardActions>
         </Stack>
       </EventCardContainer>
