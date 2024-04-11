@@ -11,6 +11,7 @@ import Auth from './pages/Auth/Auth';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import Footer from './components/Footer/Footer';
 import useProfile from './providers/ProfileProvider/ProfileProvider.hook';
+import { AUTH_ROUTE } from './utils/constants';
 
 function App() {
   const location = useLocation();
@@ -19,7 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      {pathname !== AUTH_ROUTE && <Header />}
       <Routes>
         <Route path="/" element={<Billboard />} />
         <Route

@@ -3,12 +3,19 @@ import './UserBar.css';
 import SettingsIcon from '@mui/icons-material/Settings';
 import InputIcon from '@mui/icons-material/Input';
 import IconButton from '@mui/material/IconButton';
-import { PROFILE_ROUTE } from '../../utils/constants';
+import { BILLBOARD_ROUTE, PROFILE_ROUTE } from '../../utils/constants';
 import globalTheme from '../../themes/globalTheme';
 import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
+import { useNavigate } from 'react-router-dom';
 
 function UserBar() {
-  const { userInfo } = useProfile();
+  const { userInfo, logout } = useProfile();
+  const navigate = useNavigate();
+
+  const onLogoutClick = () => {
+    logout();
+    navigate(BILLBOARD_ROUTE);
+  };
 
   return (
     <section className="userbar">
@@ -37,6 +44,7 @@ function UserBar() {
             <SettingsIcon />
           </Link>
           <IconButton
+            onClick={onLogoutClick}
             className="userbar__button"
             aria-label="Выйти из аккаунта"
             title="Выйти из аккаунта"

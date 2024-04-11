@@ -7,7 +7,6 @@ import { mockCardsData } from '../../utils/mock-data';
 import EventCard from '../../components/EventCard/EventCard';
 import { useState } from 'react';
 import CustomButton from '../../components/CustomButton/CustomButton';
-import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
 
 function Billboard() {
   const allEvents = mockCardsData;
@@ -17,13 +16,11 @@ function Billboard() {
   const showMoreEvents = () => {
     setVisibleEvents((prev) => prev + 8);
   };
-  const { login } = useProfile();
 
   return (
     <main className="billboard">
       <div className="billboard__container">
         <Breadcrumbs />
-        <button onClick={login}>логин</button>
         <FilterBar />
         <img className="billboard__banner" src={bannerImg} alt="" />
         <section className="billboard__section">
