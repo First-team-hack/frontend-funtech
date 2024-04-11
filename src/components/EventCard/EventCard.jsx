@@ -8,6 +8,7 @@ import EventCardDate from './EventCardDate/EventCardDate';
 import EventCardButton from './EventCardButton/EventCardButton';
 import React from 'react';
 import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
+import useEvent from '../../providers/EventProvider/EventProvider.hook';
 
 /** A event card component that has 3 size preset and 3 color style preset.
  * @param {string} cardSize There are 3 options: 'small' 'medium' and 'large'. Default is 'small'.
@@ -22,14 +23,8 @@ import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
  * @returns
  */
 function EventCard(props) {
-  const {
-    userInfo,
-    favoriteEvents,
-    registeredEvents,
-    addFavoriteEvent,
-    deleteFavoriteEvent,
-    registerToEvent,
-  } = useProfile();
+  const { favoriteEvents, registeredEvents, addFavoriteEvent, deleteFavoriteEvent } = useProfile();
+  const { openEventRegistrationPopup } = useEvent();
   const { event, cardSize } = props;
   const { id, colorTheme, title = '', speaker = '', date = new Date() } = event;
 
@@ -47,7 +42,7 @@ function EventCard(props) {
         text: 'Зарегистрироваться',
         disabled: false,
         action: () => {
-          registerToEvent(event, userInfo.id);
+          openEventRegistrationPopup(event);
         },
       };
   //choosing card theme

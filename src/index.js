@@ -6,15 +6,18 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import globalTheme from './themes/globalTheme';
 import ProfileProvider from './providers/ProfileProvider/ProfileProvider';
+import EventProvider from './providers/EventProvider/EventProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={globalTheme}>
       <BrowserRouter>
-        <ProfileProvider>
-          <App />
-        </ProfileProvider>
+        <EventProvider>
+          <ProfileProvider>
+            <App />
+          </ProfileProvider>
+        </EventProvider>
       </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>
