@@ -3,15 +3,15 @@ import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import FilterBar from '../../components/FilterBar/FilterBar';
 import bannerImg from '../../assets/banner.png';
 import { Grid } from '@mui/material';
-import { cardsData } from '../../utils/mock-data';
+import { mockCardsData } from '../../utils/mock-data';
 import EventCard from '../../components/EventCard/EventCard';
 import { useState } from 'react';
 import CustomButton from '../../components/CustomButton/CustomButton';
 
 function Billboard() {
-  const allEvents = cardsData;
-  const recommendedEvents = cardsData;
-  const completedEvents = cardsData;
+  const allEvents = mockCardsData;
+  const recommendedEvents = mockCardsData;
+  const completedEvents = mockCardsData;
   const [visibleEvent, setVisibleEvents] = useState(8);
   const showMoreEvents = () => {
     setVisibleEvents((prev) => prev + 8);
@@ -26,9 +26,9 @@ function Billboard() {
         <section className="billboard__section">
           <h2 className="billboard__section-title">В ближайшее время</h2>
           <Grid container spacing="20px">
-            {allEvents.slice(0, visibleEvent).map((card) => (
-              <Grid key={card.id} item xs={3}>
-                <EventCard {...card} cardSize="small" buttonText="зарегистрироваться" />
+            {allEvents.slice(0, visibleEvent).map((event) => (
+              <Grid key={event.id} item xs={3}>
+                <EventCard event={event} cardSize="small" />
               </Grid>
             ))}
           </Grid>
@@ -45,9 +45,9 @@ function Billboard() {
         <section className="billboard__section">
           <h2 className="billboard__section-title">Рекомендованые Вам</h2>
           <Grid container spacing="20px">
-            {recommendedEvents.slice(0, 4).map((card) => (
-              <Grid key={card.id} item xs={3}>
-                <EventCard {...card} cardSize="small" buttonText="зарегистрироваться" />
+            {recommendedEvents.slice(0, 1).map((event) => (
+              <Grid key={event.id} item xs={3}>
+                <EventCard event={event} cardSize="small" />
               </Grid>
             ))}
           </Grid>
@@ -55,9 +55,9 @@ function Billboard() {
         <section className="billboard__section">
           <h2 className="billboard__section-title">Завершенные мероприятия</h2>
           <Grid container spacing="20px">
-            {completedEvents.slice(0, 2).map((card) => (
-              <Grid key={card.id} item xs={6}>
-                <EventCard {...card} cardSize="large" buttonText="зарегистрироваться" />
+            {completedEvents.slice(0, 1).map((event) => (
+              <Grid key={event.id} item xs={6}>
+                <EventCard event={event} cardSize="large" />
               </Grid>
             ))}
           </Grid>

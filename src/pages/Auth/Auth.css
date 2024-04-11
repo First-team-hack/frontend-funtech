@@ -1,0 +1,21 @@
+.auth {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  z-index: 10;
+  background-color: #000;
+}
+
+.auth__form {
+  width: 398px;
+  height: 482px;
+  background-image: url('../../assets/mock/login_form_background.png');
+  background-size: 398px 482px;
+  display: flex;
+  justify-content: center;
+  padding-top: 223px;
+  box-sizing: border-box;
+}
