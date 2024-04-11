@@ -31,6 +31,9 @@ function EventRegistrationPopup() {
     } else {
       setStep(1);
     }
+
+    // eslint is disabled because the selection of the starting step must be done once when mounting the component
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [participationFormat, setParticipationFormat] = useState('online');
