@@ -64,6 +64,10 @@ const ProfileProvider = ({ children }) => {
     setIsLoggedIn(false);
   };
 
+  const updateUserInfo = (info) => {
+    setUserInfo((userInfo) => ({ ...userInfo, ...info }));
+  };
+
   const getRegisteredEvents = () => {
     // get registeredEvents from server
     const registeredEventsFromServer = mockCardsData.slice(7, 12);
@@ -107,6 +111,7 @@ const ProfileProvider = ({ children }) => {
     isLoggedIn,
     login,
     logout,
+    updateUserInfo,
     registeredEvents,
     getRegisteredEvents,
     registerToEvent,

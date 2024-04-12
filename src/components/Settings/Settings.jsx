@@ -31,7 +31,7 @@ const settingsShema = yup.object({
 
 function Settings() {
   const navigate = useNavigate();
-  const { userInfo } = useProfile();
+  const { userInfo, updateUserInfo } = useProfile();
   const {
     register,
     handleSubmit,
@@ -52,6 +52,22 @@ function Settings() {
   });
 
   const onSubmit = (data) => {
+    updateUserInfo({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+      notificationMethods: {
+        telegram: data.notificationByTelegram,
+        whatsapp: data.notificationByWhatsapp,
+        vk: data.notificationByVk,
+        viber: data.notificationByViber,
+      },
+      telegram: data.telegram,
+      whatsapp: data.whatsapp,
+      vk: data.vk,
+      viber: data.viber,
+    });
     console.log(data);
   };
 
