@@ -13,38 +13,42 @@ import './Input.css';
  * You can ovveride input styles with css by using id selector
  */
 
-const Input = React.forwardRef(({ label, error, textarea, countryCode = '+7', ...props }, ref) => {
-  return (
-    <div className="input">
-      {label && (
-        <label className="input__label" htmlFor={props.id}>
-          {label}
-        </label>
-      )}
-      {textarea ? (
-        <textarea
-          className={'input__textarea' + (error ? ' input__input_style_error' : '')}
-          {...props}
-        />
-      ) : (
-        <div className="input__input-wrapper">
-          <input
-            ref={ref}
-            className={
-              'input__input' +
-              (error ? ' input__input_style_error' : '') +
-              (props.type === 'tel' ? ' input__input_type_tel' : '') +
-              (props.type === 'search' ? ' input__input_type_search' : '')
-            }
+const Input = React.forwardRef(
+  ({ label, error, textarea, countryCode = '+7', required, ...props }, ref) => {
+    return (
+      <div className="input">
+        {label && (
+          <label className="input__label" htmlFor={props.id}>
+            {required && <span className="input__label input__label_required">*</span>}
+            {label}
+          </label>
+        )}
+        {textarea ? (
+          <textarea
+            className={'input__textarea' + (error ? ' input__input_style_error' : '')}
             {...props}
           />
-          {props.type === 'tel' && <span className="input__country-code">{countryCode}</span>}
-          {props.type === 'search' && <span className="input__search-icon" />}
-        </div>
-      )}
-      {error && <span className="input__error">{error}</span>}
-    </div>
-  );
-});
+        ) : (
+          <div className="input__input-wrapper">
+            <input
+              required={required}
+              ref={ref}
+              className={
+                'input__input' +
+                (error ? ' input__input_style_error' : '') +
+                (props.type === 'tel' ? ' input__input_type_tel' : '') +
+                (props.type === 'search' ? ' input__input_type_search' : '')
+              }
+              {...props}
+            />
+            {props.type === 'tel' && <span className="input__country-code">{countryCode}</span>}
+            {props.type === 'search' && <span className="input__search-icon" />}
+          </div>
+        )}
+        {error && <span className="input__error">{error}</span>}
+      </div>
+    );
+  }
+);
 
 export default Input;

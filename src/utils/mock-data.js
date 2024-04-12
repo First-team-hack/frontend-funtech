@@ -4,15 +4,15 @@ export const mockUserData = {
   lastName: 'Краснова',
   email: 'example@yandex.ru',
   phoneNumber: '9162323232',
-  interest: '',
+  interest: 'Frontend',
   notificationMethods: {
     telegram: false,
-    whatsapp: false,
+    whatsapp: true,
     vk: false,
     viber: true,
   },
   telegram: '',
-  whatsapp: '',
+  whatsapp: 'dwadwa',
   vk: '',
   viber: 'dsadsa',
 };

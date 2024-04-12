@@ -13,6 +13,10 @@
   color: var(--colorInputLabelText);
 }
 
+.input__label_required {
+  color: var(--colorStrokeNegative);
+}
+
 .input__input-wrapper {
   position: relative;
 }

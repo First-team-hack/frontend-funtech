@@ -52,7 +52,6 @@ function Settings() {
   });
 
   const onSubmit = (data) => {
-    // reset();
     console.log(data);
   };
 
@@ -71,18 +70,21 @@ function Settings() {
               <Input
                 id="firstName"
                 label="Имя"
+                required
                 {...register('firstName')}
                 error={errors.firstName?.message}
               />
               <Input
                 id="email"
                 label="Почта"
+                required
                 {...register('email')}
                 error={errors.email?.message}
               />
               <Input
                 id="lastName"
                 label="Фамилия"
+                required
                 {...register('lastName')}
                 error={errors.lastName?.message}
               />
