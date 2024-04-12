@@ -1,10 +1,12 @@
 import Checkbox from '@mui/material/Checkbox';
 import globalTheme from '../../themes/globalTheme';
+import React from 'react';
 
-function CustomCheckbox(props) {
+const CustomCheckbox = React.forwardRef((props, ref) => {
   return (
     <Checkbox
       {...props}
+      ref={ref}
       sx={{
         width: '40px',
         height: '40px',
@@ -17,6 +19,6 @@ function CustomCheckbox(props) {
       }}
     />
   );
-}
+});
 
 export default CustomCheckbox;

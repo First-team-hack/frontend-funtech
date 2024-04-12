@@ -9,10 +9,18 @@ const ProfileProvider = ({ children }) => {
     firstName: '',
     lastName: '',
     email: '',
-    position: '',
-    workPlace: '',
-    workExpirience: '',
-    streamWatchHoursCount: 0,
+    phoneNumber: '',
+    interest: '',
+    notificationMethods: {
+      telegram: false,
+      whatsapp: false,
+      vk: false,
+      viber: false,
+    },
+    telegram: '',
+    whatsapp: '',
+    vk: '',
+    viber: '',
   });
   const [registeredEvents, setRegisteredEvents] = useState([]);
   const [favoriteEvents, setFavoriteEvents] = useState(
@@ -40,10 +48,18 @@ const ProfileProvider = ({ children }) => {
       firstName: '',
       lastName: '',
       email: '',
-      position: '',
-      workPlace: '',
-      workExpirience: '',
-      streamWatchHoursCount: 0,
+      phoneNumber: '',
+      interest: '',
+      notificationMethods: {
+        telegram: false,
+        whatsapp: false,
+        vk: false,
+        viber: false,
+      },
+      telegram: '',
+      whatsapp: '',
+      vk: '',
+      viber: '',
     });
     setIsLoggedIn(false);
   };

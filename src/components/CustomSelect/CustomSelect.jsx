@@ -2,6 +2,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { OutlinedInput } from '@mui/material';
 import globalTheme from '../../themes/globalTheme';
+import React from 'react';
 
 /**
  * This wrapper component for MUI Select with custom design.
@@ -12,8 +13,17 @@ import globalTheme from '../../themes/globalTheme';
  * @param {object} props the rest of the props are the same as in the native select
  */
 
-function CustomSelect(props) {
-  const { items = [], children, sx, placeholder = '', label = '', required, defaultValue } = props;
+const CustomSelect = React.forwardRef((props, ref) => {
+  const {
+    items = [],
+    children,
+    sx,
+    placeholder = '',
+    label = '',
+    required,
+    defaultValue,
+    errormessage,
+  } = props;
   const labelStyles = {
     fontSize: '14px',
     fontStyle: 'normal',
@@ -25,7 +35,12 @@ function CustomSelect(props) {
       borderRadius: '50px',
       width: '250px',
       height: '40px',
-      backgroundColor: globalTheme.palette.colorInputBackground,
+      backgroundColor: errormessage
+        ? globalTheme.palette.colorInputErrorBackground
+        : globalTheme.palette.colorInputBackground,
+      borderColor: errormessage
+        ? globalTheme.palette.colorInputError
+        : globalTheme.palette.colorInputBorder,
       ...sx,
     },
     {
@@ -58,6 +73,8 @@ function CustomSelect(props) {
       )}
       <Select
         {...props}
+        error={Boolean(errormessage)}
+        ref={ref}
         sx={selectStyles}
         displayEmpty
         MenuProps={{
@@ -83,14 +100,27 @@ function CustomSelect(props) {
         }}
       >
         {items.map((item) => (
-          <MenuItem key={item} value={item || ''}>
+          <MenuItem key={item} value={item}>
             {item}
           </MenuItem>
         ))}
         {children}
       </Select>
+      {errormessage && (
+        <span
+          style={{
+            fontSize: '13px',
+
+            fontWeight: '400',
+            lineHeight: '16px',
+            color: globalTheme.palette.colorInputError,
+          }}
+        >
+          {errormessage}
+        </span>
+      )}
     </div>
   );
-}
+});
 
 export default CustomSelect;

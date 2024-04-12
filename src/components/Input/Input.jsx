@@ -1,3 +1,4 @@
+import React from 'react';
 import './Input.css';
 
 /**
@@ -12,7 +13,7 @@ import './Input.css';
  * You can ovveride input styles with css by using id selector
  */
 
-function Input({ label, error, textarea, countryCode = '+7', ...props }) {
+const Input = React.forwardRef(({ label, error, textarea, countryCode = '+7', ...props }, ref) => {
   return (
     <div className="input">
       {label && (
@@ -28,6 +29,7 @@ function Input({ label, error, textarea, countryCode = '+7', ...props }) {
       ) : (
         <div className="input__input-wrapper">
           <input
+            ref={ref}
             className={
               'input__input' +
               (error ? ' input__input_style_error' : '') +
@@ -43,6 +45,6 @@ function Input({ label, error, textarea, countryCode = '+7', ...props }) {
       {error && <span className="input__error">{error}</span>}
     </div>
   );
-}
+});
 
 export default Input;
