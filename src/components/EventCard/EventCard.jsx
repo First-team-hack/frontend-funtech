@@ -9,6 +9,8 @@ import EventCardButton from './EventCardButton/EventCardButton';
 import React from 'react';
 import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
 import useEvent from '../../providers/EventProvider/EventProvider.hook';
+import { useNavigate } from 'react-router-dom';
+import { EVENTS_ROUTE } from '../../utils/constants';
 
 /** A event card component that has 3 size preset and 3 color style preset.
  * @param {string} cardSize There are 3 options: 'small' 'medium' and 'large'. Default is 'small'.
@@ -24,27 +26,11 @@ import useEvent from '../../providers/EventProvider/EventProvider.hook';
  */
 function EventCard(props) {
   const { favoriteEvents, registeredEvents, addFavoriteEvent, deleteFavoriteEvent } = useProfile();
-  const { openEventRegistrationPopup } = useEvent();
+  const { openEventRegistrationPopup, setCurrentEvent } = useEvent();
   const { event, cardSize } = props;
-  const { id, colorTheme, title = '', speaker = '', date = new Date() } = event;
+  const { id = '', colorTheme, title = '', speaker = '', date = new Date() } = event;
+  const navigate = useNavigate();
 
-  const isLikeButtonActive = favoriteEvents.some((favoriteEvent) => favoriteEvent.id === id);
-  const isUserRegisterToEvent = registeredEvents.some(
-    (registeredEvent) => registeredEvent.id === id
-  );
-  const isEventCompleted = Date.now() - date.getTime() > 0;
-
-  const buttonState = isEventCompleted
-    ? { text: 'Посмотреть', disabled: false, action: () => {} }
-    : isUserRegisterToEvent
-    ? { text: 'Вы зарегистрированы', disabled: true, action: () => {} }
-    : {
-        text: 'Зарегистрироваться',
-        disabled: false,
-        action: () => {
-          openEventRegistrationPopup(event);
-        },
-      };
   //choosing card theme
   let chosenTheme;
   switch (colorTheme) {
@@ -75,7 +61,7 @@ function EventCard(props) {
     case 'medium': {
       chosenSizes = {
         borderRadius: '60px',
-        width: '465px',
+        width: '522px',
         minWidth: '465px',
         height: '430px',
       };
@@ -92,8 +78,31 @@ function EventCard(props) {
       break;
     }
   }
+
+  const isLikeButtonActive = favoriteEvents.some((favoriteEvent) => favoriteEvent.id === id);
+  const isUserRegisterToEvent = registeredEvents.some(
+    (registeredEvent) => registeredEvent.id === id
+  );
+  const isEventCompleted = Date.now() - date.getTime() > 0;
+
+  const buttonState = isEventCompleted
+    ? { text: 'Посмотреть', disabled: false, action: () => {} }
+    : isUserRegisterToEvent
+    ? { text: 'Вы зарегистрированы', disabled: true, action: () => {} }
+    : {
+        text: 'Зарегистрироваться',
+        disabled: false,
+        action: () => {
+          openEventRegistrationPopup(event);
+        },
+      };
+
+  const onCardClick = () => {
+    navigate(`${EVENTS_ROUTE}/${id}`, { state: event });
+  };
+
   return (
-    <Card sx={{ ...chosenSizes, display: 'flex' }}>
+    <Card sx={{ ...chosenSizes, display: 'flex' }} onClick={onCardClick}>
       <EventCardContainer colorTheme={chosenTheme} cardSize={cardSize}>
         <EventCardHeader {...event} colorTheme={chosenTheme} cardSize={cardSize} />
         <Stack direction="column" sx={{ flexGrow: '1' }}>

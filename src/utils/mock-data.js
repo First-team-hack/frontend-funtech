@@ -1,3 +1,7 @@
+import photo_speaker_1 from '../assets/event/speakers/speaker_1.png';
+import photo_speaker_2 from '../assets/event/speakers/speaker_2.png';
+import photo_speaker_3 from '../assets/event/speakers/speaker_3.png';
+
 export const mockUserData = {
   id: 1,
   firstName: 'Екатерина',
@@ -16,6 +20,33 @@ export const mockUserData = {
   vk: '',
   viber: 'dsadsa',
 };
+
+export const mockSpeakerData = [
+  {
+    id: 1,
+    firstName: 'Алиса',
+    lastName: 'Калакимова',
+    position: 'Руководитель группы тестирования',
+    about: 'Вошла в IT в 2010 году. Работала в e-commerce',
+    photo: photo_speaker_1,
+  },
+  {
+    id: 2,
+    firstName: 'Андрей',
+    lastName: 'Калакимов',
+    position: 'Разработчик джава',
+    about: 'C 2005 года работаю в Яндексе: начинал как разработчик',
+    photo: photo_speaker_2,
+  },
+  {
+    id: 3,
+    firstName: 'Эксперт Роберт',
+    lastName: 'Миронов',
+    position: 'Бэкэнд',
+    about: 'Бессменный ведущий подкаста Frontend Weekend и участник ПК FrontendConf',
+    photo: photo_speaker_3,
+  },
+];
 
 export const notifications = [
   {

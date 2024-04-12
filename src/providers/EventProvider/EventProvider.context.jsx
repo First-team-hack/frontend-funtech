@@ -4,7 +4,7 @@ export default createContext({
   events: [],
   getEvents: () => {},
   currentEvent: {},
-  setCurrent: () => {},
+  setCurrentEvent: () => {},
   isEventRegistrationPopupOpen: false,
   openEventRegistrationPopup: () => {},
   closeEventRegistrationPopup: () => {},

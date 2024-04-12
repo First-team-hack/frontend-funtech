@@ -1,0 +1,96 @@
+.event {
+  flex-grow: 1;
+  padding: 40px 0 0;
+}
+
+.event__container {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+.event__header {
+  display: flex;
+  margin-bottom: 28px;
+}
+
+.event__description {
+  width: 758px;
+  height: 430px;
+  border-radius: 60px;
+  background-color: var(--colorFooterBackground);
+  background-image: url('../../assets/event/event_description.png');
+  background-size: 690px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.event__subtitle {
+  width: 100%;
+  height: 61px;
+  background-image: url('../../assets/event/event_subtitle.png');
+  background-size: 100% 61px;
+  margin-bottom: 22px;
+}
+
+.event__info {
+  padding: 45px 0 14px;
+  margin: 0 0 28px;
+  background: center top url('../../assets/backgrounds/dashed_divider.svg'),
+    center bottom url('../../assets/backgrounds/dashed_divider.svg');
+  background-repeat: no-repeat;
+}
+.event__info-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+}
+
+.event__info-item {
+  max-width: 40%;
+}
+
+.event__info-title {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+  margin: 0 0 8px;
+}
+
+.event__info-title_bold {
+  font-weight: 500;
+}
+
+.event__info-text {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+  margin: 0;
+}
+
+.event__speakers {
+  margin-bottom: 28px;
+}
+
+.event__speakers-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.event__section-title {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  margin: 0;
+}
+
+.event__speakers-title {
+  margin-bottom: 25px;
+}
