@@ -1,0 +1,18 @@
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup__container {
+  width: 700px;
+
+  box-sizing: border-box;
+  border-radius: 32px;
+  padding: 40px 28px;
+  background-color: var(--popupContainerBackround);
+}
+
+.popup__container:focus {
+  outline: none;
+}

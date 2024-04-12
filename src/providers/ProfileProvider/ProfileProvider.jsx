@@ -50,7 +50,7 @@ const ProfileProvider = ({ children }) => {
 
   const getRegisteredEvents = () => {
     // get registeredEvents from server
-    const registeredEventsFromServer = mockCardsData.slice(0, 5);
+    const registeredEventsFromServer = mockCardsData.slice(7, 12);
     //
     setRegisteredEvents([...registeredEventsFromServer]);
   };

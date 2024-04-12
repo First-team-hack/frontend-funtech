@@ -20,6 +20,11 @@
   --colorCustomButtonText: #fff;
 
   --colorCardHoverButtonHover: #87898f;
+
+  --popupContainerBackround: #171717;
+  --popupButtonBackgroundCancel: #333333;
+  --colorStrokeAccentSecondary: #5a9bff;
+
   /* stroke */
   --colorSeparatorPrimary: #dadce0;
   --colorSeparatorPrimaryAlpha: #e0e2e7;

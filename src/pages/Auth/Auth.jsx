@@ -3,12 +3,9 @@ import CustomButton from '../../components/CustomButton/CustomButton';
 import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
 import { useNavigate } from 'react-router-dom';
 import { BILLBOARD_ROUTE } from '../../utils/constants';
-import { useTheme } from '@emotion/react';
 import globalTheme from '../../themes/globalTheme';
 
 function Auth() {
-  const theme = useTheme();
-  console.log(theme);
   const { login } = useProfile();
   const navigate = useNavigate();
   const onLoginClick = () => {

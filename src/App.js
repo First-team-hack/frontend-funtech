@@ -12,11 +12,14 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import Footer from './components/Footer/Footer';
 import useProfile from './providers/ProfileProvider/ProfileProvider.hook';
 import { AUTH_ROUTE } from './utils/constants';
+import EventRegistrationPopup from './components/Popup/EventRegistrationPopup/EventRegistrationPopup';
+import useEvent from './providers/EventProvider/EventProvider.hook';
 
 function App() {
   const location = useLocation();
   const { pathname } = location;
   const { isLoggedIn } = useProfile();
+  const { isEventRegistrationPopupOpen } = useEvent();
 
   return (
     <div className="App">
@@ -40,6 +43,7 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       {pathname === '/' && <Footer />}
+      {isEventRegistrationPopupOpen && <EventRegistrationPopup />}
     </div>
   );
 }
