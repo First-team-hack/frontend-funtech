@@ -36,6 +36,14 @@
   color: var(--colorText);
 }
 
+.input__input:hover {
+  border-color: var(--colorStrokeAccent);
+}
+
+.input__input:focus {
+  border-color: var(--colorStrokeAccent);
+}
+
 .input__input::placeholder {
   color: var(--colorInputPlaceholder);
 }

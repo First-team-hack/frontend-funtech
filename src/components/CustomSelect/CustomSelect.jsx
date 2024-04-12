@@ -51,6 +51,12 @@ const CustomSelect = React.forwardRef((props, ref) => {
         paddingTop: 0,
         paddingBottom: 0,
       },
+      '.MuiOutlinedInput-notchedOutline': {
+        borderColor: globalTheme.palette.colorInputBorder,
+      },
+      '&:hover .MuiOutlinedInput-notchedOutline': {
+        borderColor: globalTheme.palette.colorStrokeAccent,
+      },
     },
   ];
   return (
