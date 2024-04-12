@@ -15,6 +15,7 @@ import React from 'react';
 
 const CustomSelect = React.forwardRef((props, ref) => {
   const {
+    id,
     items = [],
     children,
     sx,
@@ -62,7 +63,10 @@ const CustomSelect = React.forwardRef((props, ref) => {
       }}
     >
       {label && (
-        <label style={{ color: globalTheme.palette.colorInputLabelText, ...labelStyles }}>
+        <label
+          style={{ color: globalTheme.palette.colorInputLabelText, ...labelStyles }}
+          htmlFor={id}
+        >
           {required && (
             <span style={{ color: globalTheme.palette.colorStrokeNegative, ...labelStyles }}>
               *
@@ -72,6 +76,7 @@ const CustomSelect = React.forwardRef((props, ref) => {
         </label>
       )}
       <Select
+        id={id}
         {...props}
         error={Boolean(errormessage)}
         ref={ref}

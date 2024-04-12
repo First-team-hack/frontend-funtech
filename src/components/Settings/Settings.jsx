@@ -68,16 +68,33 @@ function Settings() {
           <fieldset className="settings__fieldset">
             <legend className="settings__legend">Личные данные</legend>
             <div className="settings__input-grid">
-              <Input label="Имя" {...register('firstName')} error={errors.firstName?.message} />
-              <Input label="Почта" {...register('email')} error={errors.email?.message} />
-              <Input label="Фамилия" {...register('lastName')} error={errors.lastName?.message} />
               <Input
+                id="firstName"
+                label="Имя"
+                {...register('firstName')}
+                error={errors.firstName?.message}
+              />
+              <Input
+                id="email"
+                label="Почта"
+                {...register('email')}
+                error={errors.email?.message}
+              />
+              <Input
+                id="lastName"
+                label="Фамилия"
+                {...register('lastName')}
+                error={errors.lastName?.message}
+              />
+              <Input
+                id="phoneNumber"
                 label="Телефон"
                 type="tel"
                 {...register('phoneNumber')}
                 error={errors.phoneNumber?.message}
               />
               <CustomSelect
+                id="interest"
                 required
                 errormessage={errors.interest?.message}
                 defaultValue={userInfo.interest}
@@ -96,28 +113,28 @@ function Settings() {
                   defaultChecked={userInfo.notificationMethods.telegram}
                   {...register('notificationByTelegram')}
                 />
-                <Input label="Telegram" {...register('telegram')}></Input>
+                <Input id="telegram" label="Telegram" {...register('telegram')}></Input>
               </div>
               <div className="settings__input-box">
                 <CustomCheckbox
                   defaultChecked={userInfo.notificationMethods.whatsapp}
                   {...register('notificationByWhatsapp')}
                 />
-                <Input label="WhatsApp" {...register('whatsapp')}></Input>
+                <Input id="whatsapp" label="WhatsApp" {...register('whatsapp')}></Input>
               </div>
               <div className="settings__input-box">
                 <CustomCheckbox
                   defaultChecked={userInfo.notificationMethods.vk}
                   {...register('notificationByVk')}
                 />
-                <Input label="Vkontakte" {...register('vk')}></Input>
+                <Input id="vk" label="Vkontakte" {...register('vk')}></Input>
               </div>
               <div className="settings__input-box">
                 <CustomCheckbox
                   defaultChecked={userInfo.notificationMethods.viber}
                   {...register('notificationByViber')}
                 />
-                <Input label="Viber" {...register('viber')}></Input>
+                <Input id="viber" label="Viber" {...register('viber')}></Input>
               </div>
             </div>
           </fieldset>

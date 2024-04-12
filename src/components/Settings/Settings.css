@@ -47,3 +47,10 @@
   flex-direction: column;
   gap: 24px;
 }
+
+#telegram,
+#whatsapp,
+#vk,
+#viber {
+  width: 265px;
+}
