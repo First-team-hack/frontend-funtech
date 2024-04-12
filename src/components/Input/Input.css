@@ -13,6 +13,10 @@
   color: var(--colorInputLabelText);
 }
 
+.input__label_required {
+  color: var(--colorStrokeNegative);
+}
+
 .input__input-wrapper {
   position: relative;
 }
@@ -30,6 +34,14 @@
   border: 1px solid var(--colorInputBorder);
   background-color: var(--colorInputBackground);
   color: var(--colorText);
+}
+
+.input__input:hover {
+  border-color: var(--colorStrokeAccent);
+}
+
+.input__input:focus {
+  border-color: var(--colorStrokeAccent);
 }
 
 .input__input::placeholder {
@@ -52,7 +64,7 @@
 .input__country-code {
   text-align: center;
   position: absolute;
-  top: 10px;
+  top: 12px;
   left: 0;
   width: 56px;
   height: 20px;

@@ -2,8 +2,19 @@ export const mockUserData = {
   id: 1,
   firstName: 'Екатерина',
   lastName: 'Краснова',
-  email: 'почта@yandex.ru',
-  streamWatchHoursCount: 55,
+  email: 'example@yandex.ru',
+  phoneNumber: '9162323232',
+  interest: 'Frontend',
+  notificationMethods: {
+    telegram: false,
+    whatsapp: true,
+    vk: false,
+    viber: true,
+  },
+  telegram: '',
+  whatsapp: 'dwadwa',
+  vk: '',
+  viber: 'dsadsa',
 };
 
 export const notifications = [

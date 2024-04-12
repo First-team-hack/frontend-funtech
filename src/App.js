@@ -25,7 +25,7 @@ function App() {
     <div className="App">
       {pathname !== AUTH_ROUTE && <Header />}
       <Routes>
-        <Route path="/" element={<Billboard />} />
+        <Route index path="/" element={<Billboard />} />
         <Route
           path="/randomcoffee"
           element={<ProtectedRoute isLoggedIn={isLoggedIn} component={RandomCoffee} />}
@@ -36,7 +36,7 @@ function App() {
         />
         <Route path="/favorites" element={<Favorites />} />
         <Route
-          path="/profile"
+          path="/profile/*"
           element={<ProtectedRoute isLoggedIn={isLoggedIn} component={Profile} />}
         />
         <Route path="/auth" element={<Auth />} />

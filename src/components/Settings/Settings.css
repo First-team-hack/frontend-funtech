@@ -1,0 +1,56 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.settings__form {
+  display: flex;
+  gap: 48px;
+  width: fit-content;
+}
+
+.settings__fieldset {
+  max-width: fit-content;
+  padding: 0;
+  margin: 0 0 18px;
+  border: none;
+}
+
+.settings__fieldset:last-of-type {
+  margin-bottom: 0;
+}
+
+.settings__legend {
+  font-family: 'YS Display';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  margin-bottom: 22px;
+}
+
+.settings__input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-auto-rows: 94px;
+  column-gap: 88px;
+  row-gap: 5px;
+}
+
+.settings__input-box {
+  display: flex;
+}
+
+.settings__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+#telegram,
+#whatsapp,
+#vk,
+#viber {
+  width: 265px;
+}
