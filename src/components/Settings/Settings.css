@@ -38,6 +38,10 @@
   row-gap: 5px;
 }
 
+.settings__input-box {
+  display: flex;
+}
+
 .settings__actions {
   display: flex;
   flex-direction: column;

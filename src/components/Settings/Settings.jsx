@@ -2,6 +2,7 @@ import './Settings.css';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import Input from '../Input/Input';
 import CustomButton from '../CustomButton/CustomButton';
+import CustomCheckbox from '../CustomCheckbox/CustomCheckbox';
 
 function Settings() {
   return (
@@ -21,10 +22,22 @@ function Settings() {
           <fieldset className="settings__fieldset">
             <legend className="settings__legend">Способ получения уведомлений</legend>
             <div className="settings__input-grid">
-              <Input label="Telegram"></Input>
-              <Input label="WhatsApp"></Input>
-              <Input label="Vkontakte"></Input>
-              <Input label="Viber"></Input>
+              <div className="settings__input-box">
+                <CustomCheckbox />
+                <Input label="Telegram"></Input>
+              </div>
+              <div className="settings__input-box">
+                <CustomCheckbox />
+                <Input label="WhatsApp"></Input>
+              </div>
+              <div className="settings__input-box">
+                <CustomCheckbox />
+                <Input label="Vkontakte"></Input>
+              </div>
+              <div className="settings__input-box">
+                <CustomCheckbox />
+                <Input label="Viber"></Input>
+              </div>
             </div>
           </fieldset>
         </div>
