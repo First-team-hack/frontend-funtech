@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { PROFILE_ROUTE } from '../../utils/constants';
+import { useState } from 'react';
 
 const interests = ['Frontend', 'Backend', 'IOS', 'Android', 'UI/UX дизайн'];
 
@@ -51,6 +52,20 @@ function Settings() {
     resolver: yupResolver(settingsShema),
   });
 
+  const [checkboxState, setCheckboxState] = useState({
+    notificationByTelegram: userInfo.notificationMethods.telegram,
+    notificationByWhatsapp: userInfo.notificationMethods.whatsapp,
+    notificationByVk: userInfo.notificationMethods.vk,
+    notificationByViber: userInfo.notificationMethods.viber,
+  });
+
+  const handleCheckboxChange = (e) => {
+    setCheckboxState({
+      ...checkboxState,
+      [e.target.name]: e.target.checked,
+    });
+  };
+
   const onSubmit = (data) => {
     updateUserInfo({
       firstName: data.firstName,
@@ -68,7 +83,6 @@ function Settings() {
       vk: data.vk,
       viber: data.viber,
     });
-    console.log(data);
   };
 
   const onCancelClick = () => {
@@ -128,29 +142,33 @@ function Settings() {
             <div className="settings__input-grid">
               <div className="settings__input-box">
                 <CustomCheckbox
-                  defaultChecked={userInfo.notificationMethods.telegram}
                   {...register('notificationByTelegram')}
+                  checked={checkboxState.notificationByTelegram}
+                  onChange={handleCheckboxChange}
                 />
                 <Input id="telegram" label="Telegram" {...register('telegram')}></Input>
               </div>
               <div className="settings__input-box">
                 <CustomCheckbox
-                  defaultChecked={userInfo.notificationMethods.whatsapp}
                   {...register('notificationByWhatsapp')}
+                  checked={checkboxState.notificationByWhatsapp}
+                  onChange={handleCheckboxChange}
                 />
                 <Input id="whatsapp" label="WhatsApp" {...register('whatsapp')}></Input>
               </div>
               <div className="settings__input-box">
                 <CustomCheckbox
-                  defaultChecked={userInfo.notificationMethods.vk}
                   {...register('notificationByVk')}
+                  checked={checkboxState.notificationByVk}
+                  onChange={handleCheckboxChange}
                 />
                 <Input id="vk" label="Vkontakte" {...register('vk')}></Input>
               </div>
               <div className="settings__input-box">
                 <CustomCheckbox
-                  defaultChecked={userInfo.notificationMethods.viber}
                   {...register('notificationByViber')}
+                  checked={checkboxState.notificationByViber}
+                  onChange={handleCheckboxChange}
                 />
                 <Input id="viber" label="Viber" {...register('viber')}></Input>
               </div>
@@ -174,7 +192,7 @@ function Settings() {
             onClick={onCancelClick}
             sx={{ width: '250px', height: '50px', borderRadius: '20px', fontSize: '16px' }}
           >
-            Отмена
+            Назад
           </CustomButton>
         </div>
       </form>
