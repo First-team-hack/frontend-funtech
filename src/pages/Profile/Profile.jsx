@@ -1,15 +1,17 @@
+import Settings from '../../components/Settings/Settings';
+import UserInfo from '../../components/UserInfo/UserInfo';
 import './Profile.css';
-import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
-import EventsTab from '../../components/EventsTab/EventsTab';
-import UserBar from '../../components/UserBar/UserBar';
+
+import { Route, Routes } from 'react-router';
 
 function Profile() {
   return (
     <main className="profile">
       <div className="profile__container">
-        <Breadcrumbs />
-        <UserBar />
-        <EventsTab />
+        <Routes>
+          <Route path="/" element={<UserInfo />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
       </div>
     </main>
   );
