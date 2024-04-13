@@ -14,7 +14,7 @@ import { EVENTS_ROUTE } from '../../utils/constants';
 
 /** A event card component that has 3 size preset and 3 color style preset.
  * @param {string} cardSize There are 3 options: 'small' 'medium' and 'large'. Default is 'small'.
- * @param {string} colorTheme There are 3 options: 'blue' 'black' and 'white'. Default is 'blue'.
+ * @param {string} colorTheme There are 3 options: 2 = blue, 1 = black and 0 = white. Default is 2(blue).
  * @param {string} title Event title.
  * @param {string} speaker Event speaker description.
  * @param {date} date Event date.
@@ -34,13 +34,13 @@ function EventCard(props) {
   //choosing card theme
   let chosenTheme;
   switch (event?.colorTheme) {
-    case 'white':
+    case 0:
       chosenTheme = cardThemeWhite;
       break;
-    case 'black':
+    case 1:
       chosenTheme = cardThemeBlack;
       break;
-    case 'blue':
+    case 2:
     default:
       chosenTheme = cardThemeBlue;
       break;
