@@ -14,18 +14,22 @@ import useProfile from './providers/ProfileProvider/ProfileProvider.hook';
 import { AUTH_ROUTE } from './utils/constants';
 import EventRegistrationPopup from './components/Popup/EventRegistrationPopup/EventRegistrationPopup';
 import useEvent from './providers/EventProvider/EventProvider.hook';
-
+import Event from './pages/Event/Event';
+import { Navigate } from 'react-router-dom';
+import ConfirmPopup from './components/Popup/ConfrimPopup/ConfirmPopup';
 function App() {
   const location = useLocation();
   const { pathname } = location;
   const { isLoggedIn } = useProfile();
-  const { isEventRegistrationPopupOpen } = useEvent();
+  const { isEventRegistrationPopupOpen, isConfirmPopupOpen } = useEvent();
 
   return (
     <div className="App">
       {pathname !== AUTH_ROUTE && <Header />}
       <Routes>
         <Route index path="/" element={<Billboard />} />
+        <Route path="/events" element={<Navigate to="/" replace={true} />} />
+        <Route path="/events/:id" element={<Event />} />
         <Route
           path="/randomcoffee"
           element={<ProtectedRoute isLoggedIn={isLoggedIn} component={RandomCoffee} />}
@@ -44,6 +48,7 @@ function App() {
       </Routes>
       {pathname === '/' && <Footer />}
       {isEventRegistrationPopupOpen && <EventRegistrationPopup />}
+      {isConfirmPopupOpen && <ConfirmPopup />}
     </div>
   );
 }

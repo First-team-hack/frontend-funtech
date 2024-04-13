@@ -9,10 +9,12 @@ import EventCardButton from './EventCardButton/EventCardButton';
 import React from 'react';
 import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
 import useEvent from '../../providers/EventProvider/EventProvider.hook';
+import { useNavigate } from 'react-router-dom';
+import { EVENTS_ROUTE } from '../../utils/constants';
 
 /** A event card component that has 3 size preset and 3 color style preset.
  * @param {string} cardSize There are 3 options: 'small' 'medium' and 'large'. Default is 'small'.
- * @param {string} colorTheme There are 3 options: 'blue' 'black' and 'white'. Default is 'blue'.
+ * @param {string} colorTheme There are 3 options: 2 = blue, 1 = black and 0 = white. Default is 2(blue).
  * @param {string} title Event title.
  * @param {string} speaker Event speaker description.
  * @param {date} date Event date.
@@ -26,35 +28,19 @@ function EventCard(props) {
   const { favoriteEvents, registeredEvents, addFavoriteEvent, deleteFavoriteEvent } = useProfile();
   const { openEventRegistrationPopup } = useEvent();
   const { event, cardSize } = props;
-  const { id, colorTheme, title = '', speaker = '', date = new Date() } = event;
 
-  const isLikeButtonActive = favoriteEvents.some((favoriteEvent) => favoriteEvent.id === id);
-  const isUserRegisterToEvent = registeredEvents.some(
-    (registeredEvent) => registeredEvent.id === id
-  );
-  const isEventCompleted = Date.now() - date.getTime() > 0;
+  const navigate = useNavigate();
 
-  const buttonState = isEventCompleted
-    ? { text: 'Посмотреть', disabled: false, action: () => {} }
-    : isUserRegisterToEvent
-    ? { text: 'Вы зарегистрированы', disabled: true, action: () => {} }
-    : {
-        text: 'Зарегистрироваться',
-        disabled: false,
-        action: () => {
-          openEventRegistrationPopup(event);
-        },
-      };
   //choosing card theme
   let chosenTheme;
-  switch (colorTheme) {
-    case 'white':
+  switch (event?.colorTheme) {
+    case 0:
       chosenTheme = cardThemeWhite;
       break;
-    case 'black':
+    case 1:
       chosenTheme = cardThemeBlack;
       break;
-    case 'blue':
+    case 2:
     default:
       chosenTheme = cardThemeBlue;
       break;
@@ -75,7 +61,7 @@ function EventCard(props) {
     case 'medium': {
       chosenSizes = {
         borderRadius: '60px',
-        width: '465px',
+        width: '522px',
         minWidth: '465px',
         height: '430px',
       };
@@ -92,39 +78,81 @@ function EventCard(props) {
       break;
     }
   }
+
+  const isLikeButtonActive = favoriteEvents.some((favoriteEvent) => favoriteEvent.id === event?.id);
+  const isUserRegisterToEvent = registeredEvents.some(
+    (registeredEvent) => registeredEvent.id === event?.id
+  );
+
+  const goToEventPage = () => {
+    return navigate(`${EVENTS_ROUTE}/${event?.id}`, { state: event });
+  };
+
+  const buttonState = {
+    upcoming: isUserRegisterToEvent
+      ? { text: 'Вы зарегистрированы', disabled: true, action: () => {} }
+      : {
+          text: 'Зарегистрироваться',
+          disabled: false,
+          action: () => {
+            openEventRegistrationPopup(event);
+          },
+        },
+    live: isUserRegisterToEvent
+      ? {
+          text: 'Смотреть эфир',
+          disabled: false,
+          action: goToEventPage,
+        }
+      : { text: 'Посмотреть', disabled: false, action: goToEventPage },
+    complete: {
+      text: 'Посмотреть',
+      disabled: false,
+      action: goToEventPage,
+    },
+  };
+
+  const onCardClick = () => {
+    if (cardSize !== 'medium') {
+      goToEventPage();
+    }
+  };
+
   return (
-    <Card sx={{ ...chosenSizes, display: 'flex' }}>
+    <Card sx={{ ...chosenSizes, display: 'flex' }} onClick={onCardClick}>
       <EventCardContainer colorTheme={chosenTheme} cardSize={cardSize}>
         <EventCardHeader {...event} colorTheme={chosenTheme} cardSize={cardSize} />
         <Stack direction="column" sx={{ flexGrow: '1' }}>
           <EventCardTitle colorTheme={chosenTheme} cardSize={cardSize}>
-            {title}
+            {event?.title}
           </EventCardTitle>
           <EventCardSpeaker colorTheme={chosenTheme} cardSize={cardSize}>
-            {speaker}
+            {event?.speakerDescription}
           </EventCardSpeaker>
           {cardSize === 'small' && (
             <EventCardDate colorTheme={chosenTheme} cardSize={cardSize}>
-              {date.toLocaleDateString('en-Gb')}
+              {event?.date.split('.').join('/')}
             </EventCardDate>
           )}
           <CardActions sx={{ padding: 0, margin: 0 }} disableSpacing>
             {cardSize !== 'small' && (
               <EventCardDate colorTheme={chosenTheme} cardSize={cardSize}>
-                {date.toLocaleDateString('en-Gb')}
+                {event?.date.split('.').join('/')}
               </EventCardDate>
             )}
             <EventCardButton
-              onClick={buttonState.action}
-              disabled={buttonState.disabled}
+              onClick={buttonState[event.status].action}
+              disabled={buttonState[event.status].disabled}
               colorTheme={chosenTheme?.button}
               sx={{
                 fontSize: cardSize === 'medium' ? '16px' : '12px',
               }}
             >
-              {buttonState.text}
+              {buttonState[event.status].text}
             </EventCardButton>
             <EventCardButton
+              aria-label="Добавить в избранное"
+              title="Добавить в избранное"
               onClick={() =>
                 isLikeButtonActive ? deleteFavoriteEvent(event) : addFavoriteEvent(event)
               }

@@ -8,7 +8,6 @@
   --colorIconBackground: #efefef;
   --colorIconBackgroundPositive: #0dc268;
   --colorIconBackgroundNeutral: #ff9e00;
-
   --colorInputBorder: #d3d9de;
   --colorInputBackground: #f7f8fa;
   --colorInputLabelText: #6f7985;
@@ -24,6 +23,8 @@
   --popupContainerBackround: #171717;
   --popupButtonBackgroundCancel: #333333;
   --colorStrokeAccentSecondary: #5a9bff;
+
+  --colorFooterBackground: #f6f6f6;
 
   /* stroke */
   --colorSeparatorPrimary: #dadce0;

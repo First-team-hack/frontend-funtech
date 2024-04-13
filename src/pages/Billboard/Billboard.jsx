@@ -1,5 +1,4 @@
 import './Billboard.css';
-import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import FilterBar from '../../components/FilterBar/FilterBar';
 import bannerImg from '../../assets/banner.png';
 import { Grid } from '@mui/material';
@@ -20,7 +19,6 @@ function Billboard() {
   return (
     <main className="billboard">
       <div className="billboard__container">
-        <Breadcrumbs />
         <FilterBar />
         <img className="billboard__banner" src={bannerImg} alt="" />
         <section className="billboard__section">

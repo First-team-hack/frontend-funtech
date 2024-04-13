@@ -1,5 +1,5 @@
-import EventsTab from '../EventsTab/EventsTab';
-import UserBar from '../UserBar/UserBar';
+import EventsTab from './EventsTab/EventsTab';
+import UserBar from './UserBar/UserBar';
 
 function UserInfo() {
   return (

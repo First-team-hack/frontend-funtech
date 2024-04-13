@@ -16,11 +16,11 @@
 }
 
 .events-tab__button-icon_type_expected {
-  background-image: url('../../assets/icons/Play.png');
+  background-image: url('../../../assets/icons/Play.png');
 }
 
 .events-tab__button-icon_type_completed {
-  background-image: url('../../assets/icons/Star.png');
+  background-image: url('../../../assets/icons/Star.png');
 }
 
 .events-tab__cards-section {

@@ -1,16 +1,18 @@
 import './EventsTab.css';
 import { useState } from 'react';
-import CustomButton from '../CustomButton/CustomButton';
-import globalTheme from '../../themes/globalTheme';
+import CustomButton from '../../CustomButton/CustomButton';
+import globalTheme from '../../../themes/globalTheme';
 import { Grid } from '@mui/material';
-import EventCard from '../EventCard/EventCard';
-import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
+import EventCard from '../../EventCard/EventCard';
+import useProfile from '../../../providers/ProfileProvider/ProfileProvider.hook';
 
 function EventsTab() {
   const { registeredEvents } = useProfile();
 
-  const expectedEvents = registeredEvents.filter((event) => Date.now() - event.date.getTime() < 0);
-  const completedEvents = registeredEvents.filter((event) => Date.now() - event.date.getTime() > 0);
+  const expectedEvents = registeredEvents.filter(
+    (event) => event.status === 'upcoming' || event.status === 'live'
+  );
+  const completedEvents = registeredEvents.filter((event) => event.status === 'complete');
 
   const [currentTab, setCurrentTab] = useState('expected');
   const buttonStyles = {

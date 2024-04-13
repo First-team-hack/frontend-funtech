@@ -17,7 +17,7 @@ function EventCardSpeaker(props) {
     case 'medium': {
       chosenSizes = {
         maxWidth: '305px',
-        minHeight: '150px',
+        minHeight: '130px',
         fontSize: '24px',
         lineHeight: '32px',
       };
