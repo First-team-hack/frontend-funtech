@@ -5,12 +5,14 @@ import EventSpeaker from '../../components/EventSpeaker/EventSpeaker';
 import { mockSpeakerData, mockQuestionData } from '../../utils/mock-data';
 import CustomAccordion from '../../components/CustomAccordion/CustomAccordion';
 import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
+import useEvent from '../../providers/EventProvider/EventProvider.hook';
 
 function Event() {
   const location = useLocation();
   const event = location.state;
-  const { registeredEvents } = useProfile();
-  const isUserRegisterToEvent = registeredEvents.some(
+  const { registeredEvents, cancelRegistrationToEvent } = useProfile();
+  const { openEventRegistrationPopup } = useEvent();
+  const isUserRegisteredToEvent = registeredEvents.some(
     (registeredEvent) => registeredEvent.id === event?.id
   );
   return (
@@ -71,14 +73,28 @@ function Event() {
           ))}
         </section>
         <section className="event__actions">
-          <div className="event__button-wrapper">
-            <button type="button" className="event__button">
-              Зарегистрироваться
+          {event.status === 'upcoming' && !isUserRegisteredToEvent && (
+            <div className="event__button-wrapper">
+              <button
+                type="button"
+                className="event__button"
+                onClick={() => openEventRegistrationPopup(event)}
+                aria-label="Зарегистрироваться"
+                title="Зарегистрироваться"
+              >
+                Зарегистрироваться
+              </button>
+            </div>
+          )}
+          {event.status === 'upcoming' && isUserRegisteredToEvent && (
+            <button
+              type="button"
+              className="event__button event__button_type_cancel"
+              onClick={() => cancelRegistrationToEvent(event)}
+            >
+              Отменить регистрацию
             </button>
-          </div>
-          <button type="button" className=" event__button event__button_type_cancel">
-            Отменить регистрацию
-          </button>
+          )}
         </section>
       </section>
     </main>
