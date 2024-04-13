@@ -8,4 +8,7 @@ export default createContext({
   isEventRegistrationPopupOpen: false,
   openEventRegistrationPopup: () => {},
   closeEventRegistrationPopup: () => {},
+  isConfirmPopupOpen: false,
+  openConfirmPopup: () => {},
+  closeConfirmPopup: () => {},
 });

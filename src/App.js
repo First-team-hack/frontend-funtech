@@ -16,11 +16,12 @@ import EventRegistrationPopup from './components/Popup/EventRegistrationPopup/Ev
 import useEvent from './providers/EventProvider/EventProvider.hook';
 import Event from './pages/Event/Event';
 import { Navigate } from 'react-router-dom';
+import ConfirmPopup from './components/Popup/ConfrimPopup/ConfirmPopup';
 function App() {
   const location = useLocation();
   const { pathname } = location;
   const { isLoggedIn } = useProfile();
-  const { isEventRegistrationPopupOpen } = useEvent();
+  const { isEventRegistrationPopupOpen, isConfirmPopupOpen } = useEvent();
 
   return (
     <div className="App">
@@ -47,6 +48,7 @@ function App() {
       </Routes>
       {pathname === '/' && <Footer />}
       {isEventRegistrationPopupOpen && <EventRegistrationPopup />}
+      {isConfirmPopupOpen && <ConfirmPopup />}
     </div>
   );
 }

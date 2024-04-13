@@ -10,8 +10,8 @@ import useEvent from '../../providers/EventProvider/EventProvider.hook';
 function Event() {
   const location = useLocation();
   const event = location.state;
-  const { registeredEvents, cancelRegistrationToEvent } = useProfile();
-  const { openEventRegistrationPopup } = useEvent();
+  const { registeredEvents } = useProfile();
+  const { openEventRegistrationPopup, openConfirmPopup } = useEvent();
   const isUserRegisteredToEvent = registeredEvents.some(
     (registeredEvent) => registeredEvent.id === event?.id
   );
@@ -69,7 +69,7 @@ function Event() {
         <section className="event__questions">
           <h2 className="event__questions-title event__section-title">Часто задаваемые вопросы</h2>
           {mockQuestionData.map((item) => (
-            <CustomAccordion item={item} />
+            <CustomAccordion item={item} key={item.question} />
           ))}
         </section>
         <section className="event__actions">
@@ -90,7 +90,7 @@ function Event() {
             <button
               type="button"
               className="event__button event__button_type_cancel"
-              onClick={() => cancelRegistrationToEvent(event)}
+              onClick={() => openConfirmPopup(event)}
             >
               Отменить регистрацию
             </button>

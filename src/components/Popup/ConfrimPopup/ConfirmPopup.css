@@ -1,0 +1,59 @@
+.confirm-popup {
+  color: var(--colorCustomButtonText);
+  font-family: 'YS Text', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.confirm-popup__title {
+  font-family: 'YS Display', Arial, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  margin: 0 0 30px;
+}
+
+.confirm-popup__text {
+  max-width: 430px;
+  margin: 0 0 44px;
+  text-align: center;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.confirm-popup__button {
+  width: 305px;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--colorCustomButtonText);
+  border: none;
+  cursor: pointer;
+  transition: all ease-in-out 0.15s;
+}
+.confirm-popup__actions {
+  display: flex;
+  gap: 32px;
+}
+
+.confirm-popup__button_type_confirm {
+  background-color: var(--colorStrokeAccent);
+}
+
+.confirm-popup__button_type_confirm:hover {
+  background-color: var(--colorStrokeAccentSecondary);
+}
+.confirm-popup__button_type_cancel {
+  background-color: var(--popupButtonBackgroundCancel);
+}
+.confirm-popup__button_type_cancel:hover {
+  background-color: var(--colorCardHoverButtonHover);
+}
