@@ -83,26 +83,38 @@ function EventCard(props) {
   const isUserRegisterToEvent = registeredEvents.some(
     (registeredEvent) => registeredEvent.id === event?.id
   );
-  const isEventCompleted = Date.now() - event?.date.getTime() > 0;
 
-  // TODO
-  // переделать под акутальные статусы!!!
-  //
-  const buttonState = isEventCompleted
-    ? { text: 'Посмотреть', disabled: false, action: () => {} }
-    : isUserRegisterToEvent
-    ? { text: 'Вы зарегистрированы', disabled: true, action: () => {} }
-    : {
-        text: 'Зарегистрироваться',
-        disabled: false,
-        action: () => {
-          openEventRegistrationPopup(event);
+  const goToEventPage = () => {
+    return navigate(`${EVENTS_ROUTE}/${event?.id}`, { state: event });
+  };
+
+  const buttonState = {
+    upcoming: isUserRegisterToEvent
+      ? { text: 'Вы зарегистрированы', disabled: true, action: () => {} }
+      : {
+          text: 'Зарегистрироваться',
+          disabled: false,
+          action: () => {
+            openEventRegistrationPopup(event);
+          },
         },
-      };
+    live: isUserRegisterToEvent
+      ? {
+          text: 'Смотреть эфир',
+          disabled: false,
+          action: goToEventPage,
+        }
+      : { text: 'Посмотреть', disabled: false, action: goToEventPage },
+    complete: {
+      text: 'Посмотреть',
+      disabled: false,
+      action: goToEventPage,
+    },
+  };
 
   const onCardClick = () => {
     if (cardSize !== 'medium') {
-      navigate(`${EVENTS_ROUTE}/${event?.id}`, { state: event });
+      goToEventPage();
     }
   };
 
@@ -115,28 +127,28 @@ function EventCard(props) {
             {event?.title}
           </EventCardTitle>
           <EventCardSpeaker colorTheme={chosenTheme} cardSize={cardSize}>
-            {event?.speaker}
+            {event?.speakerDescription}
           </EventCardSpeaker>
           {cardSize === 'small' && (
             <EventCardDate colorTheme={chosenTheme} cardSize={cardSize}>
-              {event?.date.toLocaleDateString('en-Gb')}
+              {event?.date.split('.').join('/')}
             </EventCardDate>
           )}
           <CardActions sx={{ padding: 0, margin: 0 }} disableSpacing>
             {cardSize !== 'small' && (
               <EventCardDate colorTheme={chosenTheme} cardSize={cardSize}>
-                {event?.date.toLocaleDateString('en-Gb')}
+                {event?.date.split('.').join('/')}
               </EventCardDate>
             )}
             <EventCardButton
-              onClick={buttonState.action}
-              disabled={buttonState.disabled}
+              onClick={buttonState[event.status].action}
+              disabled={buttonState[event.status].disabled}
               colorTheme={chosenTheme?.button}
               sx={{
                 fontSize: cardSize === 'medium' ? '16px' : '12px',
               }}
             >
-              {buttonState.text}
+              {buttonState[event.status].text}
             </EventCardButton>
             <EventCardButton
               aria-label="Добавить в избранное"

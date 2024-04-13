@@ -17,7 +17,7 @@ function Event() {
     <main className="event">
       <section className="event__container">
         <div className="event__header">
-          <EventCard event={event} cardSize="medium"></EventCard>
+          <EventCard event={event} cardSize="medium" />
           <div
             className="event__description"
             aria-label="В прошлом году мы говорили о том, как управлять собой, командой, проектом, компанией — и не поседеть к тридцати годам. В этот раз обсудим подход к карьере и жизни, а главное — как оставаться счастливыми на работе."

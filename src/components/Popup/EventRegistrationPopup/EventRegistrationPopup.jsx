@@ -194,9 +194,8 @@ function EventRegistrationPopup() {
           {participationFormat === 'online' ? (
             <p className="event-registration-popup__text">
               Мероприятие пройдет
-              <span className="event-registration-popup__text_positive">{` онлайн ${currentEvent.date?.toLocaleDateString(
-                'ru-Ru'
-              )} в ${currentEvent.time}`}</span>
+              <span className="event-registration-popup__text_positive">{` онлайн ${currentEvent.date}
+               в ${currentEvent.time}`}</span>
               <br />
               <br />
               За час до нaчала Вам придет уведомление
@@ -204,9 +203,7 @@ function EventRegistrationPopup() {
           ) : (
             <p className="event-registration-popup__text">
               Мероприятие пройдет
-              <span className="event-registration-popup__text_positive">{` ${currentEvent.date?.toLocaleDateString(
-                'ru-Ru'
-              )} в ${currentEvent.time}`}</span>
+              <span className="event-registration-popup__text_positive">{` ${currentEvent.date} в ${currentEvent.time}`}</span>
               <br />
               <br />
               {`Адрес проведения: ${currentEvent.city}, ${currentEvent.address}`}
