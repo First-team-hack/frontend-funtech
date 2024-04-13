@@ -29,13 +29,13 @@ function Event() {
               <h3 className="event__info-title">
                 <span className="event__info-title event__info-title_bold">01/</span> Где:
               </h3>
-              <p className="event__info-text">{`${event.city}, ${event.address}, а ещё можно присоединиться онлайн — всем зарегистрированным отправим ссылку на трансляцию.`}</p>
+              <p className="event__info-text">{`${event?.city}, ${event?.address}, а ещё можно присоединиться онлайн — всем зарегистрированным отправим ссылку на трансляцию.`}</p>
             </li>
             <li className="event__info-item">
               <h3 className="event__info-title">
                 <span className="event__info-title event__info-title_bold">02/</span> Когда:
               </h3>
-              <p className="event__info-text">{`${event.date.toLocaleString('default', {
+              <p className="event__info-text">{`${event?.date.toLocaleString('default', {
                 day: 'numeric',
                 month: 'long',
                 year: 'numeric',

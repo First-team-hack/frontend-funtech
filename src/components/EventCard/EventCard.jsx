@@ -28,12 +28,12 @@ function EventCard(props) {
   const { favoriteEvents, registeredEvents, addFavoriteEvent, deleteFavoriteEvent } = useProfile();
   const { openEventRegistrationPopup, setCurrentEvent } = useEvent();
   const { event, cardSize } = props;
-  const { id = '', colorTheme, title = '', speaker = '', date = new Date() } = event;
+
   const navigate = useNavigate();
 
   //choosing card theme
   let chosenTheme;
-  switch (colorTheme) {
+  switch (event?.colorTheme) {
     case 'white':
       chosenTheme = cardThemeWhite;
       break;
@@ -79,12 +79,15 @@ function EventCard(props) {
     }
   }
 
-  const isLikeButtonActive = favoriteEvents.some((favoriteEvent) => favoriteEvent.id === id);
+  const isLikeButtonActive = favoriteEvents.some((favoriteEvent) => favoriteEvent.id === event?.id);
   const isUserRegisterToEvent = registeredEvents.some(
-    (registeredEvent) => registeredEvent.id === id
+    (registeredEvent) => registeredEvent.id === event?.id
   );
-  const isEventCompleted = Date.now() - date.getTime() > 0;
+  const isEventCompleted = Date.now() - event?.date.getTime() > 0;
 
+  // TODO
+  // переделать под акутальные статусы!!!
+  //
   const buttonState = isEventCompleted
     ? { text: 'Посмотреть', disabled: false, action: () => {} }
     : isUserRegisterToEvent
@@ -98,7 +101,7 @@ function EventCard(props) {
       };
 
   const onCardClick = () => {
-    navigate(`${EVENTS_ROUTE}/${id}`, { state: event });
+    navigate(`${EVENTS_ROUTE}/${event?.id}`, { state: event });
   };
 
   return (
@@ -107,20 +110,20 @@ function EventCard(props) {
         <EventCardHeader {...event} colorTheme={chosenTheme} cardSize={cardSize} />
         <Stack direction="column" sx={{ flexGrow: '1' }}>
           <EventCardTitle colorTheme={chosenTheme} cardSize={cardSize}>
-            {title}
+            {event?.title}
           </EventCardTitle>
           <EventCardSpeaker colorTheme={chosenTheme} cardSize={cardSize}>
-            {speaker}
+            {event?.speaker}
           </EventCardSpeaker>
           {cardSize === 'small' && (
             <EventCardDate colorTheme={chosenTheme} cardSize={cardSize}>
-              {date.toLocaleDateString('en-Gb')}
+              {event?.date.toLocaleDateString('en-Gb')}
             </EventCardDate>
           )}
           <CardActions sx={{ padding: 0, margin: 0 }} disableSpacing>
             {cardSize !== 'small' && (
               <EventCardDate colorTheme={chosenTheme} cardSize={cardSize}>
-                {date.toLocaleDateString('en-Gb')}
+                {event?.date.toLocaleDateString('en-Gb')}
               </EventCardDate>
             )}
             <EventCardButton
@@ -134,6 +137,8 @@ function EventCard(props) {
               {buttonState.text}
             </EventCardButton>
             <EventCardButton
+              aria-label="Добавить в избранное"
+              title="Добавить в избранное"
               onClick={() =>
                 isLikeButtonActive ? deleteFavoriteEvent(event) : addFavoriteEvent(event)
               }
