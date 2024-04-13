@@ -1,11 +1,11 @@
 import { Button, IconButton } from '@mui/material';
 import { Favorite, FavoriteBorderOutlined } from '@mui/icons-material';
 
-function EventCardButton({ sx, role = '', isActive, colorTheme, ...props }) {
+function EventCardButton({ sx, role = '', isActive, colorTheme, onClick, ...props }) {
   const buttonBasicStyles = {
     ...colorTheme?.basic,
     fontFamily: `'YS Text', 'Arial', sans-serif`,
-    borderRadius: '8px',
+    borderRadius: '16px',
     transition: 'all ease-in-out 0.15s',
     ...sx,
   };
@@ -23,9 +23,15 @@ function EventCardButton({ sx, role = '', isActive, colorTheme, ...props }) {
     },
   });
 
+  const onButtonClick = (e) => {
+    e.stopPropagation();
+    onClick();
+  };
+
   return role === 'like' ? (
     <IconButton
       {...props}
+      onClick={onButtonClick}
       className="button"
       disableFocusRipple
       sx={[
@@ -39,17 +45,22 @@ function EventCardButton({ sx, role = '', isActive, colorTheme, ...props }) {
         buttonStateStyles,
       ]}
     >
-      {isActive ? <Favorite /> : <FavoriteBorderOutlined />}
+      {isActive ? (
+        <Favorite sx={{ fontSize: '22px' }} />
+      ) : (
+        <FavoriteBorderOutlined sx={{ fontSize: '22px' }} />
+      )}
     </IconButton>
   ) : (
     <Button
       {...props}
+      onClick={onButtonClick}
       className="button"
       disableFocusRipple
       variant="outlined"
       sx={[
         {
-          padding: '0 5px',
+          padding: '2px 5px 0',
           height: '32px',
           fontSize: '12px',
           fontWeight: '400',

@@ -26,7 +26,7 @@ import { EVENTS_ROUTE } from '../../utils/constants';
  */
 function EventCard(props) {
   const { favoriteEvents, registeredEvents, addFavoriteEvent, deleteFavoriteEvent } = useProfile();
-  const { openEventRegistrationPopup, setCurrentEvent } = useEvent();
+  const { openEventRegistrationPopup } = useEvent();
   const { event, cardSize } = props;
 
   const navigate = useNavigate();
@@ -101,7 +101,9 @@ function EventCard(props) {
       };
 
   const onCardClick = () => {
-    navigate(`${EVENTS_ROUTE}/${event?.id}`, { state: event });
+    if (cardSize !== 'medium') {
+      navigate(`${EVENTS_ROUTE}/${event?.id}`, { state: event });
+    }
   };
 
   return (

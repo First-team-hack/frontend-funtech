@@ -34,6 +34,7 @@ function EventCardDate(props) {
       color={colorTheme?.card.textColor}
       sx={{
         maxWidth: '164px',
+        boxSizing: 'border-box',
         transition: 'all ease-in-out 0.15s',
         ...chosenSizes,
       }}
