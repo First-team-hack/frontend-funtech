@@ -1,14 +1,18 @@
 import './Event.css';
 import EventCard from '../../components/EventCard/EventCard';
 import { useLocation } from 'react-router-dom';
-import EventSpeaker from './EventSpeaker/EventSpeaker';
-import { mockSpeakerData } from '../../utils/mock-data';
+import EventSpeaker from '../../components/EventSpeaker/EventSpeaker';
+import { mockSpeakerData, mockQuestionData } from '../../utils/mock-data';
+import CustomAccordion from '../../components/CustomAccordion/CustomAccordion';
+import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
 
 function Event() {
   const location = useLocation();
   const event = location.state;
-
-  // console.log(mockSpeakerData);
+  const { registeredEvents } = useProfile();
+  const isUserRegisterToEvent = registeredEvents.some(
+    (registeredEvent) => registeredEvent.id === event?.id
+  );
   return (
     <main className="event">
       <section className="event__container">
@@ -60,8 +64,21 @@ function Event() {
             ))}
           </ul>
         </section>
-        <section className="event__program">
-          <h2 className="event__program-title event__section-title">Программа</h2>
+        <section className="event__questions">
+          <h2 className="event__questions-title event__section-title">Часто задаваемые вопросы</h2>
+          {mockQuestionData.map((item) => (
+            <CustomAccordion item={item} />
+          ))}
+        </section>
+        <section className="event__actions">
+          <div className="event__button-wrapper">
+            <button type="button" className="event__button">
+              Зарегистрироваться
+            </button>
+          </div>
+          <button type="button" className=" event__button event__button_type_cancel">
+            Отменить регистрацию
+          </button>
         </section>
       </section>
     </main>

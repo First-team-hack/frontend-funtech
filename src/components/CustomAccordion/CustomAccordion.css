@@ -1,0 +1,17 @@
+.custom-accordion__question {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  margin: 0;
+  color: var(--colorText);
+}
+
+.custom-accordion__answer {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0;
+  color: var(--colorTextPrimary);
+}
