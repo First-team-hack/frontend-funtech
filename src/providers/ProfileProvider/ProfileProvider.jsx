@@ -24,6 +24,7 @@ const ProfileProvider = ({ children }) => {
   const [favoriteEvents, setFavoriteEvents] = useState(
     JSON.parse(localStorage.getItem('favoriteEvents')) || []
   );
+  const [recommendedEvents, setRecommendedEvents] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -37,6 +38,7 @@ const ProfileProvider = ({ children }) => {
     setUserInfo((userInfo) => ({ ...userInfo, ...userDataFromServer }));
     getRegisteredEvents();
     getFavoriteEvents();
+    getRecommendedEvents();
     setIsLoggedIn(true);
   };
 
@@ -57,6 +59,8 @@ const ProfileProvider = ({ children }) => {
       vk: '',
       viber: '',
     });
+    setRegisteredEvents([]);
+    setRecommendedEvents([]);
     setIsLoggedIn(false);
   };
 
@@ -73,7 +77,7 @@ const ProfileProvider = ({ children }) => {
 
   const registerToEvent = (event, userId) => {
     // post register event to server
-    setRegisteredEvents([event, ...registeredEvents]);
+    setRegisteredEvents((prev) => [event, ...prev]);
   };
 
   const cancelRegistrationToEvent = (canceledEvent) => {
@@ -102,6 +106,13 @@ const ProfileProvider = ({ children }) => {
     setFavoriteEvents((prev) => prev.filter((event) => event.id !== deletedEvent.id));
   };
 
+  const getRecommendedEvents = () => {
+    //recom events from server
+    const recommendedEventsFromServer = mockCardsData.slice(15, 18);
+    //
+    setRecommendedEvents(recommendedEventsFromServer);
+  };
+
   const value = {
     userInfo,
     isLoggedIn,
@@ -116,6 +127,8 @@ const ProfileProvider = ({ children }) => {
     getFavoriteEvents,
     addFavoriteEvent,
     deleteFavoriteEvent,
+    recommendedEvents,
+    getRecommendedEvents,
   };
 
   return (

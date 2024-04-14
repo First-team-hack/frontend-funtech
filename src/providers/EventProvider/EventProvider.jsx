@@ -3,7 +3,8 @@ import EventProviderContext from './EventProvider.context';
 import { mockCardsData } from '../../utils/mock-data';
 
 const EventProvider = ({ children }) => {
-  const [events, setEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [completedEvents, setCompletedEvents] = useState([]);
   const [currentEvent, setCurrentEvent] = useState({});
   const [isEventRegistrationPopupOpen, setIsEventRegistrationPopupOpen] = useState(false);
   const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false);
@@ -26,7 +27,7 @@ const EventProvider = ({ children }) => {
     setIsConfirmPopupOpen(false);
   };
 
-  const getEvents = (filters) => {
+  const getFilteredEvents = (filters) => {
     const keyword = filters?.keyword || '';
     const theme = filters?.theme || '';
     const city = filters?.city || '';
@@ -34,14 +35,23 @@ const EventProvider = ({ children }) => {
     const format = filters?.format || '';
 
     //events from server
-    const allEvents = mockCardsData;
+    const allEvents = mockCardsData.filter((event) => event?.title.includes(keyword));
+    //
+    setFilteredEvents(allEvents);
+  };
 
-    setEvents([...allEvents]);
+  const getCompletedEvents = () => {
+    //events from server
+    const completedEventsFromServer = mockCardsData.filter((event) => event?.status === 'complete');
+    //
+    setCompletedEvents(completedEventsFromServer);
   };
 
   const value = {
-    events,
-    getEvents,
+    filteredEvents,
+    getFilteredEvents,
+    completedEvents,
+    getCompletedEvents,
     currentEvent,
     setCurrentEvent,
     isEventRegistrationPopupOpen,

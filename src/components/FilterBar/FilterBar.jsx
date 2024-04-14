@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form';
 import useEvent from '../../providers/EventProvider/EventProvider.hook';
 
 function FilterBar() {
-  const { getEvents } = useEvent();
+  const { getFilteredEvents } = useEvent();
   const {
     register,
     handleSubmit,
@@ -28,7 +28,7 @@ function FilterBar() {
     },
   });
   const onSubmit = (filters) => {
-    getEvents(filters);
+    getFilteredEvents(filters);
   };
 
   return (

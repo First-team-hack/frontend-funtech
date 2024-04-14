@@ -30,4 +30,7 @@ export default createContext({
   getFavoriteEvents: () => {},
   addFavoriteEvent: () => {},
   deleteFavoriteEvent: () => {},
+
+  recommendedEvents: [],
+  getRecommendedEvents: () => {},
 });
