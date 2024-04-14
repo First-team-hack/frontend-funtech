@@ -42,10 +42,29 @@
   width: 958px;
   height: 518px;
   border-radius: 20px;
-  background-image: url('../../assets/event/normal_video.png');
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+}
+
+.event__video-player_type_record {
+  background-image: url('../../assets/event/normal_video.png');
+}
+
+.event__video-player_type_translation {
+  background-image: url('../../assets/event/translation.png');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.event__video-player_type_translation::before {
+  content: url('../../assets/event/play_button.svg');
+  width: 60px;
+  height: 60px;
+}
+
+.event__translation {
+  margin-bottom: 32px;
 }
 
 .event__info {

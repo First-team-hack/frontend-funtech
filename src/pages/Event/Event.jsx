@@ -31,7 +31,12 @@ function Event() {
         />
         {event?.status === 'complete' && (
           <section className="event__video">
-            <div className="event__video-player" />
+            <div className="event__video-player event__video-player_type_record" />
+          </section>
+        )}
+        {event?.status === 'live' && (
+          <section className="event__translation">
+            <div className="event__video-player event__video-player_type_translation" />
           </section>
         )}
         <section className="event__info">
