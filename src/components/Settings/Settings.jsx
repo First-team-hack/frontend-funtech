@@ -10,8 +10,7 @@ import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { PROFILE_ROUTE } from '../../utils/constants';
 import { useState } from 'react';
-
-const interests = ['Frontend', 'Backend', 'IOS', 'Android', 'UI/UX дизайн'];
+import { THEMES_AND_INTERESTS } from '../../utils/constants';
 
 const settingsShema = yup.object({
   firstName: yup
@@ -27,7 +26,7 @@ const settingsShema = yup.object({
     .string()
     .length(10, 'Номер телефона должен состоять из 10 цифр')
     .matches(/^\d+$/, 'Номер телефона может содержать только цифры'),
-  interest: yup.string().oneOf(interests, 'Заполните это поле'),
+  interest: yup.string().oneOf(THEMES_AND_INTERESTS, 'Заполните это поле'),
 });
 
 function Settings() {
@@ -123,7 +122,7 @@ function Settings() {
                 label="Направление"
                 sx={{ width: '305px' }}
                 {...register('interest')}
-                items={interests}
+                items={THEMES_AND_INTERESTS}
                 value={selectState}
                 onChange={handleSelectChange}
               />

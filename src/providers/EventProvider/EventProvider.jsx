@@ -26,7 +26,7 @@ const EventProvider = ({ children }) => {
     setIsConfirmPopupOpen(false);
   };
 
-  const getEvents = () => {
+  const getEvents = (filters) => {
     // get Events from server
     const allEvents = mockCardsData;
     //
