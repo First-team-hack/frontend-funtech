@@ -29,6 +29,11 @@ function Event() {
           className="event__subtitle"
           aria-label="Yet Another Level - это серия митапов про жизнь в IT-индустрии. Саморазвитие, прокачка софт-скилов, карьера, управление в IT, нетворкинг и многое другое."
         />
+        {event?.status === 'complete' && (
+          <section className="event__video">
+            <div className="event__video-player" />
+          </section>
+        )}
         <section className="event__info">
           <ul className="event__info-list">
             <li className="event__info-item">

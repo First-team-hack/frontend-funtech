@@ -32,6 +32,22 @@
   margin-bottom: 22px;
 }
 
+.event__video {
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.event__video-player {
+  width: 958px;
+  height: 518px;
+  border-radius: 20px;
+  background-image: url('../../assets/event/normal_video.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
 .event__info {
   padding: 45px 0 14px;
   margin: 0 0 28px;

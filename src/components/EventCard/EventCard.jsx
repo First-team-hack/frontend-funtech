@@ -106,7 +106,7 @@ function EventCard(props) {
         }
       : { text: 'Посмотреть', disabled: false, action: goToEventPage },
     complete: {
-      text: 'Посмотреть',
+      text: 'Мероприятие завершено',
       disabled: false,
       action: goToEventPage,
     },
