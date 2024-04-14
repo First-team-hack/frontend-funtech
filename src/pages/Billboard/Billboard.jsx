@@ -4,17 +4,22 @@ import bannerImg from '../../assets/banner.png';
 import { Grid } from '@mui/material';
 import { mockCardsData } from '../../utils/mock-data';
 import EventCard from '../../components/EventCard/EventCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomButton from '../../components/CustomButton/CustomButton';
+import useEvent from '../../providers/EventProvider/EventProvider.hook';
 
 function Billboard() {
-  const allEvents = mockCardsData;
+  const { events, getEvents } = useEvent();
   const recommendedEvents = mockCardsData;
   const completedEvents = mockCardsData;
   const [visibleEvent, setVisibleEvents] = useState(8);
   const showMoreEvents = () => {
     setVisibleEvents((prev) => prev + 8);
   };
+
+  useEffect(() => {
+    getEvents();
+  }, []);
 
   return (
     <main className="billboard">
@@ -23,21 +28,27 @@ function Billboard() {
         <img className="billboard__banner" src={bannerImg} alt="" />
         <section className="billboard__section">
           <h2 className="billboard__section-title">В ближайшее время</h2>
-          <Grid container spacing="20px">
-            {allEvents.slice(0, visibleEvent).map((event) => (
-              <Grid key={event.id} item xs={3}>
-                <EventCard event={event} cardSize="small" />
+          {events.length === 0 ? (
+            <div className="billboard__events-not-found">Ничего не найдено</div>
+          ) : (
+            <>
+              <Grid container spacing="20px">
+                {events.slice(0, visibleEvent).map((event) => (
+                  <Grid key={event.id} item xs={3}>
+                    <EventCard event={event} cardSize="small" />
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
-          {visibleEvent < allEvents.length && (
-            <CustomButton
-              variant="outlined"
-              onClick={showMoreEvents}
-              sx={{ width: '194px', height: '40px', fontSize: '24px' }}
-            >
-              Открыть еще
-            </CustomButton>
+              {visibleEvent < events.length && (
+                <CustomButton
+                  variant="outlined"
+                  onClick={showMoreEvents}
+                  sx={{ width: '194px', height: '40px', fontSize: '24px' }}
+                >
+                  Открыть еще
+                </CustomButton>
+              )}
+            </>
           )}
         </section>
         <section className="billboard__section">
@@ -53,7 +64,7 @@ function Billboard() {
         <section className="billboard__section">
           <h2 className="billboard__section-title">Завершенные мероприятия</h2>
           <Grid container spacing="20px">
-            {completedEvents.slice(0, 1).map((event) => (
+            {completedEvents.slice(0, 2).map((event) => (
               <Grid key={event.id} item xs={6}>
                 <EventCard event={event} cardSize="large" />
               </Grid>

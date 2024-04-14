@@ -27,9 +27,15 @@ const EventProvider = ({ children }) => {
   };
 
   const getEvents = (filters) => {
-    // get Events from server
+    const keyword = filters?.keyword || '';
+    const theme = filters?.theme || '';
+    const city = filters?.city || '';
+    const sortBy = filters?.sortBy || '';
+    const format = filters?.format || '';
+
+    //events from server
     const allEvents = mockCardsData;
-    //
+
     setEvents([...allEvents]);
   };
 

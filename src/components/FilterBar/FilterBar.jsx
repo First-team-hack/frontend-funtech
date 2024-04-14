@@ -29,7 +29,6 @@ function FilterBar() {
   });
   const onSubmit = (filters) => {
     getEvents(filters);
-    console.log(filters);
   };
 
   return (
