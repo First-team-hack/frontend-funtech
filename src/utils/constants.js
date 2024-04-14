@@ -36,3 +36,6 @@ export const EVENTS_SORT_BY = [
   { name: 'По дате', value: 'date' },
   { name: 'По названию', value: 'name' },
 ];
+
+export const DEFAULT_VISIBLE_EVENTS = 8;
+export const VISIBLE_EVENTS_INCREMENT = 8;

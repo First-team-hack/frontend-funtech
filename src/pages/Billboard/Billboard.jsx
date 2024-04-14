@@ -7,13 +7,14 @@ import { useEffect, useState } from 'react';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import useEvent from '../../providers/EventProvider/EventProvider.hook';
 import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
+import { DEFAULT_VISIBLE_EVENTS, VISIBLE_EVENTS_INCREMENT } from '../../utils/constants';
 
 function Billboard() {
   const { filteredEvents, getFilteredEvents, completedEvents, getCompletedEvents } = useEvent();
   const { isLoggedIn, recommendedEvents } = useProfile();
-  const [visibleEvent, setVisibleEvents] = useState(8);
+  const [visibleEvent, setVisibleEvents] = useState(DEFAULT_VISIBLE_EVENTS);
   const showMoreEvents = () => {
-    setVisibleEvents((prev) => prev + 8);
+    setVisibleEvents((prev) => prev + VISIBLE_EVENTS_INCREMENT);
   };
 
   useEffect(() => {
