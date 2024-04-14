@@ -52,11 +52,16 @@ function Settings() {
     resolver: yupResolver(settingsShema),
   });
 
+  const [selectState, setSelectState] = useState(userInfo.interest);
+  const handleSelectChange = (e) => {
+    setSelectState(e.target.value);
+  };
+
   const [checkboxState, setCheckboxState] = useState({
-    notificationByTelegram: userInfo.notificationMethods.telegram,
-    notificationByWhatsapp: userInfo.notificationMethods.whatsapp,
-    notificationByVk: userInfo.notificationMethods.vk,
-    notificationByViber: userInfo.notificationMethods.viber,
+    notificationByTelegram: userInfo.notificationByTelegram,
+    notificationByWhatsapp: userInfo.notificationByWhatsapp,
+    notificationByVk: userInfo.notificationByVk,
+    notificationByViber: userInfo.notificationByViber,
   });
 
   const handleCheckboxChange = (e) => {
@@ -67,22 +72,7 @@ function Settings() {
   };
 
   const onSubmit = (data) => {
-    updateUserInfo({
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      phoneNumber: data.phoneNumber,
-      notificationMethods: {
-        telegram: data.notificationByTelegram,
-        whatsapp: data.notificationByWhatsapp,
-        vk: data.notificationByVk,
-        viber: data.notificationByViber,
-      },
-      telegram: data.telegram,
-      whatsapp: data.whatsapp,
-      vk: data.vk,
-      viber: data.viber,
-    });
+    updateUserInfo(data);
   };
 
   const onCancelClick = () => {
@@ -134,6 +124,8 @@ function Settings() {
                 sx={{ width: '305px' }}
                 {...register('interest')}
                 items={interests}
+                value={selectState}
+                onChange={handleSelectChange}
               />
             </div>
           </fieldset>
