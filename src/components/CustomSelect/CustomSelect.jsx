@@ -1,8 +1,8 @@
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { OutlinedInput } from '@mui/material';
 import globalTheme from '../../themes/globalTheme';
 import React from 'react';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 /**
  * This wrapper component for MUI Select with custom design.
@@ -93,23 +93,12 @@ const CustomSelect = React.forwardRef((props, ref) => {
         }}
         defaultValue={defaultValue || ''}
         input={<OutlinedInput />}
-        renderValue={(selected) => {
-          if (!selected) {
-            return (
-              <em
-                style={{
-                  ...labelStyles,
-                  fontSize: '16px',
-                  color: globalTheme.palette.colorInputLabelText,
-                }}
-              >
-                {placeholder}
-              </em>
-            );
-          }
-          return selected;
-        }}
       >
+        {placeholder && (
+          <MenuItem value="" disabled sx={{ display: 'none' }}>
+            {placeholder}
+          </MenuItem>
+        )}
         {items.map((item) => (
           <MenuItem key={item} value={item}>
             {item}
@@ -117,6 +106,7 @@ const CustomSelect = React.forwardRef((props, ref) => {
         ))}
         {children}
       </Select>
+
       {errormessage && (
         <span
           style={{

@@ -2,34 +2,76 @@ import { Box, MenuItem, Stack } from '@mui/material';
 import Input from '../Input/Input';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import CustomButton from '../CustomButton/CustomButton';
+import {
+  THEMES_AND_INTERESTS,
+  EVENT_CITES,
+  EVENT_FORMATS,
+  EVENTS_SORT_BY,
+} from '../../utils/constants';
+import { useForm } from 'react-hook-form';
+import useEvent from '../../providers/EventProvider/EventProvider.hook';
 
 function FilterBar() {
-  // mock data start
-  const eventThemes = ['Frontend', 'Backend', 'Техно', 'Вышивание крестиком'];
-  const cities = ['Москва', 'Владивосток', 'Санкт-Петербург'];
-  const eventType = ['Онлайн', 'Оффлайн', 'Онлайн и Оффлайн'];
-  const sortBy = [
-    { name: 'По дате', value: 'date' },
-    { name: 'По названию', value: 'name' },
-  ];
-  // mock data end
+  const { getFilteredEvents } = useEvent();
+  const {
+    register,
+    handleSubmit,
+    formState: { isDirty },
+    reset,
+  } = useForm({
+    defaultValues: {
+      keyword: '',
+      theme: '',
+      city: '',
+      sortBy: '',
+      format: '',
+    },
+  });
+  const onSubmit = (filters) => {
+    getFilteredEvents(filters);
+  };
+
   return (
-    <Box component="form" sx={{ marginBottom: '28px' }}>
+    <Box
+      component="form"
+      sx={{ marginBottom: '28px' }}
+      onSubmit={handleSubmit(onSubmit)}
+      action="#"
+      noValidate
+    >
       <Stack direction="row" sx={{ justifyContent: 'space-between' }} useFlexGap>
-        <Input type="search" placeholder="Поиск" />
-        <CustomSelect placeholder="Темы" sx={{ width: '180px' }} items={eventThemes} />
-        <CustomSelect placeholder="Город" sx={{ width: '180px' }} items={cities} />
-        <CustomSelect placeholder="Сортировать" sx={{ width: '180px' }}>
-          {sortBy.map((item) => (
-            <MenuItem key={item.name} value={item.name}>
+        <Input type="search" placeholder="Поиск" {...register('keyword')} />
+        <CustomSelect
+          {...register('theme')}
+          placeholder="Темы"
+          sx={{ width: '180px' }}
+          items={THEMES_AND_INTERESTS}
+        />
+        <CustomSelect
+          {...register('city')}
+          placeholder="Город"
+          sx={{ width: '180px' }}
+          items={EVENT_CITES}
+        />
+        <CustomSelect {...register('sortBy')} placeholder="Сортировать" sx={{ width: '180px' }}>
+          {EVENTS_SORT_BY.map((item) => (
+            <MenuItem key={item.name} value={item.value}>
               {item.name}
             </MenuItem>
           ))}
         </CustomSelect>
-
-        <CustomSelect placeholder="Тип" sx={{ width: '180px' }} items={eventType} />
+        <CustomSelect {...register('format')} placeholder="Формат" sx={{ width: '180px' }}>
+          {EVENT_FORMATS.map((item) => (
+            <MenuItem key={item.name} value={item.value}>
+              {item.name}
+            </MenuItem>
+          ))}
+        </CustomSelect>
         <Stack direction="row" spacing={'6px'} useFlexGap>
           <CustomButton
+            type="submit"
+            aria-label="Найти"
+            title="Найти"
             sx={{
               width: '80px',
               height: '40px',
@@ -40,9 +82,13 @@ function FilterBar() {
             Найти
           </CustomButton>
           <CustomButton
-            disabled
+            type="button"
+            aria-label="Сбросить фильтры"
+            title="Сбросить фильтры"
+            disabled={!isDirty}
             variant="outlined"
             sx={{ width: '105px', height: '40px', borderRadius: '20px', textTransform: 'none' }}
+            onClick={() => reset()}
           >
             Сбросить
           </CustomButton>

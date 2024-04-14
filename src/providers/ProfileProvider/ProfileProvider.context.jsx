@@ -8,12 +8,10 @@ export default createContext({
     email: '',
     phoneNumber: '',
     interest: '',
-    notificationMethods: {
-      telegram: false,
-      whatsapp: false,
-      vk: false,
-      viber: false,
-    },
+    notificationByTelegram: false,
+    notificationByWhatsapp: false,
+    notificationByVk: false,
+    notificationByViber: false,
     telegram: '',
     whatsapp: '',
     vk: '',
@@ -32,4 +30,7 @@ export default createContext({
   getFavoriteEvents: () => {},
   addFavoriteEvent: () => {},
   deleteFavoriteEvent: () => {},
+
+  recommendedEvents: [],
+  getRecommendedEvents: () => {},
 });

@@ -2,19 +2,26 @@ import './Billboard.css';
 import FilterBar from '../../components/FilterBar/FilterBar';
 import bannerImg from '../../assets/banner.png';
 import { Grid } from '@mui/material';
-import { mockCardsData } from '../../utils/mock-data';
 import EventCard from '../../components/EventCard/EventCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomButton from '../../components/CustomButton/CustomButton';
+import useEvent from '../../providers/EventProvider/EventProvider.hook';
+import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
+import { DEFAULT_VISIBLE_EVENTS, VISIBLE_EVENTS_INCREMENT } from '../../utils/constants';
 
 function Billboard() {
-  const allEvents = mockCardsData;
-  const recommendedEvents = mockCardsData;
-  const completedEvents = mockCardsData;
-  const [visibleEvent, setVisibleEvents] = useState(8);
+  const { filteredEvents, getFilteredEvents, completedEvents, getCompletedEvents } = useEvent();
+  const { isLoggedIn, recommendedEvents } = useProfile();
+  const [visibleEvent, setVisibleEvents] = useState(DEFAULT_VISIBLE_EVENTS);
   const showMoreEvents = () => {
-    setVisibleEvents((prev) => prev + 8);
+    setVisibleEvents((prev) => prev + VISIBLE_EVENTS_INCREMENT);
   };
+
+  useEffect(() => {
+    // when page load first time we fetch events with empty filters so we get all events
+    getFilteredEvents();
+    getCompletedEvents();
+  }, []);
 
   return (
     <main className="billboard">
@@ -23,37 +30,45 @@ function Billboard() {
         <img className="billboard__banner" src={bannerImg} alt="" />
         <section className="billboard__section">
           <h2 className="billboard__section-title">В ближайшее время</h2>
-          <Grid container spacing="20px">
-            {allEvents.slice(0, visibleEvent).map((event) => (
-              <Grid key={event.id} item xs={3}>
-                <EventCard event={event} cardSize="small" />
+          {filteredEvents.length === 0 ? (
+            <div className="billboard__events-not-found">Мероприятия не найдены</div>
+          ) : (
+            <>
+              <Grid container spacing="20px">
+                {filteredEvents.slice(0, visibleEvent).map((event) => (
+                  <Grid key={event.id} item xs={3}>
+                    <EventCard event={event} cardSize="small" />
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
-          {visibleEvent < allEvents.length && (
-            <CustomButton
-              variant="outlined"
-              onClick={showMoreEvents}
-              sx={{ width: '194px', height: '40px', fontSize: '24px' }}
-            >
-              Открыть еще
-            </CustomButton>
+              {visibleEvent < filteredEvents.length && (
+                <CustomButton
+                  variant="outlined"
+                  onClick={showMoreEvents}
+                  sx={{ width: '194px', height: '40px', fontSize: '24px' }}
+                >
+                  Открыть еще
+                </CustomButton>
+              )}
+            </>
           )}
         </section>
-        <section className="billboard__section">
-          <h2 className="billboard__section-title">Рекомендованые Вам</h2>
-          <Grid container spacing="20px">
-            {recommendedEvents.slice(0, 1).map((event) => (
-              <Grid key={event.id} item xs={3}>
-                <EventCard event={event} cardSize="small" />
-              </Grid>
-            ))}
-          </Grid>
-        </section>
+        {isLoggedIn && (
+          <section className="billboard__section">
+            <h2 className="billboard__section-title">Рекомендованые Вам</h2>
+            <Grid container spacing="20px">
+              {recommendedEvents.map((event) => (
+                <Grid key={event.id} item xs={3}>
+                  <EventCard event={event} cardSize="small" />
+                </Grid>
+              ))}
+            </Grid>
+          </section>
+        )}
         <section className="billboard__section">
           <h2 className="billboard__section-title">Завершенные мероприятия</h2>
           <Grid container spacing="20px">
-            {completedEvents.slice(0, 1).map((event) => (
+            {completedEvents.slice(0, 2).map((event) => (
               <Grid key={event.id} item xs={6}>
                 <EventCard event={event} cardSize="large" />
               </Grid>

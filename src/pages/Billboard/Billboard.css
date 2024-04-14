@@ -36,3 +36,15 @@
 .billboard__container:last-child {
   margin-bottom: 106px;
 }
+
+.billboard__events-not-found {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  color: var(--colorTextSecondary);
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

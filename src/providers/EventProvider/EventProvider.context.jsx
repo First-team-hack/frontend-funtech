@@ -1,8 +1,10 @@
 import { createContext } from 'react';
 
 export default createContext({
-  events: [],
-  getEvents: () => {},
+  filteredEvents: [],
+  getFilteredEvents: () => {},
+  completedEvents: [],
+  getCompletedEvents: () => {},
   currentEvent: {},
   setCurrentEvent: () => {},
   isEventRegistrationPopupOpen: false,

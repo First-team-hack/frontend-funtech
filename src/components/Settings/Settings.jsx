@@ -10,8 +10,7 @@ import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { PROFILE_ROUTE } from '../../utils/constants';
 import { useState } from 'react';
-
-const interests = ['Frontend', 'Backend', 'IOS', 'Android', 'UI/UX дизайн'];
+import { THEMES_AND_INTERESTS } from '../../utils/constants';
 
 const settingsShema = yup.object({
   firstName: yup
@@ -27,7 +26,7 @@ const settingsShema = yup.object({
     .string()
     .length(10, 'Номер телефона должен состоять из 10 цифр')
     .matches(/^\d+$/, 'Номер телефона может содержать только цифры'),
-  interest: yup.string().oneOf(interests, 'Заполните это поле'),
+  interest: yup.string().oneOf(THEMES_AND_INTERESTS, 'Заполните это поле'),
 });
 
 function Settings() {
@@ -52,11 +51,16 @@ function Settings() {
     resolver: yupResolver(settingsShema),
   });
 
+  const [selectState, setSelectState] = useState(userInfo.interest);
+  const handleSelectChange = (e) => {
+    setSelectState(e.target.value);
+  };
+
   const [checkboxState, setCheckboxState] = useState({
-    notificationByTelegram: userInfo.notificationMethods.telegram,
-    notificationByWhatsapp: userInfo.notificationMethods.whatsapp,
-    notificationByVk: userInfo.notificationMethods.vk,
-    notificationByViber: userInfo.notificationMethods.viber,
+    notificationByTelegram: userInfo.notificationByTelegram,
+    notificationByWhatsapp: userInfo.notificationByWhatsapp,
+    notificationByVk: userInfo.notificationByVk,
+    notificationByViber: userInfo.notificationByViber,
   });
 
   const handleCheckboxChange = (e) => {
@@ -67,22 +71,7 @@ function Settings() {
   };
 
   const onSubmit = (data) => {
-    updateUserInfo({
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      phoneNumber: data.phoneNumber,
-      notificationMethods: {
-        telegram: data.notificationByTelegram,
-        whatsapp: data.notificationByWhatsapp,
-        vk: data.notificationByVk,
-        viber: data.notificationByViber,
-      },
-      telegram: data.telegram,
-      whatsapp: data.whatsapp,
-      vk: data.vk,
-      viber: data.viber,
-    });
+    updateUserInfo(data);
   };
 
   const onCancelClick = () => {
@@ -133,7 +122,9 @@ function Settings() {
                 label="Направление"
                 sx={{ width: '305px' }}
                 {...register('interest')}
-                items={interests}
+                items={THEMES_AND_INTERESTS}
+                value={selectState}
+                onChange={handleSelectChange}
               />
             </div>
           </fieldset>
