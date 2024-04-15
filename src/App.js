@@ -15,16 +15,19 @@ import { AUTH_ROUTE } from './utils/constants';
 import EventRegistrationPopup from './components/Popup/EventRegistrationPopup/EventRegistrationPopup';
 import useEvent from './providers/EventProvider/EventProvider.hook';
 import Event from './pages/Event/Event';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import ConfirmPopup from './components/Popup/ConfrimPopup/ConfirmPopup';
 import { useEffect } from 'react';
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { pathname } = location;
   const { isLoggedIn, setIsLoggedIn, getAllUserData } = useProfile();
   const { isEventRegistrationPopupOpen, isConfirmPopupOpen } = useEvent();
   useEffect(() => {
     checkToken();
+    // disable eslint deps check, we use empty deps array beacause we need check token only once when app first loading
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function checkToken() {
@@ -32,6 +35,9 @@ function App() {
     if (jwt) {
       getAllUserData()
         .then(() => {
+          navigate(pathname === '/auth' ? '/' : pathname, {
+            replace: true,
+          });
           setIsLoggedIn(true);
         })
         .catch((error) => {
@@ -40,7 +46,6 @@ function App() {
     }
   }
 
-  console.log(process.env.REACT_APP_PROFILE_BASE_URL);
   return (
     <div className="App">
       {pathname !== AUTH_ROUTE && <Header />}

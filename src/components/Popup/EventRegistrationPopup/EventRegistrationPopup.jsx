@@ -7,7 +7,7 @@ import useProfile from '../../../providers/ProfileProvider/ProfileProvider.hook'
 function EventRegistrationPopup() {
   const { currentEvent, isEventRegistrationPopupOpen, closeEventRegistrationPopup } = useEvent();
   const { login, isLoggedIn, registerToEvent } = useProfile();
-
+  const [errorMessage, setErrorMessage] = useState('');
   const hasEventOfflineFormat = currentEvent.format?.includes('offline') || false;
   // steps
   // 0 = error
@@ -22,8 +22,12 @@ function EventRegistrationPopup() {
   useEffect(() => {
     // //  if user is logged in, AND event HAS NOT offline format, we can immediately register user to event
     if (isLoggedIn && !hasEventOfflineFormat) {
-      registerToEvent(currentEvent);
-      setStep(4);
+      registerToEvent(currentEvent)
+        .then(() => setStep(4))
+        .catch((error) => {
+          setErrorMessage(error);
+          setStep(0);
+        });
       // else if user is logged in, AND event HAS offline format, give user choosee participaion format
     } else if (isLoggedIn) {
       setStep(2);
@@ -58,13 +62,18 @@ function EventRegistrationPopup() {
               type="button"
               className="event-registration-popup__button event-registration-popup__button_type_confirm"
               onClick={() => {
-                login();
-                if (hasEventOfflineFormat) {
-                  setStep(2);
-                } else {
-                  registerToEvent(currentEvent);
-                  setStep(4);
-                }
+                login().then(() => {
+                  if (hasEventOfflineFormat) {
+                    setStep(2);
+                  } else {
+                    registerToEvent(currentEvent)
+                      .then(() => setStep(4))
+                      .catch((error) => {
+                        setErrorMessage(error);
+                        setStep(0);
+                      });
+                  }
+                });
               }}
             >
               Войти с Яндекс.ID
@@ -128,8 +137,12 @@ function EventRegistrationPopup() {
                   setParticipationFormat('online');
                   setStep(3);
                 } else {
-                  registerToEvent(currentEvent);
-                  setStep(4);
+                  registerToEvent(currentEvent)
+                    .then(() => setStep(4))
+                    .catch((error) => {
+                      setErrorMessage(error);
+                      setStep(0);
+                    });
                 }
               }}
             >
@@ -164,8 +177,12 @@ function EventRegistrationPopup() {
             <button
               className="event-registration-popup__button event-registration-popup__button_type_confirm"
               onClick={() => {
-                registerToEvent(currentEvent);
-                setStep(4);
+                registerToEvent(currentEvent)
+                  .then(() => setStep(4))
+                  .catch((error) => {
+                    setErrorMessage(error);
+                    setStep(0);
+                  });
               }}
             >
               Зарегистрироваться online
@@ -229,7 +246,9 @@ function EventRegistrationPopup() {
             УПС! кажется,&nbsp;
             <span className="event-registration-popup__title_negative">что-то пошло не так!</span>
           </h2>
-          <p className="event-registration-popup__text">Попробуйте зарегистрироваться позднее.</p>
+          <p className="event-registration-popup__text">
+            {errorMessage ? errorMessage : 'Попробуйте зарегистрироваться позднее.'}
+          </p>
           <button
             type="button"
             className="event-registration-popup__button event-registration-popup__button_type_cancel"

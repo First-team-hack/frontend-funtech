@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import ProfileProviderContext from './ProfileProvider.context';
 import { mockUserData, mockCardsData } from '../../utils/mock-data';
 import union from 'lodash/union';
+import { reject } from 'lodash';
 
 const ProfileProvider = ({ children }) => {
   const defaultUserInfoState = {
@@ -34,7 +35,7 @@ const ProfileProvider = ({ children }) => {
 
   const login = () => {
     fetch('/auth/jwt/create'); //POST
-    Promise.resolve({ token: 'mockJWTtoken' }).then((data) => {
+    return Promise.resolve({ token: 'mockJWTtoken' }).then((data) => {
       localStorage.setItem('jwt', data.token);
       getAllUserData().then(() => {
         setIsLoggedIn(true);
@@ -45,8 +46,8 @@ const ProfileProvider = ({ children }) => {
   function getAllUserData() {
     fetch('/profile/users/me'); //GET
     fetch('/events/registered'); //GET
-    fetch('/events/favorites'); // GET
-    fetch('/events/recommended'); // GET
+    fetch('/events/favorites'); //GET
+    fetch('/events/recommended'); //GET
 
     const userDataFromServer = mockUserData;
     const registeredEventsFromServer = mockCardsData.slice(7, 12);
@@ -80,8 +81,17 @@ const ProfileProvider = ({ children }) => {
   const registerToEvent = (event) => {
     fetch('/events/registered'); //POST
 
-    return Promise.resolve().then(() => setRegisteredEvents((prev) => [event, ...prev]));
+    return new Promise((resolve, reject) => {
+      if (registeredEvents.some((registeredEvent) => registeredEvent.id === event.id)) {
+        reject('Вы уже зарегистрированны на данное мероприятие!');
+      } else {
+        resolve();
+        setRegisteredEvents((prev) => [event, ...prev]);
+      }
+    });
   };
+
+  // return Promise.resolve().then(() => setRegisteredEvents((prev) => [event, ...prev]));
 
   const cancelRegistrationToEvent = (canceledEvent) => {
     fetch('/events/registered'); //DELETE
