@@ -1,8 +1,8 @@
 import { IconButton, Stack } from '@mui/material';
 import { ShareOutlined } from '@mui/icons-material';
-import EventStatus from './EventStatus/EventStatus';
+import StatusBar from './StatusBar/StatusBar';
 function EventCardHeader(props) {
-  const { city, seatsLeft, isOnline, colorTheme, cardSize } = props;
+  const { city, seatsLeft, colorTheme, format, status, cardSize, isOnline } = props;
   return (
     <Stack
       className="text"
@@ -22,7 +22,7 @@ function EventCardHeader(props) {
               fontSize: '13px',
               color: colorTheme?.card.textColor,
               padding: '0',
-              marginRight: '64px',
+              marginRight: '0px',
             },
             () => ({
               '&:hover': { color: colorTheme?.card.shareColorHover },
@@ -33,11 +33,12 @@ function EventCardHeader(props) {
           Поделиться меропрятием
         </IconButton>
       )}
-      <EventStatus
-        isOnline={isOnline}
+      <StatusBar
+        status={status}
+        format={format}
         city={city}
         seatsLeft={seatsLeft}
-        onlySeats={cardSize === 'medium'}
+        isOnline={isOnline}
       />
     </Stack>
   );
