@@ -12,6 +12,8 @@ function EventCardHeader(props) {
         transition: 'all ease-in-out 0.15s',
       }}
       direction="row"
+      useFlexGap
+      spacing={'8px'}
     >
       {cardSize === 'medium' && (
         <IconButton
