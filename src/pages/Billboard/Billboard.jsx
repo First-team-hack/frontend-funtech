@@ -21,6 +21,8 @@ function Billboard() {
     // when page load first time we fetch events with empty filters so we get all events
     getFilteredEvents();
     getCompletedEvents();
+    // disable eslint deps check, we use empty deps array beacause we need get initial filterd and completed events once when billboard mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

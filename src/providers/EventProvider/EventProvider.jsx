@@ -28,23 +28,26 @@ const EventProvider = ({ children }) => {
   };
 
   const getFilteredEvents = (filters) => {
-    const keyword = filters?.keyword || '';
-    const theme = filters?.theme || '';
-    const city = filters?.city || '';
-    const sortBy = filters?.sortBy || '';
-    const format = filters?.format || '';
+    // const keyword = filters?.keyword || '';
+    // const theme = filters?.theme || '';
+    // const city = filters?.city || '';
+    // const sortBy = filters?.sortBy || '';
+    // const format = filters?.format || '';
 
-    //events from server
-    const allEvents = mockCardsData.filter((event) => event?.status !== 'complete');
-    //
-    setFilteredEvents(allEvents);
+    fetch('/events'); // GET
+    const allEvents = mockCardsData.filter((event) => event.status !== 'complete');
+
+    return Promise.resolve().then(() => {
+      setFilteredEvents(allEvents);
+    });
   };
 
   const getCompletedEvents = () => {
     //events from server
     const completedEventsFromServer = mockCardsData.filter((event) => event?.status === 'complete');
-    //
-    setCompletedEvents(completedEventsFromServer);
+    return Promise.resolve().then(() => {
+      setCompletedEvents(completedEventsFromServer);
+    });
   };
 
   const value = {
