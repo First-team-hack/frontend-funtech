@@ -4,7 +4,7 @@ import { mockUserData, mockCardsData } from '../../utils/mock-data';
 import union from 'lodash/union';
 
 const ProfileProvider = ({ children }) => {
-  const [userInfo, setUserInfo] = useState({
+  const defaultUserInfoState = {
     id: '',
     firstName: '',
     lastName: '',
@@ -19,7 +19,8 @@ const ProfileProvider = ({ children }) => {
     whatsapp: '',
     vk: '',
     viber: '',
-  });
+  };
+  const [userInfo, setUserInfo] = useState(defaultUserInfoState);
   const [registeredEvents, setRegisteredEvents] = useState([]);
   const [favoriteEvents, setFavoriteEvents] = useState(
     JSON.parse(localStorage.getItem('favoriteEvents')) || []
@@ -31,104 +32,93 @@ const ProfileProvider = ({ children }) => {
     localStorage.setItem('favoriteEvents', JSON.stringify(favoriteEvents));
   }, [favoriteEvents]);
 
-  const login = (email, password) => {
-    // get userDataFromServer
-    const userDataFromServer = mockUserData;
-    //
-    setUserInfo((userInfo) => ({ ...userInfo, ...userDataFromServer }));
-    getRegisteredEvents();
-    getFavoriteEvents();
-    getRecommendedEvents();
-    setIsLoggedIn(true);
+  const login = () => {
+    fetch('/auth/jwt/create'); //POST
+    Promise.resolve({ token: 'mockJWTtoken' }).then((data) => {
+      localStorage.setItem('jwt', data.token);
+      getAllUserData().then(() => {
+        setIsLoggedIn(true);
+      });
+    });
   };
 
-  const logout = () => {
-    setUserInfo({
-      id: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      phoneNumber: '',
-      interest: '',
-      notificationByTelegram: false,
-      notificationByWhatsapp: false,
-      notificationByVk: false,
-      notificationByViber: false,
-      telegram: '',
-      whatsapp: '',
-      vk: '',
-      viber: '',
+  function getAllUserData() {
+    fetch('/profile/users/me'); //GET
+    fetch('/events/registered'); //GET
+    fetch('/events/favorites'); // GET
+    fetch('/events/recommended'); // GET
+
+    const userDataFromServer = mockUserData;
+    const registeredEventsFromServer = mockCardsData.slice(7, 12);
+    const favoriteEventsFromServer = mockCardsData.slice(0, 2);
+    const recommendedEventsFromServer = mockCardsData.slice(15, 18);
+    return Promise.resolve().then(() => {
+      setUserInfo((userInfo) => ({ ...userInfo, ...userDataFromServer }));
+      setRegisteredEvents([...registeredEventsFromServer]);
+      const unionFavoriteEvents = union(
+        favoriteEventsFromServer,
+        JSON.parse(localStorage.getItem('favoriteEvents'))
+      );
+      setFavoriteEvents([...unionFavoriteEvents]);
+      setRecommendedEvents(recommendedEventsFromServer);
     });
+  }
+
+  const logout = () => {
+    setUserInfo(defaultUserInfoState);
     setRegisteredEvents([]);
     setRecommendedEvents([]);
+    localStorage.removeItem('jwt');
     setIsLoggedIn(false);
   };
 
   const updateUserInfo = (info) => {
-    setUserInfo((userInfo) => ({ ...userInfo, ...info }));
+    fetch('/profile/users/me'); //PATCH
+    return Promise.resolve().then(() => setUserInfo((userInfo) => ({ ...userInfo, ...info })));
   };
 
-  const getRegisteredEvents = () => {
-    // get registeredEvents from server
-    const registeredEventsFromServer = mockCardsData.slice(7, 12);
-    //
-    setRegisteredEvents([...registeredEventsFromServer]);
-  };
+  const registerToEvent = (event) => {
+    fetch('/events/registered'); //POST
 
-  const registerToEvent = (event, userId) => {
-    // post register event to server
-    setRegisteredEvents((prev) => [event, ...prev]);
+    return Promise.resolve().then(() => setRegisteredEvents((prev) => [event, ...prev]));
   };
 
   const cancelRegistrationToEvent = (canceledEvent) => {
-    // delete registered event  from server
-    setRegisteredEvents((prev) => prev.filter((event) => event.id !== canceledEvent.id));
-  };
+    fetch('/events/registered'); //DELETE
 
-  const getFavoriteEvents = () => {
-    // get getFavoriteEvents from server
-    const favoriteEventsFromServer = mockCardsData.slice(0, 2);
-    //
-    const unionFavoriteEvents = union(
-      favoriteEventsFromServer,
-      JSON.parse(localStorage.getItem('favoriteEvents'))
+    return Promise.resolve().then(() =>
+      setRegisteredEvents((prev) => prev.filter((event) => event.id !== canceledEvent.id))
     );
-    setFavoriteEvents([...unionFavoriteEvents]);
   };
 
-  const addFavoriteEvent = (event, userId) => {
-    // post register event to server
-    setFavoriteEvents([event, ...favoriteEvents]);
+  const addFavoriteEvent = (event) => {
+    fetch('/events/favorites'); //POST
+    return Promise.resolve().then(() => setFavoriteEvents((prev) => [event, ...prev]));
   };
 
   const deleteFavoriteEvent = (deletedEvent) => {
-    // delete registered event  from server
-    setFavoriteEvents((prev) => prev.filter((event) => event.id !== deletedEvent.id));
-  };
+    fetch('/events/favorites'); //DELETE
 
-  const getRecommendedEvents = () => {
-    //recom events from server
-    const recommendedEventsFromServer = mockCardsData.slice(15, 18);
-    //
-    setRecommendedEvents(recommendedEventsFromServer);
+    return Promise.resolve().then(() =>
+      setFavoriteEvents((prev) => prev.filter((event) => event.id !== deletedEvent.id))
+    );
   };
 
   const value = {
     userInfo,
     isLoggedIn,
+    setIsLoggedIn,
     login,
     logout,
+    getAllUserData,
     updateUserInfo,
     registeredEvents,
-    getRegisteredEvents,
     registerToEvent,
     cancelRegistrationToEvent,
     favoriteEvents,
-    getFavoriteEvents,
     addFavoriteEvent,
     deleteFavoriteEvent,
     recommendedEvents,
-    getRecommendedEvents,
   };
 
   return (

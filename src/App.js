@@ -17,12 +17,30 @@ import useEvent from './providers/EventProvider/EventProvider.hook';
 import Event from './pages/Event/Event';
 import { Navigate } from 'react-router-dom';
 import ConfirmPopup from './components/Popup/ConfrimPopup/ConfirmPopup';
+import { useEffect } from 'react';
 function App() {
   const location = useLocation();
   const { pathname } = location;
-  const { isLoggedIn } = useProfile();
+  const { isLoggedIn, setIsLoggedIn, getAllUserData } = useProfile();
   const { isEventRegistrationPopupOpen, isConfirmPopupOpen } = useEvent();
+  useEffect(() => {
+    checkToken();
+  }, []);
 
+  function checkToken() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      getAllUserData()
+        .then(() => {
+          setIsLoggedIn(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
+
+  console.log(process.env.REACT_APP_PROFILE_BASE_URL);
   return (
     <div className="App">
       {pathname !== AUTH_ROUTE && <Header />}
