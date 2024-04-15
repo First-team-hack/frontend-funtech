@@ -35,7 +35,7 @@ const EventProvider = ({ children }) => {
     const format = filters?.format || '';
 
     //events from server
-    const allEvents = mockCardsData.filter((event) => event?.title.includes(keyword));
+    const allEvents = mockCardsData.filter((event) => event?.status !== 'complete');
     //
     setFilteredEvents(allEvents);
   };

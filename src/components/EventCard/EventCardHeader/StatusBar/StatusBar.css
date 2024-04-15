@@ -1,10 +1,10 @@
-.event-status {
+.status-bar {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   align-items: flex-start;
   min-height: 32px;
 }
-.event-status__text {
+.status-bar__text {
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -12,11 +12,11 @@
   margin: 0;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   transition: 'all ease-in-out 0.15s';
 }
 
-.event-status__text_type_city::before {
+.status-bar__text_type_city::before {
   align-self: flex-start;
   content: '';
   display: block;
@@ -27,7 +27,7 @@
   background-repeat: no-repeat;
 }
 
-.event-status__text_type_online::before {
+.status-bar__text_type_online::before {
   align-self: flex-start;
   margin: 4px 0 0;
   content: '';
@@ -37,7 +37,7 @@
   border-radius: 50%;
 }
 
-.event-status__text_type_seats-left::before {
+.status-bar__text_type_seats-left::before {
   align-self: flex-start;
   margin: 4px 0 0;
   content: '';
@@ -46,14 +46,14 @@
   border-radius: 50%;
 }
 
-.event-status__text_dot-color_green.event-status__text_type_seats-left::before {
+.status-bar__text_dot-color_green.status-bar__text_type_seats-left::before {
   background-color: var(--colorIconBackgroundPositive);
 }
 
-.event-status__text_dot-color_yellow.event-status__text_type_seats-left::before {
+.status-bar__text_dot-color_yellow.status-bar__text_type_seats-left::before {
   background-color: var(--colorIconBackgroundNeutral);
 }
 
-.event-status__text_dot-color_red.event-status__text_type_seats-left::before {
+.status-bar__text_dot-color_red.status-bar__text_type_seats-left::before {
   background-color: var(--colorStrokeNegative);
 }

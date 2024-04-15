@@ -32,6 +32,43 @@
   margin-bottom: 22px;
 }
 
+.event__complete-section {
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.event__video-player {
+  width: 958px;
+  height: 518px;
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.event__video-player_type_record {
+  background-image: url('../../assets/event/normal_video.png');
+}
+
+.event__video-player_type_translation {
+  background-image: url('../../assets/event/translation.png');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.event__video-player_type_translation::before {
+  content: url('../../assets/event/play_button.svg');
+  width: 60px;
+  height: 60px;
+}
+
+.event__live-section {
+  margin-bottom: 32px;
+  display: flex;
+  gap: 21px;
+}
+
 .event__info {
   padding: 45px 0 14px;
   margin: 0 0 28px;

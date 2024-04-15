@@ -106,7 +106,7 @@ function EventCard(props) {
         }
       : { text: 'Посмотреть', disabled: false, action: goToEventPage },
     complete: {
-      text: 'Посмотреть',
+      text: 'Мероприятие завершено',
       disabled: false,
       action: goToEventPage,
     },
@@ -141,14 +141,14 @@ function EventCard(props) {
               </EventCardDate>
             )}
             <EventCardButton
-              onClick={buttonState[event.status].action}
-              disabled={buttonState[event.status].disabled}
+              onClick={buttonState[event?.status]?.action}
+              disabled={buttonState[event?.status]?.disabled}
               colorTheme={chosenTheme?.button}
               sx={{
                 fontSize: cardSize === 'medium' ? '16px' : '12px',
               }}
             >
-              {buttonState[event.status].text}
+              {buttonState[event?.status]?.text}
             </EventCardButton>
             <EventCardButton
               aria-label="Добавить в избранное"
