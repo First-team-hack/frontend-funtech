@@ -1,6 +1,7 @@
 import photo_speaker_1 from '../assets/event/speakers/speaker_1.png';
 import photo_speaker_2 from '../assets/event/speakers/speaker_2.png';
 import photo_speaker_3 from '../assets/event/speakers/speaker_3.png';
+import chat_author_avatar from '../assets/chat_avatar.png';
 
 export const mockUserData = {
   id: 1,
@@ -395,5 +396,20 @@ export const mockCardsData = [
     address: 'ул. Коминтеран, д.5, главный конференц-зал',
     seatsLeft: 18,
     colorTheme: 1,
+  },
+];
+
+export const mockLiveChatMessagges = [
+  {
+    authorAvatar: chat_author_avatar,
+    authorName: 'Ассистент',
+    text: 'Добро пожаловать на трансляцию!',
+    time: new Date(new Date().setMinutes(new Date().getMinutes() - 7)),
+  },
+  {
+    authorAvatar: chat_author_avatar,
+    authorName: 'Ассистент',
+    text: 'Мероприятие вот-вот начнется. Будет интересно!',
+    time: new Date(new Date().setMinutes(new Date().getMinutes() - 5)),
   },
 ];

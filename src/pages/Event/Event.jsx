@@ -6,6 +6,7 @@ import { mockSpeakerData, mockQuestionData } from '../../utils/mock-data';
 import CustomAccordion from '../../components/CustomAccordion/CustomAccordion';
 import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
 import useEvent from '../../providers/EventProvider/EventProvider.hook';
+import LiveChat from '../../components/LiveChat/LiveChat';
 
 function Event() {
   const location = useLocation();
@@ -30,13 +31,14 @@ function Event() {
           aria-label="Yet Another Level - это серия митапов про жизнь в IT-индустрии. Саморазвитие, прокачка софт-скилов, карьера, управление в IT, нетворкинг и многое другое."
         />
         {event?.status === 'complete' && (
-          <section className="event__video">
+          <section className="event__complete-section">
             <div className="event__video-player event__video-player_type_record" />
           </section>
         )}
-        {event?.status === 'live' && (
-          <section className="event__translation">
+        {event?.status === 'live' && isUserRegisteredToEvent && (
+          <section className="event__live-section">
             <div className="event__video-player event__video-player_type_translation" />
+            <LiveChat />
           </section>
         )}
         <section className="event__info">
@@ -83,7 +85,7 @@ function Event() {
           ))}
         </section>
         <section className="event__actions">
-          {event.status === 'upcoming' && !isUserRegisteredToEvent && (
+          {event?.status === 'upcoming' && !isUserRegisteredToEvent && (
             <div className="event__button-wrapper">
               <button
                 type="button"
@@ -96,7 +98,7 @@ function Event() {
               </button>
             </div>
           )}
-          {event.status === 'upcoming' && isUserRegisteredToEvent && (
+          {event?.status === 'upcoming' && isUserRegisteredToEvent && (
             <button
               type="button"
               className="event__button event__button_type_cancel"
