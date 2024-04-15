@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import ProfileProviderContext from './ProfileProvider.context';
 import { mockUserData, mockCardsData } from '../../utils/mock-data';
-import union from 'lodash/union';
-import { reject } from 'lodash';
+import { unionWith, isEqual } from 'lodash';
 
 const ProfileProvider = ({ children }) => {
   const defaultUserInfoState = {
@@ -53,14 +52,16 @@ const ProfileProvider = ({ children }) => {
     const registeredEventsFromServer = mockCardsData.slice(7, 12);
     const favoriteEventsFromServer = mockCardsData.slice(0, 2);
     const recommendedEventsFromServer = mockCardsData.slice(15, 18);
+    const localFavoritesEvents = JSON.parse(localStorage.getItem('favoriteEvents'));
     return Promise.resolve().then(() => {
       setUserInfo((userInfo) => ({ ...userInfo, ...userDataFromServer }));
       setRegisteredEvents([...registeredEventsFromServer]);
-      const unionFavoriteEvents = union(
+      const unionFavoriteEvents = unionWith(
         favoriteEventsFromServer,
-        JSON.parse(localStorage.getItem('favoriteEvents'))
+        localFavoritesEvents,
+        isEqual
       );
-      setFavoriteEvents([...unionFavoriteEvents]);
+      setFavoriteEvents(unionFavoriteEvents);
       setRecommendedEvents(recommendedEventsFromServer);
     });
   }
@@ -90,8 +91,6 @@ const ProfileProvider = ({ children }) => {
       }
     });
   };
-
-  // return Promise.resolve().then(() => setRegisteredEvents((prev) => [event, ...prev]));
 
   const cancelRegistrationToEvent = (canceledEvent) => {
     fetch('/events/registered'); //DELETE
