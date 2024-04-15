@@ -15,9 +15,9 @@ import { EVENTS_ROUTE } from '../../utils/constants';
 /** A event card component that has 3 size preset and 3 color style preset.
  * @param {string} cardSize There are 3 options: 'small' 'medium' and 'large'. Default is 'small'.
  * @param {string} colorTheme There are 3 options: 2 = blue, 1 = black and 0 = white. Default is 2(blue).
- * @param {string} title Event title.
- * @param {string} speaker Event speaker description.
- * @param {date} date Event date.
+ * @param {string} title event title.
+ * @param {string} speaker event speaker description.
+ * @param {date} date event date.
  * @param {string} buttonText Button text.
  * @param {boolean} isActive Like button state, true = active state, false = inactive state
  * @param {boolean} buttonDisabled State of text button, true = disabled, false = enabled
@@ -84,37 +84,41 @@ function EventCard(props) {
     (registeredEvent) => registeredEvent.id === event?.id
   );
 
-  const goToEventPage = () => {
-    return navigate(`${EVENTS_ROUTE}/${event?.id}`, { state: event });
+  const onRegistrationButtonClick = (e) => {
+    e.stopPropagation();
+    openEventRegistrationPopup(event);
   };
 
   const buttonState = {
+    // if event has status 'upcoming' and user is registered to this
     upcoming: isUserRegisterToEvent
       ? { text: 'Вы зарегистрированы', disabled: true, action: () => {} }
-      : {
+      : // if event has status 'upcoming' and user is not registered to this
+        {
           text: 'Зарегистрироваться',
           disabled: false,
-          action: () => {
-            openEventRegistrationPopup(event);
-          },
+          action: onRegistrationButtonClick,
         },
+    // if event has status 'live' and user is regestered to this
     live: isUserRegisterToEvent
       ? {
           text: 'Смотреть эфир',
-          disabled: false,
-          action: goToEventPage,
+          disabled: true,
+          action: () => {},
         }
-      : { text: 'Посмотреть', disabled: false, action: goToEventPage },
+      : // if event has status 'live' and user is regestered to this
+        { text: 'Посмотреть', disabled: true, action: () => {} },
+    // if event has status 'complete'
     complete: {
       text: 'Мероприятие завершено',
-      disabled: false,
-      action: goToEventPage,
+      disabled: true,
+      action: () => {},
     },
   };
 
   const onCardClick = () => {
     if (cardSize !== 'medium') {
-      goToEventPage();
+      navigate(`${EVENTS_ROUTE}/${event?.id}`, { state: event });
     }
   };
 

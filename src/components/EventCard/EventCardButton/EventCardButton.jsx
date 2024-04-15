@@ -21,6 +21,9 @@ function EventCardButton({ sx, role = '', isActive, colorTheme, onClick, ...prop
     '&:disabled': {
       ...colorTheme?.disabled,
     },
+    '&:disabled:hover': {
+      ...colorTheme?.disabledHover,
+    },
   });
 
   const onButtonClick = (e) => {
@@ -54,7 +57,7 @@ function EventCardButton({ sx, role = '', isActive, colorTheme, onClick, ...prop
   ) : (
     <Button
       {...props}
-      onClick={onButtonClick}
+      onClick={onClick}
       className="button"
       disableFocusRipple
       variant="outlined"

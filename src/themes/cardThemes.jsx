@@ -38,8 +38,8 @@ const cardThemeBlue = {
 
     //disabled
     disabled: {
-      backgroundColor: globalTheme.palette.themeBlueButtonBackgroundDisabled,
-      borderColor: globalTheme.palette.themeBlueButtonBackgroundDisabled,
+      backgroundColor: 'inherit',
+      borderColor: globalTheme.palette.themeBlueText,
       color: globalTheme.palette.themeBlueText,
     },
   },
@@ -80,8 +80,8 @@ const cardThemeBlack = {
 
     //disabled
     disabled: {
-      backgroundColor: globalTheme.palette.themeBlackButtonBackgroundDisabled,
-      borderColor: globalTheme.palette.themeBlackButtonBackgroundDisabled,
+      backgroundColor: 'inherit',
+      borderColor: globalTheme.palette.themeBlackText,
       color: globalTheme.palette.themeBlackText,
     },
   },
@@ -122,9 +122,9 @@ const cardThemeWhite = {
 
     //disabled
     disabled: {
-      backgroundColor: globalTheme.palette.themeWhiteButtonBackgroundDisabled,
-      borderColor: globalTheme.palette.themeWhiteButtonBackgroundDisabled,
-      color: globalTheme.palette.themeWhiteCardBackground,
+      backgroundColor: 'inherit',
+      borderColor: globalTheme.palette.themeWhiteText,
+      color: globalTheme.palette.themeWhiteText,
     },
   },
 };
