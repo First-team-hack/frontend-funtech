@@ -4,13 +4,17 @@ import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
 import { useNavigate } from 'react-router-dom';
 import { BILLBOARD_ROUTE } from '../../utils/constants';
 import globalTheme from '../../themes/globalTheme';
-
+import { useLocation } from 'react-router';
 function Auth() {
   const { login } = useProfile();
   const navigate = useNavigate();
+  const location = useLocation();
   const onLoginClick = () => {
-    login();
-    navigate(BILLBOARD_ROUTE);
+    login().then(
+      setTimeout(() => {
+        navigate(location.state || BILLBOARD_ROUTE);
+      }, 0)
+    );
   };
   return (
     <main className="auth">
