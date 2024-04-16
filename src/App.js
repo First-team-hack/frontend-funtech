@@ -11,7 +11,15 @@ import Auth from './pages/Auth/Auth';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import Footer from './components/Footer/Footer';
 import useProfile from './providers/ProfileProvider/ProfileProvider.hook';
-import { AUTH_ROUTE } from './utils/constants';
+import {
+  AUTH_ROUTE,
+  BILLBOARD_ROUTE,
+  EVENTS_ROUTE,
+  FAVORITES_ROUTE,
+  NOTIFICATIONS_ROUTE,
+  PROFILE_ROUTE,
+  RANDOM_COFFEE_ROUTE,
+} from './utils/constants';
 import EventRegistrationPopup from './components/Popup/EventRegistrationPopup/EventRegistrationPopup';
 import useEvent from './providers/EventProvider/EventProvider.hook';
 import Event from './pages/Event/Event';
@@ -35,7 +43,7 @@ function App() {
     if (jwt) {
       getAllUserData()
         .then(() => {
-          navigate(pathname === '/auth' ? '/' : pathname, {
+          navigate(pathname === AUTH_ROUTE ? BILLBOARD_ROUTE : pathname, {
             replace: true,
           });
           setIsLoggedIn(true);
@@ -50,26 +58,26 @@ function App() {
     <div className="App">
       {pathname !== AUTH_ROUTE && <Header />}
       <Routes>
-        <Route index path="/" element={<Billboard />} />
-        <Route path="/events" element={<Navigate to="/" replace={true} />} />
-        <Route path="/events/:id" element={<Event />} />
+        <Route index path={BILLBOARD_ROUTE} element={<Billboard />} />
+        <Route path={EVENTS_ROUTE} element={<Navigate to={BILLBOARD_ROUTE} replace={true} />} />
+        <Route path={EVENTS_ROUTE + '/:id'} element={<Event />} />
         <Route
-          path="/randomcoffee"
+          path={RANDOM_COFFEE_ROUTE}
           element={<ProtectedRoute isLoggedIn={isLoggedIn} component={RandomCoffee} />}
         />
         <Route
-          path="/notifications"
+          path={NOTIFICATIONS_ROUTE}
           element={<ProtectedRoute isLoggedIn={isLoggedIn} component={Notifications} />}
         />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route path={FAVORITES_ROUTE} element={<Favorites />} />
         <Route
-          path="/profile/*"
+          path={PROFILE_ROUTE + '/*'}
           element={<ProtectedRoute isLoggedIn={isLoggedIn} component={Profile} />}
         />
-        <Route path="/auth" element={<Auth />} />
+        <Route path={AUTH_ROUTE} element={<Auth />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      {pathname === '/' && <Footer />}
+      {pathname === BILLBOARD_ROUTE && <Footer />}
       {isEventRegistrationPopupOpen && <EventRegistrationPopup />}
       {isConfirmPopupOpen && <ConfirmPopup />}
     </div>

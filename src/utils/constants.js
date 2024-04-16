@@ -1,19 +1,19 @@
-export const BILLBOARD_ROUTE = '/';
-export const RANDOM_COFFEE_ROUTE = '/randomcoffee';
-export const NOTIFICATIONS_ROUTE = '/notifications';
-export const FAVORITES_ROUTE = '/favorites';
-export const PROFILE_ROUTE = '/profile';
-export const AUTH_ROUTE = '/auth';
-export const EVENTS_ROUTE = '/events';
+const APP_BASE_URL = '/frontend-funtech';
 
-// Имена странниц по роутам, используются в навигации хедера и breadcrumbs
+export const BILLBOARD_ROUTE = APP_BASE_URL;
+export const RANDOM_COFFEE_ROUTE = APP_BASE_URL + '/randomcoffee';
+export const NOTIFICATIONS_ROUTE = APP_BASE_URL + '/notifications';
+export const FAVORITES_ROUTE = APP_BASE_URL + '/favorites';
+export const PROFILE_ROUTE = APP_BASE_URL + '/profile';
+export const AUTH_ROUTE = APP_BASE_URL + '/auth';
+export const EVENTS_ROUTE = APP_BASE_URL + '/events';
+
+// Имена странниц по роутам, используются в навигации хедера
 export const ROUTE_NAMES = {
-  '/': 'Афиша',
   '/randomcoffee': 'Random Coffee',
   '/notifications': 'Уведомления',
   '/favorites': 'Избранное',
   '/profile': 'Профиль',
-  '/settings': 'Настройки',
 };
 
 // events themes and user interests
