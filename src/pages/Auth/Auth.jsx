@@ -14,6 +14,8 @@ function Auth() {
   };
   return (
     <main className="auth">
+      <div className="auth__logo" />
+      <h1 className="auth__title">Единый профиль для всех меропиятий </h1>
       <div className="auth__form">
         <CustomButton
           sx={{
