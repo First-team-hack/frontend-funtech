@@ -8,59 +8,82 @@ import {
   EVENT_FORMATS,
   EVENTS_SORT_BY,
 } from '../../utils/constants';
-import { useForm } from 'react-hook-form';
 import useEvent from '../../providers/EventProvider/EventProvider.hook';
+import { useState } from 'react';
 
 function FilterBar() {
   const { getFilteredEvents } = useEvent();
-  const {
-    register,
-    handleSubmit,
-    formState: { isDirty },
-    reset,
-  } = useForm({
-    defaultValues: {
-      keyword: '',
-      theme: '',
-      city: '',
-      sortBy: '',
-      format: '',
-    },
-  });
-  const onSubmit = (filters) => {
+  const defaultValues = {
+    keyword: '',
+    theme: '',
+    city: '',
+    sortBy: '',
+    format: '',
+  };
+  const [filters, setFilters] = useState(defaultValues);
+
+  const handleChange = (e) => {
+    setFilters({
+      ...filters,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const reset = () => {
+    setFilters(defaultValues);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
     getFilteredEvents(filters);
   };
 
   return (
-    <Box
-      component="form"
-      sx={{ marginBottom: '28px' }}
-      onSubmit={handleSubmit(onSubmit)}
-      action="#"
-      noValidate
-    >
+    <Box component="form" sx={{ marginBottom: '28px' }} onSubmit={onSubmit} action="#" noValidate>
       <Stack direction="row" sx={{ justifyContent: 'space-between' }} useFlexGap>
-        <Input type="search" placeholder="Поиск" {...register('keyword')} />
+        <Input
+          type="search"
+          placeholder="Поиск"
+          name="keyword"
+          value={filters['keyword']}
+          onChange={handleChange}
+        />
         <CustomSelect
-          {...register('theme')}
           placeholder="Темы"
           sx={{ width: '180px' }}
           items={THEMES_AND_INTERESTS}
+          name="theme"
+          value={filters['theme']}
+          onChange={handleChange}
         />
         <CustomSelect
-          {...register('city')}
           placeholder="Город"
           sx={{ width: '180px' }}
           items={EVENT_CITES}
+          name="city"
+          value={filters['city']}
+          onChange={handleChange}
         />
-        <CustomSelect {...register('sortBy')} placeholder="Сортировать" sx={{ width: '180px' }}>
+        <CustomSelect
+          placeholder="Сортировать"
+          sx={{ width: '180px' }}
+          name="sortBy"
+          value={filters['sortBy']}
+          onChange={handleChange}
+        >
           {EVENTS_SORT_BY.map((item) => (
             <MenuItem key={item.name} value={item.value}>
               {item.name}
             </MenuItem>
           ))}
         </CustomSelect>
-        <CustomSelect {...register('format')} placeholder="Формат" sx={{ width: '180px' }}>
+        <CustomSelect
+          placeholder="Формат"
+          sx={{ width: '180px' }}
+          name="format"
+          value={filters['format']}
+          onChange={handleChange}
+        >
           {EVENT_FORMATS.map((item) => (
             <MenuItem key={item.name} value={item.value}>
               {item.name}
@@ -85,10 +108,9 @@ function FilterBar() {
             type="button"
             aria-label="Сбросить фильтры"
             title="Сбросить фильтры"
-            disabled={!isDirty}
             variant="outlined"
             sx={{ width: '105px', height: '40px', borderRadius: '20px', textTransform: 'none' }}
-            onClick={() => reset()}
+            onClick={reset}
           >
             Сбросить
           </CustomButton>
