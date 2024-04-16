@@ -1,7 +1,7 @@
 {
   "name": "hackathon-funtech",
   "version": "0.1.0",
-  "homepage": "https://First-team-hack.github.io/frontend-funtech",
+  "homepage": "https://first-team-hack.github.io/frontend-funtech",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",
