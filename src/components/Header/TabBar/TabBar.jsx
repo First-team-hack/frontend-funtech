@@ -7,13 +7,12 @@ import {
   NOTIFICATIONS_ROUTE,
   FAVORITES_ROUTE,
   PROFILE_ROUTE,
-  ROUTE_NAMES,
 } from '../../../utils/constants';
 
 function TabBar() {
   return (
     <nav className="tabbar">
-      <NavLink className="tabbar__link" to={BILLBOARD_ROUTE}>
+      <NavLink className="tabbar__link" to={BILLBOARD_ROUTE} end>
         {({ isActive }) => {
           return (
             <>
@@ -22,7 +21,7 @@ function TabBar() {
                 src={isActive ? icons.afishaBlue : icons.afishaGrey}
                 alt="иконка"
               />
-              {ROUTE_NAMES[BILLBOARD_ROUTE]}
+              Афиша
             </>
           );
         }}
@@ -36,7 +35,7 @@ function TabBar() {
                 src={isActive ? icons.coffeeBlue : icons.coffeeGrey}
                 alt="иконка"
               />
-              {ROUTE_NAMES[RANDOM_COFFEE_ROUTE]}
+              Random Coffee
             </>
           );
         }}
@@ -50,7 +49,7 @@ function TabBar() {
                 src={isActive ? icons.notificationsBlue : icons.notificationsGrey}
                 alt="иконка"
               />
-              {ROUTE_NAMES[NOTIFICATIONS_ROUTE]}
+              Уведомления
             </>
           );
         }}
@@ -64,7 +63,7 @@ function TabBar() {
                 src={isActive ? icons.favoritesBlue : icons.favoritesGrey}
                 alt="иконка"
               />
-              {ROUTE_NAMES[FAVORITES_ROUTE]}
+              Избранное
             </>
           );
         }}
@@ -78,7 +77,7 @@ function TabBar() {
                 src={isActive ? icons.profileBlue : icons.profileGrey}
                 alt="иконка"
               />
-              {ROUTE_NAMES[PROFILE_ROUTE]}
+              Профиль
             </>
           );
         }}
