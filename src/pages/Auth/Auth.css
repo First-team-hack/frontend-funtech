@@ -5,15 +5,33 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  z-index: 10;
-  background-color: #000;
+
+  background: left bottom / 35% 100% url('../../assets/backgrounds/login_bg_left.png'),
+    right bottom / 35% 100% url('../../assets/backgrounds/login_bg_right.png');
+  background-repeat: no-repeat;
+  background-color: #141414;
+}
+
+.auth__logo {
+  width: 268px;
+  height: 63px;
+  margin-bottom: 24px;
+  background-image: url('../../assets/logo_white.png');
+}
+
+.auth__title {
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  color: var(--colorCustomButtonText);
+  margin: 0 0 60px;
 }
 
 .auth__form {
   width: 398px;
   height: 482px;
-  background-image: url('../../assets/mock/login_form_background.png');
-  background-size: 398px 482px;
+  background: center center / 398px 482px url('../../assets/mock/login_form_background.png');
   display: flex;
   justify-content: center;
   padding-top: 223px;

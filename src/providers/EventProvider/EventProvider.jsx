@@ -1,29 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import EventProviderContext from './EventProvider.context';
 import { mockCardsData } from '../../utils/mock-data';
+import { filterBy } from '../../utils/utils';
 
 const EventProvider = ({ children }) => {
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [completedEvents, setCompletedEvents] = useState([]);
-  const [currentEvent, setCurrentEvent] = useState({});
+  const [currentEvent, setCurrentEvent] = useState(
+    JSON.parse(localStorage.getItem('currentEvent')) || {}
+  );
   const [isEventRegistrationPopupOpen, setIsEventRegistrationPopupOpen] = useState(false);
   const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('currentEvent', JSON.stringify(currentEvent));
+  }, [currentEvent]);
 
   const openEventRegistrationPopup = (eventToRegister) => {
     setCurrentEvent(eventToRegister);
     setIsEventRegistrationPopupOpen(true);
   };
   const closeEventRegistrationPopup = () => {
-    setCurrentEvent({});
     setIsEventRegistrationPopupOpen(false);
   };
 
-  const openConfirmPopup = (eventToCanceledRegister) => {
-    setCurrentEvent(eventToCanceledRegister);
+  const openConfirmPopup = () => {
     setIsConfirmPopupOpen(true);
   };
   const closeConfirmPopup = () => {
-    setCurrentEvent({});
     setIsConfirmPopupOpen(false);
   };
 
@@ -34,17 +38,20 @@ const EventProvider = ({ children }) => {
     const sortBy = filters?.sortBy || '';
     const format = filters?.format || '';
 
-    //events from server
-    const allEvents = mockCardsData.filter((event) => event?.status !== 'complete');
-    //
-    setFilteredEvents(allEvents);
+    fetch('/events'); // GET
+    const nonCompleteEvents = mockCardsData.filter((event) => event.status !== 'complete');
+    const filteredEvents = filterBy(nonCompleteEvents, { keyword, theme, city, sortBy, format });
+    return Promise.resolve().then(() => {
+      setFilteredEvents(filteredEvents);
+    });
   };
 
   const getCompletedEvents = () => {
     //events from server
     const completedEventsFromServer = mockCardsData.filter((event) => event?.status === 'complete');
-    //
-    setCompletedEvents(completedEventsFromServer);
+    return Promise.resolve().then(() => {
+      setCompletedEvents(completedEventsFromServer);
+    });
   };
 
   const value = {

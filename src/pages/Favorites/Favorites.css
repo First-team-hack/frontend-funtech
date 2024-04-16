@@ -6,6 +6,31 @@
 }
 
 .favorites__container {
-  width: 1280px;
+  width: var(--content-width);
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.favorites__title {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  color: var(--colorText);
+  align-self: flex-start;
+  margin: 0;
+}
+
+.favorites__title-not-found {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  color: var(--colorTextSecondary);
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

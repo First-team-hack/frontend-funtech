@@ -20,17 +20,15 @@ export default createContext({
   isLoggedIn: false,
   login: () => {},
   logout: () => {},
-
+  setIsLoggedIn: () => {},
+  getAllUserData: () => {},
   registeredEvents: [],
-  getRegisteredEvents: () => {},
   registerToEvent: () => {},
   cancelRegistrationToEvent: () => {},
 
   favoriteEvents: [],
-  getFavoriteEvents: () => {},
   addFavoriteEvent: () => {},
   deleteFavoriteEvent: () => {},
 
   recommendedEvents: [],
-  getRecommendedEvents: () => {},
 });
