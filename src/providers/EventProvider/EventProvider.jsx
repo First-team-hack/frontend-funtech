@@ -37,8 +37,7 @@ const EventProvider = ({ children }) => {
     const city = filters?.city || '';
     const sortBy = filters?.sortBy || '';
     const format = filters?.format || '';
-
-    fetch('/events'); // GET
+    // actual events from server
     const nonCompleteEvents = mockCardsData.filter((event) => event.status !== 'complete');
     const filteredEvents = filterBy(nonCompleteEvents, { keyword, theme, city, sortBy, format });
     return Promise.resolve().then(() => {

@@ -33,7 +33,7 @@ const ProfileProvider = ({ children }) => {
   }, [favoriteEvents]);
 
   const login = () => {
-    fetch('/auth/jwt/create'); //POST
+    //POST get jwt in response
     return Promise.resolve({ token: 'mockJWTtoken' }).then((data) => {
       localStorage.setItem('jwt', data.token);
       getAllUserData().then(() => {
@@ -43,10 +43,10 @@ const ProfileProvider = ({ children }) => {
   };
 
   function getAllUserData() {
-    fetch('/profile/users/me'); //GET
-    fetch('/events/registered'); //GET
-    fetch('/events/favorites'); //GET
-    fetch('/events/recommended'); //GET
+    //GET userInfo
+    //GET registered events
+    //GET favorite events
+    //GET recommended events
 
     const userDataFromServer = mockUserData;
     const registeredEventsFromServer = mockCardsData.slice(7, 12);
@@ -75,12 +75,12 @@ const ProfileProvider = ({ children }) => {
   };
 
   const updateUserInfo = (info) => {
-    fetch('/profile/users/me'); //PATCH
+    // PATCH userInfo
     return Promise.resolve().then(() => setUserInfo((userInfo) => ({ ...userInfo, ...info })));
   };
 
   const registerToEvent = (event) => {
-    fetch('/events/registered'); //POST
+    //POST new registered event
 
     return new Promise((resolve, reject) => {
       if (registeredEvents.some((registeredEvent) => registeredEvent.id === event.id)) {
@@ -93,7 +93,7 @@ const ProfileProvider = ({ children }) => {
   };
 
   const cancelRegistrationToEvent = (canceledEvent) => {
-    fetch('/events/registered'); //DELETE
+    //DELETE registered event
 
     return Promise.resolve().then(() =>
       setRegisteredEvents((prev) => prev.filter((event) => event.id !== canceledEvent.id))
@@ -101,12 +101,12 @@ const ProfileProvider = ({ children }) => {
   };
 
   const addFavoriteEvent = (event) => {
-    fetch('/events/favorites'); //POST
+    //POST new favorite event
     return Promise.resolve().then(() => setFavoriteEvents((prev) => [event, ...prev]));
   };
 
   const deleteFavoriteEvent = (deletedEvent) => {
-    fetch('/events/favorites'); //DELETE
+    //DELETE favorite event
 
     return Promise.resolve().then(() =>
       setFavoriteEvents((prev) => prev.filter((event) => event.id !== deletedEvent.id))
