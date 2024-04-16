@@ -1,7 +1,6 @@
 import './TabBar.css';
 import { NavLink } from 'react-router-dom';
 import icons from '../../../assets/icons/icons';
-import NavLinkWithButton from '../NavLinkWithButton/NavLinkWithButton';
 import {
   BILLBOARD_ROUTE,
   RANDOM_COFFEE_ROUTE,
@@ -11,8 +10,7 @@ import {
   ROUTE_NAMES,
 } from '../../../utils/constants';
 
-function TabBar(props) {
-  const { newNotifications } = props;
+function TabBar() {
   return (
     <nav className="tabbar">
       <NavLink className="tabbar__link" to={BILLBOARD_ROUTE}>
@@ -43,9 +41,20 @@ function TabBar(props) {
           );
         }}
       </NavLink>
-      <NavLinkWithButton to={NOTIFICATIONS_ROUTE} newNotifications={newNotifications}>
-        {ROUTE_NAMES[NOTIFICATIONS_ROUTE]}
-      </NavLinkWithButton>
+      <NavLink className="tabbar__link" to={NOTIFICATIONS_ROUTE}>
+        {({ isActive }) => {
+          return (
+            <>
+              <img
+                className="tabbar__link-icon"
+                src={isActive ? icons.notificationsBlue : icons.notificationsGrey}
+                alt="иконка"
+              />
+              {ROUTE_NAMES[NOTIFICATIONS_ROUTE]}
+            </>
+          );
+        }}
+      </NavLink>
       <NavLink className="tabbar__link" to={FAVORITES_ROUTE}>
         {({ isActive }) => {
           return (
