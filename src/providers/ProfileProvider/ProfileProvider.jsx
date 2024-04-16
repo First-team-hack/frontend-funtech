@@ -57,8 +57,8 @@ const ProfileProvider = ({ children }) => {
       setUserInfo((userInfo) => ({ ...userInfo, ...userDataFromServer }));
       setRegisteredEvents([...registeredEventsFromServer]);
       const unionFavoriteEvents = unionWith(
-        favoriteEventsFromServer,
         localFavoritesEvents,
+        favoriteEventsFromServer,
         isEqual
       );
       setFavoriteEvents(unionFavoriteEvents);
