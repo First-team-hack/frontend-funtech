@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import EventProviderContext from './EventProvider.context';
 import { mockCardsData } from '../../utils/mock-data';
+import { filterBy } from '../../utils/utils';
 
 const EventProvider = ({ children }) => {
   const [filteredEvents, setFilteredEvents] = useState([]);
@@ -31,17 +32,17 @@ const EventProvider = ({ children }) => {
   };
 
   const getFilteredEvents = (filters) => {
-    // const keyword = filters?.keyword || '';
-    // const theme = filters?.theme || '';
-    // const city = filters?.city || '';
-    // const sortBy = filters?.sortBy || '';
-    // const format = filters?.format || '';
+    const keyword = filters?.keyword || '';
+    const theme = filters?.theme || '';
+    const city = filters?.city || '';
+    const sortBy = filters?.sortBy || '';
+    const format = filters?.format || '';
 
     fetch('/events'); // GET
-    const allEvents = mockCardsData.filter((event) => event.status !== 'complete');
-
+    const nonCompleteEvents = mockCardsData.filter((event) => event.status !== 'complete');
+    const filteredEvents = filterBy(nonCompleteEvents, { keyword, theme, city, sortBy, format });
     return Promise.resolve().then(() => {
-      setFilteredEvents(allEvents);
+      setFilteredEvents(filteredEvents);
     });
   };
 
