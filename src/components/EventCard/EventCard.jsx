@@ -26,7 +26,7 @@ import { EVENTS_ROUTE } from '../../utils/constants';
  */
 function EventCard(props) {
   const { favoriteEvents, registeredEvents, addFavoriteEvent, deleteFavoriteEvent } = useProfile();
-  const { openEventRegistrationPopup } = useEvent();
+  const { openEventRegistrationPopup, setCurrentEvent } = useEvent();
   const { event, cardSize } = props;
 
   const navigate = useNavigate();
@@ -118,7 +118,8 @@ function EventCard(props) {
 
   const onCardClick = () => {
     if (cardSize !== 'medium') {
-      navigate(`${EVENTS_ROUTE}/${event?.id}`, { state: event });
+      setCurrentEvent(event);
+      navigate(`${EVENTS_ROUTE}/${event?.id}`);
     }
   };
 
@@ -141,7 +142,7 @@ function EventCard(props) {
           <CardActions sx={{ padding: 0, margin: 0 }} disableSpacing>
             {cardSize !== 'small' && (
               <EventCardDate colorTheme={chosenTheme} cardSize={cardSize}>
-                {event?.date.split('.').join('/')}
+                {event?.date?.split('.').join('/')}
               </EventCardDate>
             )}
             <EventCardButton

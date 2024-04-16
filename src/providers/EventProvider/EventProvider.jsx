@@ -1,29 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import EventProviderContext from './EventProvider.context';
 import { mockCardsData } from '../../utils/mock-data';
 
 const EventProvider = ({ children }) => {
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [completedEvents, setCompletedEvents] = useState([]);
-  const [currentEvent, setCurrentEvent] = useState({});
+  const [currentEvent, setCurrentEvent] = useState(
+    JSON.parse(localStorage.getItem('currentEvent')) || {}
+  );
   const [isEventRegistrationPopupOpen, setIsEventRegistrationPopupOpen] = useState(false);
   const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('currentEvent', JSON.stringify(currentEvent));
+  }, [currentEvent]);
 
   const openEventRegistrationPopup = (eventToRegister) => {
     setCurrentEvent(eventToRegister);
     setIsEventRegistrationPopupOpen(true);
   };
   const closeEventRegistrationPopup = () => {
-    setCurrentEvent({});
     setIsEventRegistrationPopupOpen(false);
   };
 
-  const openConfirmPopup = (eventToCanceledRegister) => {
-    setCurrentEvent(eventToCanceledRegister);
+  const openConfirmPopup = () => {
     setIsConfirmPopupOpen(true);
   };
   const closeConfirmPopup = () => {
-    setCurrentEvent({});
     setIsConfirmPopupOpen(false);
   };
 
