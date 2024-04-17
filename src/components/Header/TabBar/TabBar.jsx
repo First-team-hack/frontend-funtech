@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import icons from '../../../assets/icons/icons';
 import {
   BILLBOARD_ROUTE,
-  RANDOM_COFFEE_ROUTE,
   NOTIFICATIONS_ROUTE,
   FAVORITES_ROUTE,
   PROFILE_ROUTE,
@@ -22,20 +21,6 @@ function TabBar() {
                 alt="иконка"
               />
               Афиша
-            </>
-          );
-        }}
-      </NavLink>
-      <NavLink className="tabbar__link" to={RANDOM_COFFEE_ROUTE}>
-        {({ isActive }) => {
-          return (
-            <>
-              <img
-                className="tabbar__link-icon"
-                src={isActive ? icons.coffeeBlue : icons.coffeeGrey}
-                alt="иконка"
-              />
-              Random Coffee
             </>
           );
         }}

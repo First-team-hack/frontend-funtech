@@ -18,7 +18,6 @@ import {
   FAVORITES_ROUTE,
   NOTIFICATIONS_ROUTE,
   PROFILE_ROUTE,
-  RANDOM_COFFEE_ROUTE,
 } from './utils/constants';
 import EventRegistrationPopup from './components/Popup/EventRegistrationPopup/EventRegistrationPopup';
 import useEvent from './providers/EventProvider/EventProvider.hook';
@@ -61,10 +60,6 @@ function App() {
         <Route index path={BILLBOARD_ROUTE} element={<Billboard />} />
         <Route path={EVENTS_ROUTE} element={<Navigate to={BILLBOARD_ROUTE} replace={true} />} />
         <Route path={EVENTS_ROUTE + '/:id'} element={<Event />} />
-        <Route
-          path={RANDOM_COFFEE_ROUTE}
-          element={<ProtectedRoute isLoggedIn={isLoggedIn} component={RandomCoffee} />}
-        />
         <Route
           path={NOTIFICATIONS_ROUTE}
           element={<ProtectedRoute isLoggedIn={isLoggedIn} component={Notifications} />}
