@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/frontend-funtech/static/css/main.6a0efb76.css",
-    "main.js": "/frontend-funtech/static/js/main.a5957f52.js",
+    "main.js": "/frontend-funtech/static/js/main.75bd9dd5.js",
     "static/media/card_bg_1.svg": "/frontend-funtech/static/media/card_bg_1.bd502665a2ce5330b276aa30e1e8c7e8.svg",
     "static/media/login_bg_left.png": "/frontend-funtech/static/media/login_bg_left.03a033ce848d3d458d11.png",
     "static/media/login_bg_right.png": "/frontend-funtech/static/media/login_bg_right.eecb63286295e9923aad.png",
@@ -42,10 +42,10 @@
     "static/media/dashed_divider_blue.svg": "/frontend-funtech/static/media/dashed_divider_blue.4be98a63c736d7dfe442.svg",
     "static/media/dashed_divider.svg": "/frontend-funtech/static/media/dashed_divider.b9639a1bc51296bda115.svg",
     "main.6a0efb76.css.map": "/frontend-funtech/static/css/main.6a0efb76.css.map",
-    "main.a5957f52.js.map": "/frontend-funtech/static/js/main.a5957f52.js.map"
+    "main.75bd9dd5.js.map": "/frontend-funtech/static/js/main.75bd9dd5.js.map"
   },
   "entrypoints": [
     "static/css/main.6a0efb76.css",
-    "static/js/main.a5957f52.js"
+    "static/js/main.75bd9dd5.js"
   ]
 }
