@@ -7,8 +7,10 @@ import {
   FAVORITES_ROUTE,
   PROFILE_ROUTE,
 } from '../../../utils/constants';
+import useProfile from '../../../providers/ProfileProvider/ProfileProvider.hook';
 
 function TabBar() {
+  const { newNotifications } = useProfile();
   return (
     <nav className="tabbar">
       <NavLink className="tabbar__link" to={BILLBOARD_ROUTE} end>
@@ -25,7 +27,7 @@ function TabBar() {
           );
         }}
       </NavLink>
-      <NavLink className="tabbar__link" to={NOTIFICATIONS_ROUTE}>
+      <NavLink className="tabbar__link tabbar__link-with-marker" to={NOTIFICATIONS_ROUTE}>
         {({ isActive }) => {
           return (
             <>
@@ -34,6 +36,9 @@ function TabBar() {
                 src={isActive ? icons.notificationsBlue : icons.notificationsGrey}
                 alt="иконка"
               />
+              {newNotifications.length !== 0 && (
+                <span className="tabbar__new-notification-marker" />
+              )}
               Уведомления
             </>
           );

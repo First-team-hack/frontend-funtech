@@ -34,3 +34,18 @@
   width: 28px;
   height: 28px;
 }
+
+.tabbar__link-with-marker {
+  position: relative;
+}
+
+.tabbar__new-notification-marker {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: var(--colorStrokeNegative);
+  border: 2px solid var(--colorStrokeContrast);
+  border-radius: 50px;
+  top: 0;
+  left: 10px;
+}
