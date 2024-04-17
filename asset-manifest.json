@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/frontend-funtech/static/css/main.c4c437e6.css",
-    "main.js": "/frontend-funtech/static/js/main.2c2779bc.js",
+    "main.css": "/frontend-funtech/static/css/main.685ba5ca.css",
+    "main.js": "/frontend-funtech/static/js/main.ddca3871.js",
     "static/media/card_bg_1.svg": "/frontend-funtech/static/media/card_bg_1.bd502665a2ce5330b276aa30e1e8c7e8.svg",
     "static/media/login_bg_left.png": "/frontend-funtech/static/media/login_bg_left.03a033ce848d3d458d11.png",
     "static/media/login_bg_right.png": "/frontend-funtech/static/media/login_bg_right.eecb63286295e9923aad.png",
@@ -31,8 +31,6 @@
     "static/media/afisha_icon_grey.svg": "/frontend-funtech/static/media/afisha_icon_grey.c56f0a6f8944c1a4adc53491210b5190.svg",
     "static/media/favorites_icon_blue.svg": "/frontend-funtech/static/media/favorites_icon_blue.4d8b18449a55708954c33b841ca46cbf.svg",
     "static/media/favorites_icon_grey.svg": "/frontend-funtech/static/media/favorites_icon_grey.37cee4da38df01c1285aba6a32986cf4.svg",
-    "static/media/random_coffee_icon_blue.svg": "/frontend-funtech/static/media/random_coffee_icon_blue.b1d1ccc9bb4e3f056bd721869e9c9241.svg",
-    "static/media/random_coffee_icon_grey.svg": "/frontend-funtech/static/media/random_coffee_icon_grey.f9f5682077593eebe8f1119b86931979.svg",
     "static/media/profile_icon_blue.svg": "/frontend-funtech/static/media/profile_icon_blue.29e530acbfba9b3689849cb78bdccd0a.svg",
     "static/media/profile_icon_grey.svg": "/frontend-funtech/static/media/profile_icon_grey.fe63c9a62079abb6a8170f8bb7582280.svg",
     "static/media/main_bg_2.svg": "/frontend-funtech/static/media/main_bg_2.273dd63a28808f8bf806.svg",
@@ -43,11 +41,11 @@
     "static/media/chat__button_arrow.svg": "/frontend-funtech/static/media/chat__button_arrow.e6eda33de4a8b40beeb3.svg",
     "static/media/dashed_divider_blue.svg": "/frontend-funtech/static/media/dashed_divider_blue.4be98a63c736d7dfe442.svg",
     "static/media/dashed_divider.svg": "/frontend-funtech/static/media/dashed_divider.b9639a1bc51296bda115.svg",
-    "main.c4c437e6.css.map": "/frontend-funtech/static/css/main.c4c437e6.css.map",
-    "main.2c2779bc.js.map": "/frontend-funtech/static/js/main.2c2779bc.js.map"
+    "main.685ba5ca.css.map": "/frontend-funtech/static/css/main.685ba5ca.css.map",
+    "main.ddca3871.js.map": "/frontend-funtech/static/js/main.ddca3871.js.map"
   },
   "entrypoints": [
-    "static/css/main.c4c437e6.css",
-    "static/js/main.2c2779bc.js"
+    "static/css/main.685ba5ca.css",
+    "static/js/main.ddca3871.js"
   ]
 }
