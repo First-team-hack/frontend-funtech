@@ -35,4 +35,5 @@ export default createContext({
   newNotifications: [],
   watchedNotifications: [],
   addNewNotification: () => {},
+  moveNotificationToWatched: () => {},
 });

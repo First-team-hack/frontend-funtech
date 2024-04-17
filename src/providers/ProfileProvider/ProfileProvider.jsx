@@ -128,20 +128,6 @@ const ProfileProvider = ({ children }) => {
     );
   };
 
-  // const getAllNotifications = () => {
-  //   //GET notifications from server
-  //   const newNotificationFromServer = mockNotificationData.filter(
-  //     (notification) => !notification.watched
-  //   );
-  //   const watchedNotificationFromServer = mockNotificationData.filter(
-  //     (notification) => notification.watched
-  //   );
-  //   return Promise.resolve().then(() => {
-  //     setNewNotifications(newNotificationFromServer);
-  //     setWatchedNotifications(watchedNotificationFromServer);
-  //   });
-  // };
-
   const addNewNotification = (type, event) => {
     const newNotificationId = newNotifications.length + watchedNotifications.length + 1;
     const newNotification = {
@@ -153,6 +139,17 @@ const ProfileProvider = ({ children }) => {
     };
     return Promise.resolve().then(() => {
       setNewNotifications((prev) => [newNotification, ...prev]);
+    });
+  };
+
+  const moveNotificationToWatched = (id) => {
+    return Promise.resolve().then(() => {
+      const watchedNotification = newNotifications.filter(
+        (notification) => notification.id === id
+      )[0];
+      watchedNotification.watched = true;
+      setNewNotifications((prev) => prev.filter((notification) => notification.id !== id));
+      setWatchedNotifications((prev) => [watchedNotification, ...prev]);
     });
   };
 
@@ -174,6 +171,7 @@ const ProfileProvider = ({ children }) => {
     newNotifications,
     watchedNotifications,
     addNewNotification,
+    moveNotificationToWatched,
   };
 
   return (

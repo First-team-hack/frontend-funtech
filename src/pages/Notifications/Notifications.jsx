@@ -10,12 +10,14 @@ function Notifications() {
           <section className="notifications__new">
             <h2 className="notifications__section-title">Новые уведомления</h2>
             <ul className="notification__list">
-              {newNotifications.reverse().map((notification) => (
+              {newNotifications.map((notification) => (
                 <Notification
                   key={notification.id}
+                  id={notification.id}
                   event={notification.event}
                   type={notification.type}
                   date={notification.date}
+                  watched={notification.watched}
                 />
               ))}
             </ul>
@@ -24,12 +26,14 @@ function Notifications() {
         <section className="notifications__watched">
           <h2 className="notifications__section-title">Просмотренные уведомления</h2>
           <ul className="notification__list">
-            {watchedNotifications.reverse().map((notification) => (
+            {watchedNotifications.map((notification) => (
               <Notification
                 key={notification.id}
+                id={notification.id}
                 event={notification.event}
                 type={notification.type}
                 date={notification.date}
+                watched={notification.watched}
               />
             ))}
           </ul>

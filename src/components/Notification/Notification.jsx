@@ -1,4 +1,5 @@
 import useEvent from '../../providers/EventProvider/EventProvider.hook';
+import useProfile from '../../providers/ProfileProvider/ProfileProvider.hook';
 import { EVENTS_ROUTE } from '../../utils/constants';
 import './Notification.css';
 import { useNavigate } from 'react-router-dom';
@@ -6,9 +7,13 @@ import { useNavigate } from 'react-router-dom';
 function Notification(props) {
   const navigate = useNavigate();
   const { setCurrentEvent } = useEvent();
+  const { moveNotificationToWatched } = useProfile();
   const onButtonClick = () => {
     setCurrentEvent(props.event);
     navigate(`${EVENTS_ROUTE}/${props.event?.id}`);
+  };
+  const onWatchedButtonClick = () => {
+    moveNotificationToWatched(props.id);
   };
   return (
     <li className="notification">
@@ -38,7 +43,14 @@ function Notification(props) {
           </button>
         )}
       </div>
-      <p className="notification__date">{props.date?.toLocaleDateString()}</p>
+      <div className="notification__right-side">
+        {props.watched === false && (
+          <button className="notification__live-link" onClick={onWatchedButtonClick}>
+            Просмотреть
+          </button>
+        )}
+        <p className="notification__date">{props.date?.toLocaleDateString()}</p>
+      </div>
     </li>
   );
 }
