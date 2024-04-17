@@ -3,12 +3,10 @@ import './App.css';
 import Header from './components/Header/Header';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Billboard from './pages/Billboard/Billboard';
-import RandomCoffee from './pages/RandomCoffee/RandomCoffee';
 import Notifications from './pages/Notifications/Notifications';
 import Favorites from './pages/Favorites/Favorites';
 import Profile from './pages/Profile/Profile';
 import Auth from './pages/Auth/Auth';
-import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import Footer from './components/Footer/Footer';
 import useProfile from './providers/ProfileProvider/ProfileProvider.hook';
 import {
@@ -70,7 +68,6 @@ function App() {
           element={<ProtectedRoute isLoggedIn={isLoggedIn} component={Profile} />}
         />
         <Route path={AUTH_ROUTE} element={<Auth />} />
-        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       {pathname === BILLBOARD_ROUTE && <Footer />}
       {isEventRegistrationPopupOpen && <EventRegistrationPopup />}
