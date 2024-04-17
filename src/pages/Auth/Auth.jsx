@@ -18,7 +18,7 @@ function Auth() {
   };
   return (
     <main className="auth">
-      <Link to={BILLBOARD_ROUTE}>
+      <Link to="/">
         <div className="auth__logo" />
       </Link>
       <h1 className="auth__title">Единый профиль для всех мероприятий </h1>
