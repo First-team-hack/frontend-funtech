@@ -31,7 +31,7 @@ function UserBar() {
           }`}</li>
           <li className="userbar__email">{`${userInfo?.email || 'почта'}`}</li>
           <li className="userbar__watched-hours">{`Количество просмотренных часов ${
-            userInfo?.watchedHours || '0'
+            userInfo?.watchedHours || '7'
           }`}</li>
         </ul>
         <div className="userbar__actions">
