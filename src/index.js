@@ -11,16 +11,14 @@ import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <ThemeProvider theme={globalTheme}>
-      <BrowserRouter>
-        <EventProvider>
-          <ProfileProvider>
-            <ScrollToTop />
-            <App />
-          </ProfileProvider>
-        </EventProvider>
-      </BrowserRouter>
-    </ThemeProvider>
-  </React.StrictMode>
+  <ThemeProvider theme={globalTheme}>
+    <BrowserRouter>
+      <EventProvider>
+        <ProfileProvider>
+          <ScrollToTop />
+          <App />
+        </ProfileProvider>
+      </EventProvider>
+    </BrowserRouter>
+  </ThemeProvider>
 );

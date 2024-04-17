@@ -85,6 +85,8 @@ const ProfileProvider = ({ children }) => {
     setRecommendedEvents([]);
     localStorage.removeItem('jwt');
     setIsLoggedIn(false);
+    setNewNotifications([]);
+    setWatchedNotifications([]);
   };
 
   const updateUserInfo = (info) => {
