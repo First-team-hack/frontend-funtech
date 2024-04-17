@@ -1,6 +1,6 @@
-const APP_BASE_URL = '/frontend-funtech';
+const APP_BASE_URL = '';
 
-export const BILLBOARD_ROUTE = APP_BASE_URL + '/';
+export const BILLBOARD_ROUTE = APP_BASE_URL;
 export const NOTIFICATIONS_ROUTE = APP_BASE_URL + '/notifications';
 export const FAVORITES_ROUTE = APP_BASE_URL + '/favorites';
 export const PROFILE_ROUTE = APP_BASE_URL + '/profile';
