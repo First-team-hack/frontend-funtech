@@ -1,7 +1,6 @@
 const APP_BASE_URL = '/frontend-funtech';
 
 export const BILLBOARD_ROUTE = APP_BASE_URL + '/';
-export const RANDOM_COFFEE_ROUTE = APP_BASE_URL + '/randomcoffee';
 export const NOTIFICATIONS_ROUTE = APP_BASE_URL + '/notifications';
 export const FAVORITES_ROUTE = APP_BASE_URL + '/favorites';
 export const PROFILE_ROUTE = APP_BASE_URL + '/profile';

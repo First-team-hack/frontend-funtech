@@ -28,7 +28,6 @@ function Subscribe() {
     <div
       style={{
         width: '513px',
-        // minHeight: '430px',
         height: '430px',
         padding: '146px 20px 20px 80px',
         borderRadius: '60px',

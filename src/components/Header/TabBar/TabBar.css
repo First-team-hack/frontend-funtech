@@ -16,7 +16,7 @@
   font-size: 13px;
   font-style: normal;
   font-weight: 500;
-  line-height: 16px; /* 123.077% */
+  line-height: 16px;
   letter-spacing: -0.08px;
 
   transition: all ease-in 0.1s;
@@ -33,4 +33,19 @@
 .tabbar__link-icon {
   width: 28px;
   height: 28px;
+}
+
+.tabbar__link-with-marker {
+  position: relative;
+}
+
+.tabbar__new-notification-marker {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: var(--colorStrokeNegative);
+  border: 2px solid var(--colorStrokeContrast);
+  border-radius: 50px;
+  top: 0;
+  left: 10px;
 }

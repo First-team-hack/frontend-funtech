@@ -3,12 +3,10 @@ import './App.css';
 import Header from './components/Header/Header';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Billboard from './pages/Billboard/Billboard';
-import RandomCoffee from './pages/RandomCoffee/RandomCoffee';
 import Notifications from './pages/Notifications/Notifications';
 import Favorites from './pages/Favorites/Favorites';
 import Profile from './pages/Profile/Profile';
 import Auth from './pages/Auth/Auth';
-import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import Footer from './components/Footer/Footer';
 import useProfile from './providers/ProfileProvider/ProfileProvider.hook';
 import {
@@ -18,7 +16,6 @@ import {
   FAVORITES_ROUTE,
   NOTIFICATIONS_ROUTE,
   PROFILE_ROUTE,
-  RANDOM_COFFEE_ROUTE,
 } from './utils/constants';
 import EventRegistrationPopup from './components/Popup/EventRegistrationPopup/EventRegistrationPopup';
 import useEvent from './providers/EventProvider/EventProvider.hook';
@@ -62,10 +59,6 @@ function App() {
         <Route path={EVENTS_ROUTE} element={<Navigate to={BILLBOARD_ROUTE} replace={true} />} />
         <Route path={EVENTS_ROUTE + '/:id'} element={<Event />} />
         <Route
-          path={RANDOM_COFFEE_ROUTE}
-          element={<ProtectedRoute isLoggedIn={isLoggedIn} component={RandomCoffee} />}
-        />
-        <Route
           path={NOTIFICATIONS_ROUTE}
           element={<ProtectedRoute isLoggedIn={isLoggedIn} component={Notifications} />}
         />
@@ -75,7 +68,6 @@ function App() {
           element={<ProtectedRoute isLoggedIn={isLoggedIn} component={Profile} />}
         />
         <Route path={AUTH_ROUTE} element={<Auth />} />
-        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       {pathname === BILLBOARD_ROUTE && <Footer />}
       {isEventRegistrationPopupOpen && <EventRegistrationPopup />}

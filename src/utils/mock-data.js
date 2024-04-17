@@ -65,51 +65,6 @@ export const mockSpeakerData = [
   },
 ];
 
-export const notifications = [
-  {
-    id: 1,
-    title: 'Текст уведомления',
-    text: 'Подробный текст уведомления',
-    broadcastUrl: '/profile',
-    age: '3 м',
-  },
-  {
-    id: 2,
-    title: 'Текст уведомления 2',
-    text: 'Подробный текст уведомления 2',
-    broadcastUrl: '/',
-    age: '3 м',
-  },
-  {
-    id: 3,
-    title: 'Текст уведомления3',
-    text: 'Подробный текст уведомления3',
-    broadcastUrl: '/',
-    age: '3 м',
-  },
-  {
-    id: 4,
-    title: 'Текст уведомления 4',
-    text: 'Подробный текст уведомления 4',
-    broadcastUrl: '/',
-    age: '3 м',
-  },
-  {
-    id: 5,
-    title: 'Текст уведомления 5',
-    text: 'Подробный текст уведомления 5',
-    broadcastUrl: '/',
-    age: '3 м',
-  },
-  {
-    id: 6,
-    title: 'Текст уведомления 6 ',
-    text: 'Подробный текст уведомления 6',
-    broadcastUrl: '/',
-    age: '3 м',
-  },
-];
-
 export const mockCardsData = [
   {
     id: 1,
@@ -433,5 +388,36 @@ export const mockLiveChatMessagges = [
     authorName: 'Ассистент',
     text: 'Мероприятие вот-вот начнется. Будет интересно!',
     time: new Date(new Date().setMinutes(new Date().getMinutes() - 5)),
+  },
+];
+
+export const mockNotificationData = [
+  {
+    id: 1,
+    type: 'newRegistration',
+    event: mockCardsData[0],
+    date: new Date(2024, 2, 17),
+    watched: true,
+  },
+  {
+    id: 2,
+    type: 'cancelRegistration',
+    event: mockCardsData[0],
+    date: new Date(2024, 3, 1),
+    watched: false,
+  },
+  {
+    id: 3,
+    type: 'newRegistration',
+    event: mockCardsData[7],
+    date: new Date(2024, 3, 10),
+    watched: false,
+  },
+  {
+    id: 4,
+    type: 'eventBegin',
+    event: mockCardsData[7],
+    date: new Date(),
+    watched: false,
   },
 ];
