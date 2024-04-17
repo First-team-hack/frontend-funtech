@@ -31,4 +31,8 @@ export default createContext({
   deleteFavoriteEvent: () => {},
 
   recommendedEvents: [],
+
+  newNotifications: [],
+  watchedNotifications: [],
+  addNewNotification: () => {},
 });
